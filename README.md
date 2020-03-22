@@ -1,16 +1,23 @@
-# clean-up
- El proyecto trata sobre una plataforma en la que los ciudadanos residentes de un área podrán publicar desperfectos ubicados en la vía pública, con la intención de que los responsables, en este caso, el Ayuntamiento, los arregle.
+Clean-Up
+============
 
-Rubén Jiménez Reina
+Descripción del proyecto
+------------
+El proyecto trata sobre una plataforma en la que los ciudadanos residentes de un área podrán publicar desperfectos ubicados en la vía pública, con la intención de que los responsables, en este caso, el Ayuntamiento, los arregle.
 
-Tom van Greevenbroek
 
-Sergio Morales Recio
+Integrantes del equipo
+------------
+* Rubén Jiménez Reina
 
-Francisco José García Barbero
+* Tom van Greevenbroek
 
-Antonio Sixto López Malo
+* Sergio Morales Recio
 
-Safa Hrimech
+* Francisco José García Barbero
 
-José Luis Castro Díaz
+* Antonio Sixto López Malo
+
+* Safa Hrimech
+
+* José Luis Castro Díaz
