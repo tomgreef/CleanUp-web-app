@@ -1,3 +1,4 @@
+
 Clean-Up
 ============
 
@@ -21,3 +22,8 @@ Integrantes del equipo
 * Safa Hrimech
 
 * José Luis Castro Díaz
+
+
+Proceso del proyecto
+------------
+>*02/04/2019* - Se ha subido la Versión 1 (V1) de la planificación del proyecto.
