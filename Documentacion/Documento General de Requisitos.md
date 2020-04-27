@@ -97,17 +97,17 @@ Además, la plataforma empleará un servicio de geolocalizacion con una api de g
 Todos usuarios serán presentados con la página de incidencias, que sería equivalente al de inicio, al entrar en la plataforma web. Si el usuario no ha
 iniciado sesión, se le presentará la opción de iniciar sesión como viene a continuación:
 
-![Inicio de sesión](https://github.com/tomgreef/clean-up/blob/master/imagen1.jpg)
+![Inicio de sesión](https://github.com/tomgreef/clean-up/blob/master/Recursos/Iniciar_Session.jpg)
 
 Una vez haya iniciado sesión tendrá la opción de crear nuevas incidencias o editar/ver las que ya tenga creadas, y además podrá ver lo que sucede por lo demás en su
 alrededor. A continuación, un ejemplo de una incidencia creada por un usuario:
 
-![Incidencia](https://github.com/tomgreef/clean-up/blob/master/imagen2.jpg)
+![Incidencia](https://github.com/tomgreef/clean-up/blob/master/Recursos/Pagina_Inicial.jpg)
 
 Finalmente, los agentes accederán de la misma forma a la plataforma, pero tendrán un interfaz más ampliado respecto a los usuarios, ya que van tener la posibilidad de
 administrar todas las incidencias, y verlas en un mapa con detalles.
 
-![Mapa](https://github.com/tomgreef/clean-up/blob/master/imagen3.jpg)
+![Mapa](https://github.com/tomgreef/clean-up/blob/master/Recursos/Agente_Incidencias.jpg)
 #### __3.2 Interfaces con el Hardware__
 El sistema necesitará un servidor en el que ejecutar el backend, y los dispositivos de los usuarios y agentes (ordenadores o móviles). En el caso de los dispositivos móviles, necesitarán disponer de GPS. El servicio utilizará el protocolo HTTPS.
 #### __3.3 Interfaces con el Software__
