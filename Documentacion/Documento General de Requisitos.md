@@ -326,7 +326,7 @@ __Prioridad:__ Fundamental
 | R23   | Rellenando datos               | Se permitirá un tiempo máximo de 10 minutos para rellenar un formulario                                                          | Deseable    |                    | No Funcional |
 | R24   | Protocolo del servidor         | La web se servira mediante HTTPS                                                                                                 | Deseable    |                    | No Funcional |
 ### __4.2 Funcionales__
-Este [enlace](https://github.com/tomgreef/clean-up/blob/master/Documentacion/CasosDeUSoDelGrupo.pdf) te llevará al documento de MagicDraw en el que se describen las principales funcionalidades del sistema
+Este [enlace](https://github.com/tomgreef/clean-up/blob/master/Documentacion/Casos%20De%20Uso.pdf) te llevará al documento de MagicDraw en el que se describen las principales funcionalidades del sistema
 ### __4.3 Calidad de Servicio__
 #### __4.3.1 Rendimiento__
 __R6.1__ - El motivo por la cual se ha optado esas especificaciones es para reducir el tamaño que ocupa cada incidencia en la base de datos, y a su vez optar por un formato específico de imágenes.
