@@ -85,8 +85,8 @@ todos los usuarios que crearon esas incidencias.
 
 ### __2.4 Perfiles de usuario__
 Los perfiles de usuarios serán aquellos ciudadanos que se preocupan por sus entornos, ya que la única forma en la que se puede arreglar algo en la vía pública es a través del ayuntamiento.
-El uso del software también se podrá ver afectado por la experiencia técnica de cada usuario y su nivel educativo.
-Los agentes serán otro perfil de usuario, y son los trabajadores del ayuntamiento a los que se les asignarán las incidencias.
+El uso del software también se podrá ver afectado por la experiencia técnica de cada usuario y su nivel educativo.  
+Los agentes serán otro perfil de usuario, y son los trabajadores del ayuntamiento a los que se les asignarán las incidencias.  
 Los adminitradores también son otro perfil de usuario, que son el equipo encargado de administrar todo el sistema.
 
 ### __2.5 Suposiciones y dependencias__
@@ -361,22 +361,22 @@ __Prioridad:__ Fundamental
 
 __R7.2 - Amplitud del texto__  
 Los textos estarán limitados a un número máximo de 250 caracteres.  
-__Precedencia:__ Ninguna  
+__Precedencia:__ Ninguna   
 __Prioridad:__ Deseable  
 
 __R7.3 - Coordenadas GPS__  
 Las coordenadas se obtienen desde el GPS del móvil o a través del uso de coordenadas.  
-__Precedencia:__ R1, R1.1  
+__Precedencia:__ R1, R1.1   
 __Prioridad:__ Fundamental  
 
 __R7.3.1 - Tipo de coordenadas__  
 Las coordenadas deberán estar expresadas en grados, minutos y segundos.   
-__Precedencia:__ R1, R1.1  
+__Precedencia:__ R1, R1.1   
 __Prioridad:__ Fundamental  
 
 __R7.4.1 - Reconocimiento de duplicados__  
 El sistema reconocerá las posibles incidencias duplicadas mediante el uso de las coordenadas.   
-__Precedencia:__ 7.3  
+__Precedencia:__ 7.3   
 __Prioridad:__ Fundamental  
 
 __R13.1 - Recibir notificaciones__  
@@ -397,17 +397,17 @@ __Prioridad:__ Fundamental
 
 __R5.2 - Verificación cuenta__  
 Los usuarios verificarán su cuenta a través del correo electrónico.  
-__Precedencia:__ R1, R3    
+__Precedencia:__ R1, R3     
 __Prioridad:__ Fundamental  
 
 __R23 - Certificación SSL__  
 Para cumplir con las normas de GDPR, se usarán certificaciones SSL.  
-__Precedencia:__ Ninguna  
+__Precedencia:__ Ninguna    
 __Prioridad:__ Fundamental  
 
 __R24 - Protocolo del servidor__  
 La web se servirá mediante HTTPS.   
-__Precedencia:__ Ninguna  
+__Precedencia:__ Ninguna    
 __Prioridad:__ Fundamental   
 
 #### __4.5.4 Reusabilidad__
