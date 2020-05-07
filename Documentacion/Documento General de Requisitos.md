@@ -350,19 +350,19 @@ __Precedencia:__ R1, R1.1
 __Prioridad:__ Fundamental  
 
 __R7.1.2 - Formato de imágenes__  
-El formato de las imágenes debe ser .PNG o .JPG.
-__Precedencia:__ R1, R1.1  
+El formato de las imágenes debe ser .PNG o .JPG.   
+__Precedencia:__ R1, R1.1    
 __Prioridad:__ Fundamental  
 
 __R7.1.3 - Capacidad imágenes__  
-Lás imágenes ocuparán como máximo 50mb por incidencia.
-__Precedencia:__ R1, R1.1  
-__Prioridad:__ Fundamental  
+Lás imágenes ocuparán como máximo 50mb por incidencia.   
+__Precedencia:__ R1, R1.1    
+__Prioridad:__ Fundamental    
 
 __R7.2 - Amplitud del texto__  
-Los textos estarán limitados a un número máximo de 250 caracteres.  
-__Precedencia:__ Ninguna   
-__Prioridad:__ Deseable  
+Los textos estarán limitados a un número máximo de 250 caracteres.    
+__Precedencia:__ Ninguna     
+__Prioridad:__ Deseable    
 
 __R7.3 - Coordenadas GPS__  
 Las coordenadas se obtienen desde el GPS del móvil o a través del uso de coordenadas.  
