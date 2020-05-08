@@ -155,11 +155,6 @@ La plataforma se comunica con el GPS del smartphone para obtener información ge
 ### __4.2 Funcionales__
 Este [enlace](https://github.com/tomgreef/clean-up/blob/master/Documentacion/Casos%20De%20Uso.pdf) te llevará al documento de MagicDraw en el que se describen las principales funcionalidades del sistema.  
 
-### ID - Nombre del requisito
-Descripción
-#### Dependencias 
-#### Priodidad
-#### Justificación
 __R1 - Conexión a internet__  
 Para el uso de la plataforma web, es necesario tener una conexión con el internet estable.  
 __Precedencia:__ Ninguna  
