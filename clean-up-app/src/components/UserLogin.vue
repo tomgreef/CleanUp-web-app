@@ -5,7 +5,7 @@
 			<b-input v-model="email"></b-input>
 		</b-field>
 		<b-field label="Contraseña" label-position="on-border">
-			<b-input v-model="pass"></b-input>
+			<b-input v-model="pass" type="password"></b-input>
 		</b-field>
 		<b-button @click="inicio" class="button" type="is-primary" expanded
 			>Iniciar sesión</b-button
@@ -15,25 +15,22 @@
 
 <script>
 	import firebase from 'firebase';
+
 	export default {
-		data: () => ({
-			email: '',
-			pass: ''
-		}),
+		data: function() {
+			return {
+				email: null,
+				pass: null
+			};
+		},
 		methods: {
-			verify: () => {
-				if (this.email.includes('@')) {
-					console.log(this.email);
-				}
-			},
-			inicio: () => {
-				const auth = firebase.auth();
-				console.log(this.email);
-				auth.signinWithEmailAndPassword(this.email, this.pass).catch(
-					error => {
+			inicio: function() {
+				firebase
+					.auth()
+					.signInWithEmailAndPassword(this.email, this.pass)
+					.catch(error => {
 						console.log(error);
-					}
-				);
+					});
 			}
 		}
 	};
