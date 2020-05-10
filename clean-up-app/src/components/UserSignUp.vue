@@ -20,26 +20,27 @@
 </template>
 
 <script>
-import firebase from "firebase"
+	import firebase from 'firebase';
 	export default {
-		data:() => ({
+		data: () => ({
 			name: null,
 			tel: null,
 			email: null,
 			pass: null
 		}),
-		methods:{
-			signup: function(){
-				const auth = firebase.auth
-				auth().createUserWithEmailAndPassword(this.email, this.pass).then((u, err) =>{
-					if(err){
-						console.log(err);
-						
-					}else{
-						console.table(u)
-						u.updateProfile({telephone:this.tel})
-					}
-				})
+		methods: {
+			signup: function() {
+				const auth = firebase.auth;
+				auth()
+					.createUserWithEmailAndPassword(this.email, this.pass)
+					.then((u, err) => {
+						if (err) {
+							console.log(err);
+						} else {
+							console.table(u);
+							u.updateProfile({ telephone: this.tel });
+						}
+					});
 			}
 		}
 	};

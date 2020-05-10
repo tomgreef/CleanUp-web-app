@@ -11,19 +11,18 @@
 				</div>
 			</div>
 			-->
-			<b-tabs
-				position="is-centered"
-				class="block"
-				type="is-toggle"
-				expanded
-			>
-				<b-tab-item label="Iniciar sesión">
-					<UserLogin />
-				</b-tab-item>
-				<b-tab-item label="Crear cuenta">
-					<UserSignup />
-				</b-tab-item>
-			</b-tabs>
+			<div class="columns is-centered">
+				<div class="column is-half">
+					<b-tabs position="is-centered" type="is-toggle" expanded>
+						<b-tab-item label="Iniciar sesión">
+							<UserLogin />
+						</b-tab-item>
+						<b-tab-item label="Crear cuenta">
+							<UserSignup />
+						</b-tab-item>
+					</b-tabs>
+				</div>
+			</div>
 		</div>
 	</section>
 </template>
