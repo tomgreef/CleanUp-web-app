@@ -3,7 +3,7 @@
         <figure class="media-left">
             <img src="https://bulma.io/images/placeholders/480x320.png">
         </figure>
-        <div>
+         <div>
             <div class="media-content">
                 <div class="content">
                     <p class="title">Título</p>

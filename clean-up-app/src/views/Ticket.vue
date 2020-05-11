@@ -2,17 +2,24 @@
 	<section class="section">
 		<div class="container">
 			<Ticket>
-				<p>Hola</p>
 			</Ticket>
+			<BotonAgregarTicket>
+			</BotonAgregarTicket>
+			<BotonPerfil>
+			</BotonPerfil>
 		</div>
 	</section>
 </template>
 
 <script>
-    import Ticket from '@/components/Ticket';
+	import Ticket from '@/components/Ticket';
+	import BotonAgregarTicket from '@/components/BotonAgregarTicket';
+	import BotonPerfil from '@/components/BotonPerfil';
     export default {
 		components: {
-			Ticket
+			Ticket,
+			BotonAgregarTicket,
+			BotonPerfil
 		}
 	};
 </script>
