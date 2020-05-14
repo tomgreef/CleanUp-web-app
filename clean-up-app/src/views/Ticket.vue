@@ -2,7 +2,7 @@
 	<section class="section">
 		<div class="container">
 			<Ticket>
-			</Ticket>		
+			</Ticket>	
 		</div>
 	</section>
 </template>
@@ -11,7 +11,7 @@
 	import Ticket from '@/components/Ticket';
     export default {
 		components: {
-			Ticket
+			Ticket,
 		}
 	};
 </script>
