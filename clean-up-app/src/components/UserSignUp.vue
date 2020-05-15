@@ -4,9 +4,6 @@
 		<b-field label="Nombre" label-position="on-border">
 			<b-input v-model="name"></b-input>
 		</b-field>
-		<b-field label="Telefono" label-position="on-border">
-			<b-input v-model="tel"></b-input>
-		</b-field>
 		<b-field label="Email" label-position="on-border">
 			<b-input v-model="email"></b-input>
 		</b-field>
@@ -27,36 +24,49 @@
 <script>
 	import firebase from 'firebase';
 	import authErrors from '@/helpers/authErrors';
+	import { warning } from '@/helpers/notificaciones.js';
+
 	export default {
 		data: () => ({
 			name: '',
-			tel: '',
 			email: '',
 			pass: ''
 		}),
+		props: {
+			userType: String
+		},
 		computed: {
 			validate: function() {
-				let valid = this.pass.length < 4;
-				console.log(valid);
-				return valid;
+				return this.pass.length < 6;
 			}
 		},
 		methods: {
 			signup: function() {
-				const auth = firebase.auth();
-				auth.createUserWithEmailAndPassword(this.email, this.pass)
+				firebase
+					.auth()
+					.createUserWithEmailAndPassword(this.email, this.pass)
 					.catch(function(error) {
-						authErrors(error);
+						warning(authErrors(error));
 					})
 					.then(function() {
-						let user = auth.currentUser;
-						user.updateProfile({
-							displayName: this.name,
-							telephone: this.tel
-						}).catch(function(error) {
-							authErrors(error);
-						});
+						this.addDisplayName();
 					});
+			},
+			addDisplayName: function() {
+				let user = firebase.auth().currentUser;
+				user.updateProfile({
+					displayName: this.name
+				}).catch(function(error) {
+					warning(authErrors(error));
+				});
+				this.registerUserType(user.uid);
+			},
+			registerUserType: function(uid) {
+				const db = firebase.firestore();
+				db.collection('users').add({
+					uid: uid,
+					type: this.userType
+				});
 			}
 		}
 	};

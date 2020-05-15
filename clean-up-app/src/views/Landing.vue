@@ -1,16 +1,6 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<!--
-			<div class="columns">
-				<div class="column">
-					<UserLogin />
-				</div>
-				<div class="column">
-					<UserSignup />
-				</div>
-			</div>
-			-->
 			<div class="columns is-centered">
 				<div class="column is-half">
 					<b-tabs position="is-centered" type="is-toggle" expanded>
@@ -18,7 +8,7 @@
 							<UserLogin />
 						</b-tab-item>
 						<b-tab-item label="Crear cuenta">
-							<UserSignup />
+							<UserSignup userType="user" />
 						</b-tab-item>
 					</b-tabs>
 				</div>
