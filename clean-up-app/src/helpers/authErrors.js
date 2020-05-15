@@ -14,6 +14,9 @@ module.exports = function(error) {
 		case 'auth/invalid-password':
 			msg = 'La contraseña es invalida';
 			break;
+		case 'auth/user-not-found':
+			msg = 'Las credenciales no coinciden';
+			break;
 	}
 	return msg;
 };

@@ -30,7 +30,7 @@
 		}),
 		computed: {
 			validate: function() {
-				return this.pass.length < 6 && this.email.length < 10;
+				return this.pass.length < 6 || this.email.length < 10;
 			}
 		},
 		methods: {
