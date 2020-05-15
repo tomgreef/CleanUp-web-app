@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { auth } from 'firebase';
+import { auth, firestore } from 'firebase';
 
 Vue.use(VueRouter);
 
@@ -9,6 +9,15 @@ const routes = [
 		path: '/',
 		name: 'Inicio',
 		component: () => import('@/views/Landing')
+	},
+	{
+		path: '/private',
+		name: 'Private',
+		component: () => import('@/views/Private'),
+		meta: {
+			requiresAuth: true,
+			allowType: 'user'
+		}
 	}
 ];
 
@@ -19,12 +28,21 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+	let canContinue = true;
 	if (to.matched.some(route => route.meta.requiresAuth)) {
-		if (!auth().currentUser) {
-			next({ name: 'Inicio' });
+		let currentUser = auth().currentUser;
+		canContinue = !!currentUser;
+		if (canContinue && to.meta.userType) {
+			let userType = firestore()
+				.collection('users')
+				.get(currentUser.uid);
+			canContinue = userType != to.meta.userType;
 		}
-	} else {
+	}
+	if (canContinue) {
 		next();
+	} else {
+		next({ name: 'Inicio' });
 	}
 });
 

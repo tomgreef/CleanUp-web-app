@@ -34,12 +34,15 @@
 			}
 		},
 		methods: {
-			inicio: function() {
+			inicio() {
 				firebase
 					.auth()
 					.signInWithEmailAndPassword(this.email, this.pass)
 					.catch(function(error) {
 						warning(authErrors(error));
+					})
+					.then(() => {
+						this.$router.replace({ path: '/private' });
 					});
 			}
 		}

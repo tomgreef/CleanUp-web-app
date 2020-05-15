@@ -41,18 +41,19 @@
 			}
 		},
 		methods: {
-			signup: function() {
+			signup() {
 				firebase
 					.auth()
 					.createUserWithEmailAndPassword(this.email, this.pass)
 					.catch(function(error) {
 						warning(authErrors(error));
 					})
-					.then(function() {
+					.then(() => {
 						this.addDisplayName();
+						this.$router.replace({ path: '/list' });
 					});
 			},
-			addDisplayName: function() {
+			addDisplayName() {
 				let user = firebase.auth().currentUser;
 				user.updateProfile({
 					displayName: this.name
@@ -61,12 +62,16 @@
 				});
 				this.registerUserType(user.uid);
 			},
-			registerUserType: function(uid) {
+			registerUserType(uid) {
 				const db = firebase.firestore();
-				db.collection('users').add({
-					uid: uid,
-					type: this.userType
-				});
+				db.collection('users')
+					.add({
+						uid: uid,
+						type: this.userType
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
 			}
 		}
 	};

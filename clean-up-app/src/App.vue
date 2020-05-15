@@ -1,7 +1,9 @@
 <template>
 	<div id="app">
 		<Hero />
-		<router-view id="view" />
+		<transition name="fade" mode="out-in">
+			<router-view id="view" />
+		</transition>
 		<Footer id="footer" />
 	</div>
 </template>
