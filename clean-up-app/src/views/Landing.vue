@@ -5,10 +5,10 @@
 				<div class="column is-half">
 					<b-tabs position="is-centered" type="is-toggle" expanded>
 						<b-tab-item label="Iniciar sesión">
-							<UserLogin />
+							<UserLogin redirect="Private" />
 						</b-tab-item>
 						<b-tab-item label="Crear cuenta">
-							<UserSignup userType="user" />
+							<UserSignup userType="user" redirect="Private" />
 						</b-tab-item>
 					</b-tabs>
 				</div>
