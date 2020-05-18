@@ -1,5 +1,5 @@
 <template>
-	<section class="columns align-content">
+	<section class="columns box">
 		<div class="column is-one-third">
 			<b-field>
 				<b-upload v-model="dropFiles" :disabled="validImg" multiple drag-drop expanded>
@@ -53,20 +53,31 @@
 
 			<div class="columns">
 				<div class="column">
-					<b-field label="Coordenadas">
+					<b-field label="Ubicación">
 						<div class="columns">
 							<div class="column">
 								<b-input
-									placeholder="Latitud"
-									v-model="latitud"
+									placeholder="Calle"
+									v-model="calle"
 								></b-input>
 							</div>
-							<div class="column">
-								<b-input
-									placeholder="Longitud"
-									v-model="longitud"
-								></b-input>
+							<div class="column is-1">
+								<b-numberinput
+									placeholder="Nº"
+									v-model="numeroCalle"
+									:controls="false"
+									min=0
+								></b-numberinput>
 							</div>
+
+							<div class="column is-2">	
+								<b-numberinput
+									placeholder="Código Postal"
+									v-model="CP"
+									:controls="false"
+									min=29000
+								></b-numberinput>
+							</div>	
 						</div>
 					</b-field>
 				</div>
@@ -85,8 +96,9 @@
 				dropFiles: [],
 				titulo: '',
 				descripcion: '',
-				latitud: null,
-				longitud: null
+				calle: null,
+				numeroCalle: null,
+				CP: null
 			};
 		},
 		computed: {
@@ -96,7 +108,8 @@
 					this.descripcion.length < 20 ||
                     this.dropFiles.length < 1 || 
                     this.latitud == null ||
-                    this.longitud == null
+					this.longitud == null ||
+					this.CP == null
 				);
             },
             validImg: function() {
