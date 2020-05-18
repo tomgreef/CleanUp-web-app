@@ -24,6 +24,7 @@
 <script>
 	import firebase from 'firebase';
 	import authErrors from '@/helpers/authErrors';
+	import { newUserEntry } from '@/helpers/dbHelper.js';
 	import { warning } from '@/helpers/notificaciones.js';
 
 	export default {
@@ -61,18 +62,7 @@
 				}).catch(function(error) {
 					warning(authErrors(error));
 				});
-				this.registerUserType(user.uid);
-			},
-			registerUserType(uid) {
-				const db = firebase.firestore();
-				db.collection('users')
-					.add({
-						uid: uid,
-						type: this.userType
-					})
-					.catch(function(error) {
-						console.log(error);
-					});
+				newUserEntry(user.uid, this.userType);
 			}
 		}
 	};
