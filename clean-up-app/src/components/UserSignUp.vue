@@ -33,7 +33,8 @@
 			pass: ''
 		}),
 		props: {
-			userType: String
+			userType: String,
+			redirect: String
 		},
 		computed: {
 			validate: function() {
@@ -50,7 +51,7 @@
 					})
 					.then(() => {
 						this.addDisplayName();
-						this.$router.replace({ path: '/list' });
+						this.$router.replace({ name: this.redirect });
 					});
 			},
 			addDisplayName() {

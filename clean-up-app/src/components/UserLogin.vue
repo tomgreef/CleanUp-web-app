@@ -28,6 +28,9 @@
 			email: '',
 			pass: ''
 		}),
+		props: {
+			redirect: String
+		},
 		computed: {
 			validate: function() {
 				return this.pass.length < 6 && this.email.length < 10;
@@ -40,9 +43,10 @@
 					.signInWithEmailAndPassword(this.email, this.pass)
 					.catch(function(error) {
 						warning(authErrors(error));
+						throw error;
 					})
 					.then(() => {
-						this.$router.replace({ path: '/private' });
+						this.$router.replace({ name: this.redirect });
 					});
 			}
 		}
