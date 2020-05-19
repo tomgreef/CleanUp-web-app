@@ -18,6 +18,16 @@ const routes = [
 			requiresAuth: true,
 			allowType: 'user'
 		}
+	},
+	{
+		path: '/listadotickets',
+		name: 'Listado tickets',
+		component: () => import('@/views/ListadoTickets')
+	},
+	{
+		path: '/crearticket',
+		name: 'Crear ticket',
+		component: () => import('@/views/CrearTicket')
 	}
 ];
 
