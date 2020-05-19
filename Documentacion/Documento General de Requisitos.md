@@ -13,7 +13,7 @@ Documento Generado por :
 
    - Versiones 
 
- 1. Introducción  
+1. Introducción  
 
   1.1 Objetivo del documento 
 
@@ -23,7 +23,7 @@ Documento Generado por :
 
   1.5 Resumen del documento 
 
-  2. Vista general del producto  
+ 2. Vista general del producto  
 
    2.1 Perspectiva del producto 
 
@@ -35,7 +35,7 @@ Documento Generado por :
 
    2.5 Suposiciones y dependencias 
 
-  3 Interfaces externas  
+3 Interfaces externas  
 
    3.1 Interfaces con el usuario 
 
@@ -43,23 +43,23 @@ Documento Generado por :
 
    3.3 Interfaces con el Software 
 
-   4. Requisitos  
+4. Requisitos  
 
-      4.1 Precedencia y prioridad 
+   4.1 Precedencia y prioridad 
 
-       4.2 Funcionales 
+   4.2 Funcionales 
 
-       4.3 Calidad de Servicio  
+   4.3 Calidad de Servicio  
 
-         4.3.1 Rendimiento 
+    4.3.1 Rendimiento 
 
-         4.3.2 Seguridad 
+    4.3.2 Seguridad 
 
-         4.5.4 Reusabilidad 
+    4.3.3 Disponibilidad 
 
-         4.5.7 Fecha de entrega 
+    4.3.4 Fecha de entrega 
 
-   5. Verificación 
+ 5. Verificación 
  
   
 ## Versiones
