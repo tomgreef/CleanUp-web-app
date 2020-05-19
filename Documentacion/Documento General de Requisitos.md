@@ -17,7 +17,7 @@ Documento Generado por :
 
   1.5 Resumen del documento 
 
-### __ 2. Vista general del producto  
+### __ 2. Vista general del producto__
 
    2.1 Perspectiva del producto 
 
@@ -29,7 +29,7 @@ Documento Generado por :
 
    2.5 Suposiciones y dependencias 
 
-### __3. Interfaces externas  
+### __3. Interfaces externas__  
 
    3.1 Interfaces con el usuario 
 
@@ -37,7 +37,7 @@ Documento Generado por :
 
    3.3 Interfaces con el Software 
 
-### __4. Requisitos  
+### __4. Requisitos__  
 
    4.1 Precedencia y prioridad 
 
@@ -53,7 +53,7 @@ Documento Generado por :
 
     4.3.4 Fecha de entrega 
 
- ### __5. Verificación 
+ ### __5. Verificación__ 
  
   
 ## Versiones
