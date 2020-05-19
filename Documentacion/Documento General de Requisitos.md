@@ -1,9 +1,9 @@
-# Especificación de requisitos 
-## Del proyecto <Clean-Up>
+### __Especificación de requisitos__ 
+### __Del proyecto <Clean-Up>__
 
-Documento Generado por : 
+### __Documento Generado por :__ 
  
- Departamento de Requisitos de Clean Up
+ ### __Departamento de Requisitos de Clean Up__
 
 Índice
 =================
