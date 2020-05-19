@@ -1,145 +1,160 @@
 <template>
-	<section class="columns box">
-		<div class="column is-one-third">
-			<b-field>
-				<b-upload
-					v-model="dropFiles"
-					:disabled="validImg"
-					multiple
-					drag-drop
-					expanded
-				>
-					<section class="section">
-						<div class="content has-text-centered">
-							<p>
-								<b-icon icon="upload" size="is-large"></b-icon>
-							</p>
-							<p>
-								Suelta tus archivos aquí o haz clic para
-								subirlos
-							</p>
-						</div>
-					</section>
-				</b-upload>
+	<section class="box">
+		<b-field
+			label="Título"
+			label-position="on-border"
+			position="is-centered"
+			expanded
+		>
+			<b-input
+				v-model="titulo"
+				placeholder="Ej: Contenedor Arroyo de la Miel"
+				maxlength="40"
+			></b-input>
+		</b-field>
+
+		<b-field
+			label="Descripción"
+			label-position="on-border"
+			position="is-centered"
+		>
+			<b-input
+				maxlength="250"
+				type="textarea"
+				placeholder="Ej: El contenedor de reciclaje en el Arroyo de la Miel está..."
+				v-model="descripcion"
+			></b-input>
+		</b-field>
+
+		<b-field grouped group-multiline position="is-centered">
+			<b-field label="Código postal" label-position="on-border" expanded>
+				<b-numberinput
+					placeholder="29007"
+					v-model="CP"
+					:controls="false"
+					min="29000"
+				></b-numberinput>
 			</b-field>
-
-			<div class="tags">
-				<span
-					v-for="(file, index) in dropFiles"
-					:key="index"
-					class="tag is-primary"
-				>
-					{{ file.name }}
-					<button
-						class="delete is-small"
-						type="button"
-						@click="deleteDropFile(index)"
-					></button>
-				</span>
-			</div>
-		</div>
-
-		<div class="column">
-			<b-field label="Título">
-				<b-input
-					v-model="titulo"
-					placeholder="Ej: Contenedor Arroyo de la Miel"
-					maxlength="40"
-				></b-input>
+			<b-field label="Calle" label-position="on-border" expanded>
+				<b-input placeholder="Calle cómpeta" v-model="calle"></b-input>
 			</b-field>
-
-			<b-field label="Descripción">
-				<b-input
-					maxlength="250"
-					type="textarea"
-					placeholder="Ej: El contenedor de reciclaje en el Arroyo de la Miel está..."
-					v-model="descripcion"
-				></b-input>
+			<b-field label="Número" label-position="on-border" expanded>
+				<b-numberinput
+					placeholder="Nº 42"
+					v-model="numeroCalle"
+					:controls="false"
+					min="0"
+				></b-numberinput>
 			</b-field>
-
-			<div class="columns">
-				<div class="column">
-					<b-field label="Ubicación">
-						<div class="columns">
-							<div class="column">
-								<b-input
-									placeholder="Calle"
-									v-model="calle"
-								></b-input>
+		</b-field>
+		<br />
+		<b-field>
+			<div class="columns is-centered">
+				<div class="column is-half">
+					<b-upload
+						v-model="images"
+						:disabled="invalidImg || invalidSize"
+						multiple
+						accept="image/*"
+						drag-drop
+						expanded
+					>
+						<section class="section">
+							<div class="content has-text-centered">
+								<p>
+									<b-icon
+										icon="upload"
+										size="is-large"
+									></b-icon>
+								</p>
+								<p>
+									Suelta tus archivos aquí o haz clic para
+									subirlos
+								</p>
+								<p>{{ images.length }} / 3</p>
 							</div>
-							<div class="column is-1">
-								<b-numberinput
-									placeholder="Nº"
-									v-model="numeroCalle"
-									:controls="false"
-									min="0"
-								></b-numberinput>
-							</div>
-
-							<div class="column is-2">
-								<b-numberinput
-									placeholder="Código Postal"
-									v-model="CP"
-									:controls="false"
-									min="29000"
-								></b-numberinput>
-							</div>
-						</div>
-					</b-field>
+						</section>
+					</b-upload>
+					<div class="tags">
+						<span
+							v-for="(image, index) in images"
+							:key="index"
+							class="tag is-primary  has-text-centered"
+						>
+							{{ image.name }}
+							<button
+								class="delete is-small"
+								type="button"
+								@click="deleteDropFile(index)"
+							></button>
+						</span>
+					</div>
 				</div>
 			</div>
-
-			<b-button :disabled="valid">Subir</b-button>
-		</div>
+		</b-field>
+		<b-button
+			:disabled="invalid"
+			type="is-primary"
+			@click="createTicket"
+			expanded
+			>Crear la incidencia</b-button
+		>
 	</section>
 </template>
 
 <script>
 	import firebase from 'firebase';
+	// TODO: Warning helper si el tamaño es invalido
+
 	export default {
-		data() {
-			return {
-				file: {},
-				dropFiles: [],
-				titulo: '',
-				descripcion: '',
-				calle: null,
-				numeroCalle: null,
-				CP: null
-			};
-		},
+		data: () => ({
+			titulo: '',
+			descripcion: '',
+			CP: null,
+			calle: '',
+			numeroCalle: null,
+			images: []
+		}),
 		computed: {
-			valid: function() {
+			invalid() {
 				return (
 					this.titulo.length < 5 ||
 					this.descripcion.length < 20 ||
-					this.dropFiles.length < 1 ||
-					this.latitud == null ||
-					this.longitud == null ||
-					this.CP == null
+					this.CP == null ||
+					this.calle.length < 10 ||
+					this.numeroCalle == null ||
+					this.images.length < 1 ||
+					this.images.length > 3
 				);
 			},
-			validImg: function() {
-				return this.dropFiles.length > 2;
+			invalidImg() {
+				return this.images.length > 2;
+			},
+			invalidSize() {
+				let invalid = true;
+				if (this.images.length > 0) {
+					let image = this.images[this.images.length - 1];
+					invalid = image.size > 10 * 1024 * 1024;
+				} else {
+					invalid = false;
+				}
+				return invalid;
 			}
 		},
 		methods: {
 			deleteDropFile(index) {
-				this.dropFiles.splice(index, 1);
+				this.images.splice(index, 1);
 			},
-
-			uploadImages() {
-				let imageReferences = [];
-				this.dropFiles.foreach(element => {
+			uploadImages(ticketId) {
+				for (let i = 0; i < this.images.length; i++) {
+					let image = this.images[i];
 					let ref = firebase.storage().ref();
-					let imageRef = ref.child('tickets/' + element);
-					imageReferences.push(imageRef);
-					ref.put(element);
-				});
-				this.createTicket(this.imageReferences);
+					let ticketRef = ref.child('tickets/' + ticketId);
+					let imageRef = ticketRef.child(image.name);
+					imageRef.put(image);
+				}
 			},
-
-			createTicket(imageReferences) {
+			createTicket() {
 				let uid = firebase.auth().currentUser.uid;
 				firebase
 					.firestore()
@@ -147,13 +162,15 @@
 					.add({
 						title: this.titulo,
 						description: this.descripcion,
-						images: imageReferences,
 						street: this.calle,
 						streetNumber: this.numeroCalle,
 						CP: this.CP,
-						user_uid: this.uid,
-						agent_uid: null,
+						user_uid: uid,
+						agent_uid: '',
 						closed: false
+					})
+					.then(ticket => {
+						this.uploadImages(ticket.id);
 					});
 			}
 		}

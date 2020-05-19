@@ -1,15 +1,27 @@
 <template>
-    <div class="media">
-        <figure class="media-left">
-            <img src="https://bulma.io/images/placeholders/480x320.png">
-        </figure>
-         <div>
-            <div class="media-content">
-                <div class="content">
-                    <p class="title">Título</p>
-                    <p class="description">Descripción</p>
-                </div>
-            </div>
-        </div> 
-    </div>
+	<article class="media">
+		<figure class="media-left">
+			<b-icon icon="ticket" size="is-large"> </b-icon>
+		</figure>
+		<div class="media-content">
+			<div class="content">
+				<p>
+					<strong>{{ title }}</strong> - {{ id }}
+					<br />
+					{{ description }}
+				</p>
+			</div>
+		</div>
+	</article>
 </template>
+
+<script>
+	export default {
+		name: 'Ticket',
+		props: {
+			id: String,
+			title: String,
+			description: String
+		}
+	};
+</script>

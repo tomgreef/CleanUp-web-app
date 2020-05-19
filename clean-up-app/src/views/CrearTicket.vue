@@ -1,19 +1,19 @@
 <template>
 	<section class="section">
-		<div class="container">
-			<Ticket>
-			</Ticket>	
+		<div class="columns is-centered">
+			<div class="column is-half">
+				<h1 class="title">Crear una incidencia</h1>
+				<CrearTicket />
+			</div>
 		</div>
-			<CrearTicket></CrearTicket>
 	</section>
 </template>
 
 <script>
-	import Ticket from '@/components/Ticket';
 	import CrearTicket from '@/components/CrearTicket';
-    export default {
+
+	export default {
 		components: {
-			Ticket,
 			CrearTicket
 		}
 	};
