@@ -1,4 +1,4 @@
-### __Especificación de requisitosDel proyecto Clean-Up__ 
+### __Especificación de requisitos del proyecto Clean-Up__ 
 
 
 ### __Documento Generado por :__ 
