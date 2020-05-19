@@ -1,5 +1,5 @@
-### __Especificación de requisitos__ 
-### __Del proyecto <Clean-Up>__
+### __Especificación de requisitosDel proyecto Clean-Up__ 
+
 
 ### __Documento Generado por :__ 
  
