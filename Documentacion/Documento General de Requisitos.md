@@ -3,15 +3,10 @@
 
 Documento Generado por : 
  
- Departamento de Requisitos
+ Departamento de Requisitos de Clean Up
 
 Índice
 =================
-   - Especificación de requisitos del proyecto  
-
-   - Índice  
-
-   - Versiones 
 
 1. Introducción  
 
@@ -35,7 +30,7 @@ Documento Generado por :
 
    2.5 Suposiciones y dependencias 
 
-3 Interfaces externas  
+3. Interfaces externas  
 
    3.1 Interfaces con el usuario 
 
