@@ -1,7 +1,9 @@
 # Especificación de requisitos 
 ## Del proyecto <Clean-Up>
 
-Documento Generado por :Departamento de Requisitos
+Documento Generado por : 
+ 
+ Departamento de Requisitos
 
 Índice
 =================
@@ -11,39 +13,39 @@ Documento Generado por :Departamento de Requisitos
 
    - Versiones 
 
-    1. Introducción  
+ 1. Introducción  
 
-       1.1 Objetivo del documento 
+  1.1 Objetivo del documento 
 
-       1.2 Ámbito del proyecto 
+  1.2 Ámbito del proyecto 
 
-       1.3 Definiciones, acrónimos y abreviaturas 
+  1.3 Definiciones, acrónimos y abreviaturas 
 
-       1.5 Resumen del documento 
+  1.5 Resumen del documento 
 
-    2. Vista general del producto  
+  2. Vista general del producto  
 
-       2.1 Perspectiva del producto 
+   2.1 Perspectiva del producto 
 
-       2.2 Funciones del producto 
+   2.2 Funciones del producto 
  
-       2.3 Restricciones del producto 
+   2.3 Restricciones del producto 
 
-       2.4 Perfiles de usuario 
+   2.4 Perfiles de usuario 
 
-       2.5 Suposiciones y dependencias 
+   2.5 Suposiciones y dependencias 
 
-    3 Interfaces externas  
+  3 Interfaces externas  
 
-       3.1 Interfaces con el usuario 
+   3.1 Interfaces con el usuario 
 
-       3.2 Interfaces con el Hardware 
+   3.2 Interfaces con el Hardware 
 
-       3.3 Interfaces con el Software 
+   3.3 Interfaces con el Software 
 
-    4. Requisitos  
+   4. Requisitos  
 
-       4.1 Precedencia y prioridad 
+      4.1 Precedencia y prioridad 
 
        4.2 Funcionales 
 
@@ -57,8 +59,7 @@ Documento Generado por :Departamento de Requisitos
 
          4.5.7 Fecha de entrega 
 
-    5. Verificación 
-
+   5. Verificación 
  
   
 ## Versiones
