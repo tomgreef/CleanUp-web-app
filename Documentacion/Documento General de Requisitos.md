@@ -131,13 +131,14 @@ Descripción
 |-------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------|-------------|--------------------|--------------|  
 | R1    | Conexión a Internet            | Deberán tener una conexión estable a internet                                                                                    | Fundamental |                    | No Funcional |
 | R1.1  | Navegador Web                  | Es necesario que el navegador web soporte HTML5 y subida de imágenes                                            | Fundamental |                    | No Funcional |
-| R2    | Encriptación caché   |se encriptará la entrada de la cuenta usuario en el cache con MD5 para prevenir que el usuario acceda a rutas no permitidas                                                                         | Fundamental | R3, R3.1           | No Funcional |
+| R2  | Caché  del navegador                    |El navegador tendrá un caché para poder trabajar limitadamente sin conexión a Internet                                  | Fundamental |             | Funcional    |
 | R2.1  | Caché                          | La aplicación de escritorio tendrá un caché para poder trabajar sin conexión a Internet                                          | Fundamental | R3                 | Funcional    |
+| R2.1.1    | Encriptación caché   |se encriptará la entrada de la cuenta usuario en el cache con MD5 para prevenir que el usuario acceda a rutas no permitidas                                                                         | Fundamental | R3, R3.1           | No Funcional |
 | R3    | Crear cuenta                   | Todo el mundo podrá crear una cuenta ciudadano desde la plataforma web                                                                   | Fundamental | R1                 | Funcional    |
 | R3.1  | Cuenta agente                  | Los agentes tendrán acceso a más funcionalidades que los usuarios normales                                                       | Fundamental | R3.1               | Funcional    |
 | R4    | GDPR                           | Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de protección de datos                  | Fundamental | R1, R23            | Funcional    |
-| R5    | Verificación                   | Los usuarios deben de verificar su correo electrónico                                                           | Fundamental | R1, R3             | Funcional    |
-| R5.1  | Verificación de teléfono       | Los usuarios verificarán su cuenta con su teléfono a través de un SMS                                                                          | Opcional | R1, R3             | No Funcional |
+| R5    | Verificación                   | Los usuarios deben de verificar su correo electrónico                                                           | Opcional | R1, R3             | Funcional    |
+| R5.1  | Verificación de teléfono       | Los usuarios verificarán su cuenta con su teléfono a través de un SMS                                     | Opcional | R1, R3             | No Funcional |
 | R5.2  | Verificación de cuenta         | Los usuarios verificarán su cuenta a través del correo electrónico                                                               | Fundamental | R1, R3             | No Funcional |
 | R6    | Iniciar sesión                 | Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web                                          | Fundamental | R1, R3             | Funcional    |
 | R6.1  | Tiempo de inactividad          | La sesión se mantendrá iniciada por un máximo de 1 hora después de que comience la inactividad                                   | Fundamental | R1, R3             | Funcional    |
@@ -145,7 +146,7 @@ Descripción
 | R7.1  | Imágenes en una incidencia     | Las incidencias se deberán subir con imágenes                                                                                    | Fundamental | R1, R1.1, R6       | Funcional    |
 | R7.1.1| Máximo de imágenes             | El número máximo de imágenes que se pueden subir son 3                                                                           | Fundamental | R1, R1.1           | No Funcional |
 | R7.1.2| Formato de imágenes            | El formato de las imágenes debe ser .PNG o .JPG                                                                                  | Fundamental | R1, R1.1           | No Funcional |
-| R7.1.3| Capacidad de imágenes          | Las imágenes ocuparán como máximo 50mb por incidencia                                                                            | Fundamental | R1, R1.1           | No Funcional |
+| R7.1.3| Capacidad de imágenes          | Las imágenes ocuparán como máximo 15MD como máximo por incidencia                                                                            | Fundamental | R1, R1.1           | No Funcional |
 | R7.2  | Longitud del texto             | Los textos estarán limitados a un número máximo de 250 caracteres                                                                | Deseable    |                    | No Funcional |
 | R7.3  | Dirección incidencia            |Se pedirá al ciudadano por la dirección de la incidencia              | Fundamental | R1, R1.1           | No Funcional |
 | R7.3.1| Formato dirección          |La dirección deberá contener la calle, número de puerta y código postal                                                          | Fundamental | R1, R1.1           | No Funcional |
@@ -177,18 +178,18 @@ Descripción
 
 ### __4.2 Funcionales__
 __R2.1 - Caché__  
-La aplicación de escritorio tendrá un caché para poder seguir resolviendo un número limitado de incidencias sin tener la conexión a internet.   
+La aplicación de escritorio tendrá un caché para poder trabajar sin conexión a Internet.   
 __Precedencia:__ R3  
 __Prioridad:__ Fundamental  
 
 __R3 - Crear cuenta__  
-Todos el mundo podrá crearse una cuenta desde la plataforma web.    
+Todos el mundo podrá crearse una cuenta ciuadano desde la plataforma web.    
 __Precedencia:__ R1  
 __Prioridad:__ Fundamental   
 
 __R3.1 - Cuenta Agente__  
 Los agentes tendrán acceso a más funcionalidades que los usuarios normales.  
-__Precedencia:__ R2  
+__Precedencia:__ R1 
 __Prioridad:__ Fundamental  
 
 __R4 - GDPR__  
@@ -197,9 +198,9 @@ __Precedencia:__ R1, R23
 __Prioridad:__ Fundamental  
 
 __R5 - Verificación__  
-Los usuarios deben de verificar su teléfono móvil y su cuenta.    
+Los usuarios verificarán su cuenta con su teléfono móvil y su cuenta.    
 __Precedencia:__ R1, R3  
-__Prioridad:__ Fundamental  
+__Prioridad:__ Opcional  
 
 __R6 - Iniciar sesión__  
 Cualquier persona registrada podrá iniciar sesión en el sistema.  
@@ -212,7 +213,7 @@ __Precedencia:__ R1, R3
 __Prioridad:__ Fundamental  
 
 __R7 - Crear incidencias__  
-El usuario y agente podrán crear incidencias con imágenes, título, descripción y coordenadas para ser resueltos por los agentes del cliente.  
+Solo el ciudadano podrá crear incidencias con imágenes, título, descripción y dirección.  
 __Precedencia:__ R1, R3, R3.1, R6  
 __Prioridad:__ Fundamental  
 
@@ -232,19 +233,17 @@ __Precedencia:__ Ninguna
 __Prioridad:__ Fundamental  
 
 __R9 - Editar una incidencia__  
-Los agentes y usuarios podrán editar las incidencias. Los usuarios sólo podrán modificar las incidencias creadas, mientras los agentes puedan cambiar cualquier incidencia. 
-La opción de eliminar una incidencia se mostrará a través de un botón que hará que el sistema pida por una confirmación del usuario.  
+Los usuarios podrán editar las incidencias creadas.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Fundamental  
 
 __R10 - Eliminar una incidencia__  
-Los agentes y usuarios podrán eliminar las incidencias. Los usuarios sólo podrán modificar las incidencias creadas, mientras los agentes puedan cambiar cualquier incidencia. 
-La opción de eliminar una incidencia se mostrará a través de un botón que hará que el sistema pida por una confirmación del usuario.  
+Los agentes y usuarios podrán cerrar las incidencias que se les hayan asignado o creado, respectivamente.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Fundamental  
 
 __R11 - Fusionar incidencias__  
-Los agentes tendrán la posibilidad de fusionar una o varias incidencias, seleccionándolas y eligiendo la opción de fusionar. Esto permitirá al agente seleccionar una incidencia como principal y vincular los demás como un sub-incidencia del principal seleccionado.  
+ Pasado de deseable a opcional, porque aporta más complejidad que utilidad.  
 __Precedencia:__ R1, R3, R6    
 __Prioridad:__ Deseable  
 
@@ -254,7 +253,7 @@ __Precedencia:__ R1, R3, R6
 __Prioridad:__ Deseable  
 
 __R13 - Notificaciones__  
-Tanto los usuarios como los agentes podrán comentar en la sección de comentarios de una incidencia. Tras cada respuesta, se notificará a todos los usuarios implicados, tantos los usuarios comunes como los agentes seleccionados.  
+Los agentes podrán comentar las incidencias.  
 __Precedencia:__   R1, R3, R6  
 __Prioridad:__ Fundamental  
 
@@ -315,11 +314,6 @@ Los agentes podrán ver en una pestaña de estadísticas donde se verán los tie
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Opcional  
 
-__R22 - Archivar incidencias__  
-Las incidencias deberán ser archivadas después de estar más de dos años en estado cerrado. Se archivarán a una localización especificada por el cliente o agentes.  
-__Precedencia:__ R9  
-__Prioridad:__ Opcional  
-
 Además, este [enlace](https://github.com/tomgreef/clean-up/blob/master/Documentacion/CasosDeUSoDelGrupo.pdf) te llevará al documento de MagicDraw en el que se describen las principales funcionalidades del sistema
 
 ### __4.3 Calidad de Servicio__
@@ -372,6 +366,11 @@ __Prioridad:__ Fundamental
 __R13.1 - Recibir notificaciones__  
 Las notificaciones serán a traves del correo electrónico.  
 __Precedencia:__   R1, R3, R6    
+__Prioridad:__ Fundamental  
+
+__R13.2 - Formato comentarios__  
+Los comentarios tendrá un límite de 200 caracteres.  
+__Precedencia:__   R1, R3, R5, R6, R7
 __Prioridad:__ Fundamental  
 
 __R18.1 - Máximo número de incidencias en una lista__   
