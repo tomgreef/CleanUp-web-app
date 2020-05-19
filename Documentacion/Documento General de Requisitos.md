@@ -61,9 +61,9 @@
 ## Versiones
 | Name | Date    | Reason For Changes  | Version   |
 | ---- | ------- | ------------------- | --------- |
-| Departamento de Requisitos | 27/04/2020 | Primera versión | 0.1 |
-| Departamento de Requisitos | 07/05/2020 | Segunda Versión | 0.2 |  
-| Departamento de Requisitos | 20/05/2020 | Tercera Versión | 1.0 | 
+| Departamento de Requisitos | 27/04/2020 | Primera versión:Propuesta del equipo | 0.1 |
+| Departamento de Requisitos | 07/05/2020 | Segunda Versión:Primera cita con el cliente | 0.2 |  
+| Departamento de Requisitos | 20/05/2020 | Tercera Versión: Confirmación del cliente y del equipo | 1.0 | 
 
 ## __1. Introducción__
 ### __1.1 Objetivo del documento__
