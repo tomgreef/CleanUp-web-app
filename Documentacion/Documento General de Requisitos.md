@@ -1,9 +1,11 @@
 ### __Especificación de requisitos del proyecto Clean-Up__ 
 
 
-### __Documento Generado por :__ 
+
+### __Documento generado por :__ 
  
- ### __Departamento de Requisitos de Clean Up__
+   ### __Departamento de Requisitos de Clean Up__
+   
 
 Índice
 =================
