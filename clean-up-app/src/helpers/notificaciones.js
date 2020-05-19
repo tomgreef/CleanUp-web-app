@@ -10,3 +10,14 @@ export function warning(msg) {
 		indefinite: true
 	});
 }
+
+export function success(msg) {
+	Snackbar.open({
+		duration: 5000,
+		message: msg,
+		type: 'is-success',
+		position: 'is-top',
+		actionText: 'Ok',
+		indefinite: true
+	});
+}

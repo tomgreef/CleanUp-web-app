@@ -8,7 +8,7 @@
 			<b-input v-model="email"></b-input>
 		</b-field>
 		<b-field label="Contraseña" label-position="on-border">
-			<b-input v-model="pass" type="password"></b-input>
+			<b-input v-model="pass" type="password" password-reveal></b-input>
 		</b-field>
 		<b-button
 			class="button"

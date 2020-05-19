@@ -39,15 +39,28 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 	let canContinue = true;
 	if (to.matched.some(route => route.meta.requiresAuth)) {
+		console.log('Route requires authentication');
+
 		let currentUser = auth().currentUser;
+		console.log('User ' + currentUser);
+
 		canContinue = !!currentUser;
 		if (canContinue && to.meta.userType) {
-			let userType = firestore()
+			console.log('Route requires userType');
+			let userType;
+			firestore()
 				.collection('users')
-				.get(currentUser.uid);
+				.get(currentUser.uid)
+				.then(response => {
+					console.log(response);
+
+					userType = response.data();
+				});
 			canContinue = userType != to.meta.userType;
 		}
 	}
+	console.log('Can continue? ' + canContinue);
+
 	if (canContinue) {
 		next();
 	} else {

@@ -7,6 +7,8 @@ import Buefy from 'buefy';
 import firebase from 'firebase';
 import './assets/scss/app.scss';
 
+let app = '';
+
 Vue.use(Buefy);
 
 Vue.config.productionTip = false;
@@ -24,8 +26,12 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-new Vue({
-	router,
-	store,
-	render: h => h(App)
-}).$mount('#app');
+firebase.auth().onAuthStateChanged(() => {
+	if (!app) {
+		new Vue({
+			router,
+			store,
+			render: h => h(App)
+		}).$mount('#app');
+	}
+});

@@ -105,7 +105,7 @@
 <script>
 	import firebase from 'firebase';
 	import { warning } from '@/helpers/notificaciones';
-	// TODO: Warning helper si el tamaño es invalido
+	import { success } from '@/helpers/notificaciones';
 
 	export default {
 		data: () => ({
@@ -123,13 +123,16 @@
 					this.descripcion.length < 20 ||
 					this.CP == null ||
 					this.calle.length < 10 ||
-					this.numeroCalle == null ||
 					this.images.length < 1 ||
 					this.images.length > 3
 				);
 			},
 			invalidImg() {
-				return this.images.length > 2;
+				let invalid = this.images.length > 3;
+				if (invalid) {
+					warning('El límite es de 3 imagenes');
+				}
+				return invalid;
 			},
 			invalidSize() {
 				let invalid = true;
@@ -182,6 +185,8 @@
 					})
 					.then(ticket => {
 						this.uploadImages(ticket.id);
+						success('Su ticket ha sido creado satisfactoriamente');
+						this.$router.replace({ name: 'Listado tickets' });
 					});
 			}
 		}
