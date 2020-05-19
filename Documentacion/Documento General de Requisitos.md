@@ -7,8 +7,7 @@ Documento Generado por :
 
 Índice
 =================
-
-1. Introducción  
+### __1. Introducción__
 
   1.1 Objetivo del documento 
 
@@ -18,7 +17,7 @@ Documento Generado por :
 
   1.5 Resumen del documento 
 
- 2. Vista general del producto  
+### __ 2. Vista general del producto  
 
    2.1 Perspectiva del producto 
 
@@ -30,7 +29,7 @@ Documento Generado por :
 
    2.5 Suposiciones y dependencias 
 
-3. Interfaces externas  
+### __3. Interfaces externas  
 
    3.1 Interfaces con el usuario 
 
@@ -38,7 +37,7 @@ Documento Generado por :
 
    3.3 Interfaces con el Software 
 
-4. Requisitos  
+### __4. Requisitos  
 
    4.1 Precedencia y prioridad 
 
@@ -54,7 +53,7 @@ Documento Generado por :
 
     4.3.4 Fecha de entrega 
 
- 5. Verificación 
+ ### __5. Verificación 
  
   
 ## Versiones
@@ -136,11 +135,6 @@ El sistema necesitará un servidor en el que ejecutar el backend, y los disposit
 La plataforma empleará Firebase de Google como bases de datos, sistema de almacenamiento (Cloud Storage) y autentificación.
 La plataforma se comunica con el GPS del smartphone para obtener información geográfica sobre dónde se encuentra el usuario a la hora de crear una incidencia. La comunicación entre la base de datos y el portal web consiste en operaciones relacionadas tanto con la lectura como con la modificación de los datos
 ## __4. Requisitos__
-### ID - Nombre del requisito
-Descripción
-#### Dependencias 
-#### Priodidad
-#### Justificación
 
 ### __4.1 Precedencia y prioridad__
 | ID    | Título                         | Descripción                                                                                                                      | Prioridad   | Precedencia        | Tipo         |
