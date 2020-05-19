@@ -11,23 +11,22 @@ const routes = [
 		component: () => import('@/views/Landing')
 	},
 	{
-		path: '/private',
-		name: 'Private',
-		component: () => import('@/views/Private'),
+		path: '/listadotickets',
+		name: 'Listado tickets',
+		component: () => import('@/views/ListadoTickets'),
 		meta: {
 			requiresAuth: true,
 			allowType: 'user'
 		}
 	},
 	{
-		path: '/listadotickets',
-		name: 'Listado tickets',
-		component: () => import('@/views/ListadoTickets')
-	},
-	{
 		path: '/crearticket',
 		name: 'Crear ticket',
-		component: () => import('@/views/CrearTicket')
+		component: () => import('@/views/CrearTicket'),
+		meta: {
+			requiresAuth: true,
+			allowType: 'user'
+		}
 	}
 ];
 

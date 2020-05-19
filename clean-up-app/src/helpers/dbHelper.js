@@ -52,13 +52,3 @@ export function readAllTable(table) {
 		});
 	return v;
 }
-
-export function newUserEntry(uid, userType) {
-	firebase
-		.firestore()
-		.collection('users')
-		.add({
-			uid: uid,
-			type: userType
-		});
-}

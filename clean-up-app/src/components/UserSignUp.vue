@@ -24,7 +24,6 @@
 <script>
 	import firebase from 'firebase';
 	import authErrors from '@/helpers/authErrors';
-	import { newUserEntry } from '@/helpers/dbHelper.js';
 	import { warning } from '@/helpers/notificaciones.js';
 
 	export default {
@@ -52,6 +51,7 @@
 					})
 					.then(() => {
 						this.addDisplayName();
+						this.registerUserType();
 						this.$router.replace({ name: this.redirect });
 					});
 			},
@@ -62,7 +62,15 @@
 				}).catch(function(error) {
 					warning(authErrors(error));
 				});
-				newUserEntry(user.uid, this.userType);
+			},
+			registerUserType() {
+				firebase
+					.firestore()
+					.collection('users')
+					.add({
+						uid: firebase.auth().currentUser.uid,
+						type: this.userType
+					});
 			}
 		}
 	};
