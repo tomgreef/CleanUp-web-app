@@ -17,7 +17,7 @@ Documento Generado por :
 
   1.5 Resumen del documento 
 
-### __ 2. Vista general del producto__
+### __2. Vista general del producto__
 
    2.1 Perspectiva del producto 
 
