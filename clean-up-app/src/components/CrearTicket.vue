@@ -79,7 +79,7 @@
 						<span
 							v-for="(image, index) in images"
 							:key="index"
-							class="tag is-primary  has-text-centered"
+							:class="'tag has-text-centered ' + getType(index)"
 						>
 							{{ image.name }}
 							<button
@@ -104,6 +104,7 @@
 
 <script>
 	import firebase from 'firebase';
+	import { warning } from '@/helpers/notificaciones';
 	// TODO: Warning helper si el tamaño es invalido
 
 	export default {
@@ -135,6 +136,9 @@
 				if (this.images.length > 0) {
 					let image = this.images[this.images.length - 1];
 					invalid = image.size > 10 * 1024 * 1024;
+					if (invalid) {
+						warning('Las imagenes no pueden pesar más de 10mb');
+					}
 				} else {
 					invalid = false;
 				}
@@ -142,6 +146,13 @@
 			}
 		},
 		methods: {
+			getType(index) {
+				let type = 'is-primary';
+				if (this.images[index].size > 10 * 1024 * 1024) {
+					type = 'is-danger';
+				}
+				return type;
+			},
 			deleteDropFile(index) {
 				this.images.splice(index, 1);
 			},
