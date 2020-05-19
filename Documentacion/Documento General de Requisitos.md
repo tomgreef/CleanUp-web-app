@@ -1,45 +1,65 @@
 # Especificación de requisitos 
 ## Del proyecto <Clean-Up>
 
-Versión 0.1  
-Generada por <Departamento de Requisitos>  
-<Clean-Up Group>  
-<27/04/2020>  
+Documento Generado por :Departamento de Requisitos
 
 Índice
 =================
-- [Especificación de requisitos](#especificaci%c3%b3n-de-requisitos)
-  - [Del proyecto <Clean-Up>](#del-proyecto-clean-up)
-- [Índice](#%c3%8dndice)
-  - [Versiones](#versiones)
-  - [__1. Introducción__](#1-introducci%c3%b3n)
-    - [__1.1 Objetivo del documento__](#11-objetivo-del-documento)
-    - [__1.2 Ámbito del proyecto__](#12-%c3%81mbito-del-proyecto)
-    - [__1.3 Definiciones, acrónimos y abreviaturas__](#13-definiciones-acr%c3%b3nimos-y-abreviaturas)
-    - [__1.5 Resumen del documento__](#15-resumen-del-documento)
-  - [__2. Vista general del producto__](#2-vista-general-del-producto)
-    - [__2.1 Perspectiva del producto__](#21-perspectiva-del-producto)
-    - [__2.2 Funciones del producto__](#22-funciones-del-producto)
-    - [__2.3 Restricciones del producto__](#23-restricciones-del-producto)
-    - [__2.4 Perfiles de usuario__](#24-perfiles-de-usuario)
-    - [__2.5 Suposiciones y dependencias__](#25-suposiciones-y-dependencias)
-    - [__3 Interfaces externas__](#3-interfaces-externas)
-      - [3.1 Interfaces con el usuario](#31-interfaces-con-el-usuario)
-      - [__3.2 Interfaces con el Hardware__](#32-interfaces-con-el-hardware)
-      - [__3.3 Interfaces con el Software__](#33-interfaces-con-el-software)
-  - [__4. Requisitos__](#4-requisitos)
-    - [ID - Nombre del requisito](#id---nombre-del-requisito)
-      - [Dependencias](#dependencias)
-      - [Priodidad](#priodidad)
-      - [Justificación](#justificaci%c3%b3n)
-    - [__4.1 Precedencia y prioridad__](#41-precedencia-y-prioridad)
-    - [__4.2 Funcionales__](#42-funcionales)
-    - [__4.3 Calidad de Servicio__](#43-calidad-de-servicio)
-      - [__4.3.1 Rendimiento__](#431-rendimiento)
-      - [__4.3.2 Seguridad__](#432-seguridad)
-      - [__4.5.4 Reusabilidad__](#454-reusabilidad)
-      - [4.5.7 Fecha de entrega](#457-fecha-de-entrega)
-  - [__5. Verificación__](#5-verificaci%c3%b3n)
+   - Especificación de requisitos del proyecto  
+
+   - Índice  
+
+   - Versiones 
+
+    1. Introducción  
+
+       1.1 Objetivo del documento 
+
+       1.2 Ámbito del proyecto 
+
+       1.3 Definiciones, acrónimos y abreviaturas 
+
+       1.5 Resumen del documento 
+
+    2. Vista general del producto  
+
+       2.1 Perspectiva del producto 
+
+       2.2 Funciones del producto 
+ 
+       2.3 Restricciones del producto 
+
+       2.4 Perfiles de usuario 
+
+       2.5 Suposiciones y dependencias 
+
+    3 Interfaces externas  
+
+       3.1 Interfaces con el usuario 
+
+       3.2 Interfaces con el Hardware 
+
+       3.3 Interfaces con el Software 
+
+    4. Requisitos  
+
+       4.1 Precedencia y prioridad 
+
+       4.2 Funcionales 
+
+       4.3 Calidad de Servicio  
+
+         4.3.1 Rendimiento 
+
+         4.3.2 Seguridad 
+
+         4.5.4 Reusabilidad 
+
+         4.5.7 Fecha de entrega 
+
+    5. Verificación 
+
+ 
   
 ## Versiones
 | Name | Date    | Reason For Changes  | Version   |
@@ -133,7 +153,7 @@ Descripción
 | R1.1  | Navegador Web                  | Es necesario que el navegador web soporte HTML5 y subida de imágenes                                            | Fundamental |                    | No Funcional |
 | R2  | Caché  del navegador                    |El navegador tendrá un caché para poder trabajar limitadamente sin conexión a Internet                                  | Fundamental |             | Funcional    |
 | R2.1  | Caché                          | La aplicación de escritorio tendrá un caché para poder trabajar sin conexión a Internet                                          | Fundamental | R3                 | Funcional    |
-| R2.1.1    | Encriptación caché   |se encriptará la entrada de la cuenta usuario en el cache con MD5 para prevenir que el usuario acceda a rutas no permitidas                                                                         | Fundamental | R3, R3.1           | No Funcional |
+| R2.1.1    | Encriptación caché   |se encriptará la entrada de la cuenta usuario en la caché con MD5 para prevenir que el usuario acceda a rutas no permitidas                                                                         | Fundamental | R3, R3.1           | No Funcional |
 | R3    | Crear cuenta                   | Todo el mundo podrá crear una cuenta ciudadano desde la plataforma web                                                                   | Fundamental | R1                 | Funcional    |
 | R3.1  | Cuenta agente                  | Los agentes tendrán acceso a más funcionalidades que los usuarios normales                                                       | Fundamental | R3.1               | Funcional    |
 | R4    | GDPR                           | Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de protección de datos                  | Fundamental | R1, R23            | Funcional    |
@@ -177,13 +197,18 @@ Descripción
 | R24   | Protocolo del servidor         | La web se servira mediante HTTPS                                                                                                 | Deseable    |                    | No Funcional |
 
 ### __4.2 Funcionales__
+__R2 - Caché del navegador__  
+El navegador tendrá un caché para poder trabajar limitadamente sin conexión a Internet.   
+__Precedencia:__ NINGUNA  
+__Prioridad:__ Fundamental  
+
 __R2.1 - Caché__  
 La aplicación de escritorio tendrá un caché para poder trabajar sin conexión a Internet.   
 __Precedencia:__ R3  
-__Prioridad:__ Fundamental  
+__Prioridad:__ Fundamental
 
 __R3 - Crear cuenta__  
-Todos el mundo podrá crearse una cuenta ciuadano desde la plataforma web.    
+Todo el mundo podrá crearse una cuenta ciuadano desde la plataforma web.    
 __Precedencia:__ R1  
 __Prioridad:__ Fundamental   
 
@@ -198,12 +223,12 @@ __Precedencia:__ R1, R23
 __Prioridad:__ Fundamental  
 
 __R5 - Verificación__  
-Los usuarios verificarán su cuenta con su teléfono móvil y su cuenta.    
+Los usuarios deben de verificar su correo electrónico.    
 __Precedencia:__ R1, R3  
 __Prioridad:__ Opcional  
 
 __R6 - Iniciar sesión__  
-Cualquier persona registrada podrá iniciar sesión en el sistema.  
+Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web.  
 __Precedencia:__ R1, R3    
 __Prioridad:__ Fundamental  
 
@@ -214,7 +239,7 @@ __Prioridad:__ Fundamental
 
 __R7 - Crear incidencias__  
 Solo el ciudadano podrá crear incidencias con imágenes, título, descripción y dirección.  
-__Precedencia:__ R1, R3, R3.1, R6  
+__Precedencia:__ R1, R3, R3.1, R5  
 __Prioridad:__ Fundamental  
 
 __R7.1 - Imágenes en una incidencia__  
@@ -223,21 +248,21 @@ __Precedencia:__ R1, R1.1, R6
 __Prioridad:__ Fundamental  
 
 __R7.4 - Duplicado de incidencia__  
-El sistema reconocerá si la incidencia ya existe en la base datos, por lo que pedirá al creador si es la misma. En caso afirmativo, se añadirá esa incidencia como sub-incidencia de la que estaba en la base de datos anteriormente. En caso contrario, se creará una nueva incidencia.  
+El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.  
 __Precedencia:__ Ninguna  
 __Prioridad:__ Fundamental   
 
 __R8 - Información al usuario__  
-Se presentará al usuario toda información necesaria, tanto legal como el funcionamiento del mismo en la parte inferior de la plataforma.  
+Se presentará al usuario toda información legal necesaria.  
 __Precedencia:__ Ninguna  
 __Prioridad:__ Fundamental  
 
-__R9 - Editar una incidencia__  
+__R9 - Editar incidencia__  
 Los usuarios podrán editar las incidencias creadas.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Fundamental  
 
-__R10 - Eliminar una incidencia__  
+__R10 - Cerrar incidencia__  
 Los agentes y usuarios podrán cerrar las incidencias que se les hayan asignado o creado, respectivamente.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Fundamental  
@@ -245,25 +270,25 @@ __Prioridad:__ Fundamental
 __R11 - Fusionar incidencias__  
  Pasado de deseable a opcional, porque aporta más complejidad que utilidad.  
 __Precedencia:__ R1, R3, R6    
-__Prioridad:__ Deseable  
+__Prioridad:__Opcional 
 
 __R12 - Seleccionar incidencias__  
-Los agentes deberán poder seleccionar varias incidencias a la vez para poder gestionarlas simultáneamente.  
+Los agentes deberán poder seleccionar varias incidencias a la vez.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Deseable  
 
-__R13 - Notificaciones__  
+__R13 -Comentarios__  
 Los agentes podrán comentar las incidencias.  
 __Precedencia:__   R1, R3, R6  
 __Prioridad:__ Fundamental  
 
 __R14 - Asignación de incidencias__  
-Se podrán asignar las incidencias a un agente. De esta forma, las notificaciones de incidencias asignados al agente llegarán solamente a este agente.  
+Se podrán asignar las incidencias a un agente.  
 __Precedencia:__ R1, R3  
 __Prioridad:__ Deseable  
 
 __R15 - Ajustes de perfil__  
-Los agentes y usuarios podrán ajustar su perfil en la sección de Ajustes. Aquí podrán cambiar sus datos, eliminar la cuenta, y cambiar la preferencia de notificaciones.  
+Los agentes y usuarios podrán ajustar su perfil en la sección de ajustes.  
 __Precedencia:__ R1, R3, R6    
 __Prioridad:__ Fundamental  
 
@@ -277,7 +302,7 @@ Los agentes y usuarios podrán eliminar su cuenta en la sección de ajustes.
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Fundamental   
 
-__R15.3 - Cambiar preferencia de notificaciones__    
+__R15.3 - Preferencia de notificaciones__    
 Los agentes y usuarios podrán cambiar la preferencias de las notificaciones en la sección de ajustes.    
 __Precedencia:__ R1, R3, R6   
 __Prioridad:__ Fundamental  
@@ -288,29 +313,27 @@ __Precedencia:__ R1, R3, R6
 __Prioridad:__ Fundamental  
 
 __R17 - Estado de incidencias__  
-Los agentes podrán cambiar el estado de las incidencias de tal forma que solo
-trabajarían con aquellas incidencias que estén en estado "abierta". Y los finalizados estarían en estado "cerrado".  
+Los agentes podrán cambiar el estado de las incidencias.  
 __Precedencia:__ R1, R3, R6, R9  
 __Prioridad:__ Deseable  
 
-__R18 - Lista de incidencias creados/asignados__  
-Los usuarios y agentes tendrán una pestaña donde podrán ver todas las incidencias que hayan creado/sido asignado.  
+__R18 - Lista de incidencias__  
+Los usuarios y agentes tendrán una pestaña donde podrán ver todas las incidencias que hayan creado o sido asignados.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Deseable 
 
 __R19 - Página de inicio__  
-La página principal de la plataforma web para los usuarios será una lista de
-incidencias que se ubican en su código postal, mientras que para los agentes será una lista de todas las incidencias que se les hayan asignado y estén abiertas.  
+Muestra una lista de mis incidencias y incidencias asignadas al usuario y agente, respectivamente.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Fundamental  
 
 __R20 - Mapa con incidencias__  
-Los agentes tendrán acceso a un mapa con todas las incidencias señalizadas por ubicación, permitiendo el acceso a cualquier incidencia desde ese mapa.  
+Los agentes tendrán acceso a un mapa con todas las incidencias señalizadas por ubicación.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Deseable
 
 __R21 - Estadísticas__  
-Los agentes podrán ver en una pestaña de estadísticas donde se verán los tiempos de respuestas y el tiempo en la que se tarda para resolver una incidencia.  
+Los agentes podrán ver una pestaña de estadísticas sobre las incidencias.  
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Opcional  
 
@@ -319,12 +342,7 @@ Además, este [enlace](https://github.com/tomgreef/clean-up/blob/master/Document
 ### __4.3 Calidad de Servicio__
 #### __4.3.1 Rendimiento__
 __R1.1 - Navegador Web__  
-Para el correcto funcionamiento de la aplicación, es necesario que el navegador web soporte HTML5, geolocalización y subida de imágenes.  
-__Precedencia:__ Ninguna  
-__Prioridad:__ Fundamental  
-
-__R2.2 - Sistema operativo__  
-Deben tener un sistema operativo de Windows 10 Home o Pro.  
+Es necesario que el navegador web soporte HTML5 y subida de imágenes.  
 __Precedencia:__ Ninguna  
 __Prioridad:__ Fundamental  
 
@@ -343,24 +361,24 @@ Lás imágenes ocuparán como máximo 50mb por incidencia.
 __Precedencia:__ R1, R1.1  
 __Prioridad:__ Fundamental  
 
-__R7.2 - Amplitud del texto__  
+__R7.2 - Longitud del texto__  
 Los textos estarán limitados a un número máximo de 250 caracteres.  
 __Precedencia:__ Ninguna  
 __Prioridad:__ Deseable  
 
-__R7.3 - Coordenadas GPS__  
-Las coordenadas se obtienen desde el GPS del móvil o a través del uso de coordenadas.  
+__R7.3.1 -Formato dirección__  
+La dirección deberá contener la calle, número de puerta y código postal.   
 __Precedencia:__ R1, R1.1  
 __Prioridad:__ Fundamental  
 
-__R7.3.1 - Tipo de coordenadas__  
-Las coordenadas deberán estar expresadas en grados, minutos y segundos.   
-__Precedencia:__ R1, R1.1  
+__R7.4 - Duplicado de incidencias__  
+El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.   
+__Precedencia:__ NINGUNA  
 __Prioridad:__ Fundamental  
 
-__R7.4.1 - Reconocimiento de duplicados__  
-El sistema reconocerá las posibles incidencias duplicadas mediante el uso de las coordenadas.   
-__Precedencia:__ 7.3  
+__R7.4.1 -Reconocimiento duplicados__  
+El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle.   
+__Precedencia:__ R7.3 
 __Prioridad:__ Fundamental  
 
 __R13.1 - Recibir notificaciones__  
@@ -373,7 +391,7 @@ Los comentarios tendrá un límite de 200 caracteres.
 __Precedencia:__   R1, R3, R5, R6, R7
 __Prioridad:__ Fundamental  
 
-__R18.1 - Máximo número de incidencias en una lista__   
+__R18.1 -  	Máximo numero incidencias__   
 Las listas enseñarán un máximo de 10 incidencias por página.  
 __Precedencia:__ Ninguna    
 __Prioridad:__ Opcional   
@@ -382,7 +400,7 @@ __Prioridad:__ Opcional
 __R5.1 - Verificación teléfono__  
 Los usuarios verificarán su teléfono a traves de un SMS.   
 __Precedencia:__ R1, R3     
-__Prioridad:__ Fundamental  
+__Prioridad:__ Opcional  
 
 __R5.2 - Verificación cuenta__  
 Los usuarios verificarán su cuenta a través del correo electrónico.  
@@ -390,7 +408,7 @@ __Precedencia:__ R1, R3
 __Prioridad:__ Fundamental  
 
 __R23 - Certificación SSL__  
-Para cumplir con las normas de GDPR, se usarán certificaciones SSL.  
+Se usarán certificaciones SSL.  
 __Precedencia:__ Ninguna  
 __Prioridad:__ Fundamental  
 
@@ -401,20 +419,14 @@ __Prioridad:__ Fundamental
 
 #### __4.3.3 Disponibilidad__
 __R1 - Conexión a internet__  
-Para el uso de la plataforma web, es necesario tener una conexión con el internet estable.  
+Deberán tener una conexión estable a internet.  
 __Precedencia:__ Ninguna  
 __Prioridad:__ Fundamental  
 
-#### __4.5.1__ Instalación__
-__R2 - Aplicación de escritorio__  
-Los agentes podrán tener instalado la aplicación de escritorio para agentes en su PC, accesible desde la plataforma web.  
-__Precedencia:__ R3, R3.1    
-__Prioridad:__ Fundamental  
-
-#### __4.5.4 Reusabilidad__
+#### __4.3.4 Reusabilidad__
 Para la implementación del sistema, se hará uso del servicio que ofrece Google, llamado Firebase.
 
-#### 4.5.7 Fecha de entrega
+#### 4.3.5 Fecha de entrega
 La fecha máxima de entrega del producto será el 05/06/2020
 
 ## __5. Verificación__
