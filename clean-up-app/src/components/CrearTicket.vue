@@ -5,6 +5,11 @@
 			label-position="on-border"
 			position="is-centered"
 			expanded
+			:message="
+				titulo.length > 0 && titulo.length < 5
+					? 'El título debe tener 10 caracteres como mínimo'
+					: ''
+			"
 		>
 			<b-input
 				v-model="titulo"
@@ -17,6 +22,11 @@
 			label="Descripción"
 			label-position="on-border"
 			position="is-centered"
+			:message="
+				descripcion.length > 0 && descripcion.length < 20
+					? 'La descripcion debe tener 20 caracteres como mínimo'
+					: ''
+			"
 		>
 			<b-input
 				maxlength="250"
@@ -35,7 +45,16 @@
 					min="29000"
 				></b-numberinput>
 			</b-field>
-			<b-field label="Calle" label-position="on-border" expanded>
+			<b-field
+				label="Calle"
+				label-position="on-border"
+				expanded
+				:message="
+					calle.length > 0 && calle.length < 10
+						? 'La calle debe tener 10 caracteres como mínimo'
+						: ''
+				"
+			>
 				<b-input placeholder="Calle cómpeta" v-model="calle"></b-input>
 			</b-field>
 			<b-field label="Número" label-position="on-border" expanded>
@@ -92,6 +111,7 @@
 				</div>
 			</div>
 		</b-field>
+		<br />
 		<b-button
 			:disabled="invalid"
 			type="is-primary"
