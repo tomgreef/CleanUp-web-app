@@ -198,10 +198,10 @@
 						description: this.descripcion,
 						street: this.calle,
 						streetNumber: this.numeroCalle,
-						CP: this.CP,
+						cp: this.CP,
 						date: Date.now(),
-						user_uid: uid,
-						agent_uid: '',
+						userUid: uid,
+						agentUid: '',
 						closed: false
 					})
 					.then(ticket => {
