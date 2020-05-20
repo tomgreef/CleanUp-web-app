@@ -1,15 +1,43 @@
 <template>
-    <div class="media">
-        <figure class="media-left">
-            <img src="https://bulma.io/images/placeholders/480x320.png">
-        </figure>
-         <div>
-            <div class="media-content">
-                <div class="content">
-                    <p class="title">Título</p>
-                    <p class="description">Descripción</p>
-                </div>
-            </div>
-        </div> 
-    </div>
+	<div>
+		<p>
+			<strong>ID: {{ ticket.id }}</strong>
+		</p>
+		<p>
+			<strong>Titulo: {{ ticket.title }}</strong>
+		</p>
+		<p>
+			<strong>fechaCreacion: {{ ticket.date }}</strong>
+		</p>
+		<p>
+			<strong>Cerrado: {{ ticket.closed }}</strong>
+		</p>
+		<p>
+			<strong>descripcion: {{ ticket.description }}</strong>
+		</p>
+		<p>
+			<strong>Usuario: {{ ticket.userUid }}</strong>
+		</p>
+		<p>
+			<strong
+				>Ubicación: {{ ticket.cp }} {{ ticket.street }}
+				{{ ticket.streetNumber }}</strong
+			>
+		</p>
+		<figure
+			class="image is-128x128"
+			v-for="image in ticket.images"
+			:key="image"
+		>
+			<img :src="image" alt="re" />
+		</figure>
+	</div>
 </template>
+
+<script>
+	export default {
+		props: {
+			ticket: Object
+		}
+	};
+</script>

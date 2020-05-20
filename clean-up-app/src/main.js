@@ -22,10 +22,18 @@ const firebaseConfig = {
 	measurementId: 'G-EPFMYW0M7H'
 };
 
+let app = '';
+
 firebase.initializeApp(firebaseConfig);
 
-new Vue({
-	router,
-	store,
-	render: h => h(App)
-}).$mount('#app');
+firebase.firestore().enablePersistence();
+
+firebase.auth().onAuthStateChanged(() => {
+	if (!app) {
+		new Vue({
+			router,
+			store,
+			render: h => h(App)
+		}).$mount('#app');
+	}
+});
