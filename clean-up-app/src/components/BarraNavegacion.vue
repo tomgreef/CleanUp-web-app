@@ -1,6 +1,7 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
+            
             <a class="navbar-item" href="/#">
                 <img src="../../public/img/icons/Logo.jpg" width="auto">
             </a>
@@ -12,10 +13,15 @@
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="navbarBasicExample" class="navbar-menu has-text-justified">
             <div class="navbar-start">
-                <a class="navbar-item">Mis Incidencias</a>
                 <div class="buttons">
+                    <b-button class="is-white"
+                        tag="router-link"
+                        type="is-white"
+                        to="../views/PaginaInicioUsuario">
+                        Mis Incidencias
+                    </b-button>
                     <b-button tag="router-link"
                         to="../views/CrearIncidencia"
                         type="is-success"
