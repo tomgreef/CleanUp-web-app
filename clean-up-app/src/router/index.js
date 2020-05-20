@@ -12,6 +12,20 @@ const routes = [
 		component: () => import('@/views/Landing')
 	},
 	{
+		path: '/landingagente',
+		name: 'LandingAgente',
+		component: () => import('@/views/LandingAgente')
+	},
+	{
+		path: '/inicioagente',
+		name: 'InicioAgente',
+		component: () => import('@/views/PaginaInicioAgente'),
+		meta:{
+			requiresAuth: true,
+			allowType: 'agent'
+		}
+	},
+	{
 		path: '/listadotickets',
 		name: 'ListadoTickets',
 		component: () => import('@/views/ListadoTickets'),
