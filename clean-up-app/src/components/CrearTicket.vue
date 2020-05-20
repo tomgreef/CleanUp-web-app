@@ -179,6 +179,7 @@
 						street: this.calle,
 						streetNumber: this.numeroCalle,
 						CP: this.CP,
+						date: Date.now(),
 						user_uid: uid,
 						agent_uid: '',
 						closed: false
