@@ -7,9 +7,18 @@
 // 2. Setup your Custom Colors
 $primary: #3c40c6;
 $primary-invert: findColorInvert($primary);
+
 $link: $primary;
+$link-invert: $primary-invert;
+
 $dark: #1e272e;
 $dark-invert: findColorInvert($dark);
+
+$warning: #ffa801;
+$warning-invert: findColorInvert($danger);
+
+$danger: #f53b57;
+$danger-invert: findColorInvert($danger);
 
 @import '~bulma/sass/utilities/derived-variables';
 @import '~bulma';

@@ -1,9 +1,19 @@
 <template>
-	<div class="hero is-primary">
-		<div class="hero-body">
+	<section class="hero is-primary">
+		<div class="hero-head">
 			<div class="container">
-				<h1 class="title">Clean Up</h1>
+				<Navbar />
 			</div>
 		</div>
-	</div>
+	</section>
 </template>
+
+<script>
+	import Navbar from '@/components/Navbar';
+
+	export default {
+		components: {
+			Navbar
+		}
+	};
+</script>
