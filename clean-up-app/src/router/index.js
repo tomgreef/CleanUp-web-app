@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { auth, firestore } from 'firebase';
+import { auth } from 'firebase';
+import { getUserType } from '@/helpers/sessionHelper';
 
 Vue.use(VueRouter);
 
@@ -12,7 +13,7 @@ const routes = [
 	},
 	{
 		path: '/listadotickets',
-		name: 'Listado tickets',
+		name: 'ListadoTickets',
 		component: () => import('@/views/ListadoTickets'),
 		meta: {
 			requiresAuth: true,
@@ -21,7 +22,7 @@ const routes = [
 	},
 	{
 		path: '/crearticket',
-		name: 'Crear ticket',
+		name: 'CrearTicket',
 		component: () => import('@/views/CrearTicket'),
 		meta: {
 			requiresAuth: true,
@@ -38,28 +39,17 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 	let canContinue = true;
-	if (to.matched.some(route => route.meta.requiresAuth)) {
-		console.log('Route requires authentication');
+	let isLoggedIn = !!auth().currentUser;
+	let userType = getUserType();
 
-		let currentUser = auth().currentUser;
-		console.log('User ' + currentUser);
-
-		canContinue = !!currentUser;
+	if (isLoggedIn && to.path == '/') {
+		next({ name: 'ListadoTickets' });
+	} else if (to.matched.some(route => route.meta.requiresAuth)) {
+		canContinue = isLoggedIn;
 		if (canContinue && to.meta.userType) {
-			console.log('Route requires userType');
-			let userType;
-			firestore()
-				.collection('users')
-				.get(currentUser.uid)
-				.then(response => {
-					console.log(response);
-
-					userType = response.data();
-				});
 			canContinue = userType != to.meta.userType;
 		}
 	}
-	console.log('Can continue? ' + canContinue);
 
 	if (canContinue) {
 		next();

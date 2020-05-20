@@ -5,7 +5,6 @@
 @import 'variables';
 
 // 2. Setup your Custom Colors
-<<<<<<< HEAD
 $primary: #3867d6;
 $light: #f5f6fa;
 $dark: #2f3640;
@@ -17,15 +16,6 @@ $warning: #fa8231;
 
 $primary-invert: findColorInvert($primary);
 $link-invert: findColorInvert($link);
-=======
-$primary: #3c40c6;
-$primary-invert: findColorInvert($primary);
-
-$link: $primary;
-$link-invert: $primary-invert;
-
-$dark: #1e272e;
->>>>>>> BarraNavegación
 $dark-invert: findColorInvert($dark);
 $success-invert: findColorInvert($success);
 $link-invert: findColorInvert($link);

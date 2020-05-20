@@ -26,6 +26,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+firebase.firestore().enablePersistence();
+
 firebase.auth().onAuthStateChanged(() => {
 	if (!app) {
 		new Vue({

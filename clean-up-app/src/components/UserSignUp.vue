@@ -67,8 +67,8 @@
 				firebase
 					.firestore()
 					.collection('users')
-					.add({
-						uid: firebase.auth().currentUser.uid,
+					.doc(firebase.auth().currentUser.uid)
+					.set({
 						type: this.userType
 					});
 			}
