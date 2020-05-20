@@ -138,9 +138,9 @@
 				let invalid = true;
 				if (this.images.length > 0) {
 					let image = this.images[this.images.length - 1];
-					invalid = image.size > 10 * 1024 * 1024;
+					invalid = image.size > 15 * 1024 * 1024;
 					if (invalid) {
-						warning('Las imagenes no pueden pesar más de 10mb');
+						warning('Las imagenes no pueden pesar más de 15mb');
 					}
 				} else {
 					invalid = false;
