@@ -74,7 +74,7 @@
 				<div class="column is-half">
 					<b-upload
 						v-model="images"
-						:disabled="invalidImg || invalidSize"
+						:disabled="!imgLimit || invalidImgLimit || invalidSize"
 						multiple
 						accept="image/*"
 						drag-drop
@@ -163,8 +163,11 @@
 				}
 				return invalid;
 			},
-			invalidImg() {
-				let invalid = this.images.length >= 3;
+			imgLimit() {
+				return this.images.length < 3;
+			},
+			invalidImgLimit() {
+				let invalid = this.images.length > 3;
 				if (invalid) {
 					warning('El límite es de 3 imagenes');
 				}
