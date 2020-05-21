@@ -1,37 +1,26 @@
 <template>
-	<div>
-		<p>
-			<strong>ID: {{ ticket.id }}</strong>
-		</p>
-		<p>
-			<strong>Titulo: {{ ticket.title }}</strong>
-		</p>
-		<p>
-			<strong>fechaCreacion: {{ ticket.date }}</strong>
-		</p>
-		<p>
-			<strong>Cerrado: {{ ticket.closed }}</strong>
-		</p>
-		<p>
-			<strong>descripcion: {{ ticket.description }}</strong>
-		</p>
-		<p>
-			<strong>Usuario: {{ ticket.userUid }}</strong>
-		</p>
-		<p>
-			<strong
-				>Ubicación: {{ ticket.cp }} {{ ticket.street }}
-				{{ ticket.streetNumber }}</strong
-			>
-		</p>
-		<figure
-			class="image is-128x128"
-			v-for="image in ticket.images"
-			:key="image"
-		>
-			<img :src="image" alt="re" />
+	<article class="media">
+		<figure class="media-left">
+			<p class="image is-128x128">
+				<img :src="ticket.images[0]" alt="re" />
+			</p>
 		</figure>
-	</div>
+		<div class="media-content">
+			<div class="content">
+				<p>
+					<strong>{{ ticket.title }}</strong>
+					<small> {{ ticket.id }}</small>
+					<br />
+					{{ ticket.description }}
+					<br />
+					<strong
+						>Ubicación: {{ ticket.cp }} {{ ticket.street }}
+						{{ ticket.streetNumber }}</strong
+					>
+				</p>
+			</div>
+		</div>
+	</article>
 </template>
 
 <script>

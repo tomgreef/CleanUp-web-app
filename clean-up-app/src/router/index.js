@@ -14,16 +14,6 @@ const routes = [
 		}
 	},
 	{
-		path: '/Ticket',
-		name: 'Ticket',
-		component: () => import('@/views/Ticket')
-	},
-	{
-		path: '/PaginaInicioUsuario',
-		name: 'PaginaInicioUsuario',
-		component: () => import('@/views/PaginaInicioUsuario')
-    },
-    {
 		path: '/mistickets',
 		component: () => import('@/views/TicketsUsuario'),
 		meta: {

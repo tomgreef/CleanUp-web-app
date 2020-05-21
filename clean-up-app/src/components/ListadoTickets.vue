@@ -1,6 +1,6 @@
 <template>
 	<section class="section">
-		<div v-if="userTickets.length != 0">
+		<div v-if="userTickets.length > 0">
 			<Ticket
 				v-for="ticket in userTickets"
 				:key="ticket.id"
@@ -36,6 +36,10 @@
 					.collection('tickets')
 					.where('userUid', '==', auth().currentUser.uid)
 					.onSnapshot(snapshot => {
+						console.log(
+							'This data came from',
+							snapshot.metadata.fromCache ? 'cache' : 'server'
+						);
 						snapshot.forEach(t => {
 							let ticket = t.data();
 							ticket.id = t.id;
