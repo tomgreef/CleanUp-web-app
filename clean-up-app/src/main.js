@@ -24,6 +24,8 @@ const firebaseConfig = {
 	measurementId: 'G-EPFMYW0M7H'
 };
 
+let app = '';
+
 firebase.initializeApp(firebaseConfig);
 
 firebase.firestore().enablePersistence();
