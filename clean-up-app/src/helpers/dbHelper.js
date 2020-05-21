@@ -1,10 +1,8 @@
-import firebase from 'firebase';
+import { db } from '@/firebase';
 
 export function simpleRead(table, field, operator, value) {
 	let v = [];
-	firebase
-		.firestore()
-		.collection(table)
+	db.collection(table)
 		.where(field, operator, value)
 		.get()
 		.then(snap => {
@@ -25,9 +23,7 @@ export function compositeRead(
 	value2
 ) {
 	let v = [];
-	firebase
-		.firestore()
-		.collection(table)
+	db.collection(table)
 		.where(field1, operator1, value1)
 		.where(field2, operator2, value2)
 		.get()
@@ -41,9 +37,7 @@ export function compositeRead(
 
 export function readAllTable(table) {
 	let v = [];
-	firebase
-		.firestore()
-		.collection(table)
+	db.collection(table)
 		.get()
 		.then(snap => {
 			snap.forEach(b => {

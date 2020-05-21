@@ -22,7 +22,7 @@
 </template>
 
 <script>
-	import firebase from 'firebase';
+	import { auth, db } from '@/firebase';
 	import authErrors from '@/helpers/authErrors';
 	import { warning } from '@/helpers/notificaciones.js';
 
@@ -43,9 +43,7 @@
 		},
 		methods: {
 			signup() {
-				firebase
-					.auth()
-					.createUserWithEmailAndPassword(this.email, this.pass)
+				auth.createUserWithEmailAndPassword(this.email, this.pass)
 					.catch(function(error) {
 						warning(authErrors(error));
 					})
@@ -56,7 +54,7 @@
 					});
 			},
 			addDisplayName() {
-				let user = firebase.auth().currentUser;
+				let user = auth.currentUser;
 				user.updateProfile({
 					displayName: this.name
 				}).catch(function(error) {
@@ -64,10 +62,8 @@
 				});
 			},
 			registerUserType() {
-				firebase
-					.firestore()
-					.collection('users')
-					.doc(firebase.auth().currentUser.uid)
+				db.collection('users')
+					.doc(auth.currentUser.uid)
 					.set({
 						type: this.userType
 					});

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { auth } from 'firebase';
+import { auth } from '@/firebase';
 import { getUserType } from '@/helpers/sessionHelper';
 
 Vue.use(VueRouter);
@@ -51,7 +51,7 @@ router.beforeEach((to, from, next) => {
 		}
 	}
 
-	if (!auth().currentUser) {
+	if (!auth.currentUser) {
 		if (to.path == '/' || to.path == '/agentlanding') {
 			next();
 		} else {

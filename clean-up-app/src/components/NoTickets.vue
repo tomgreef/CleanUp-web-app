@@ -13,7 +13,7 @@
 			</svg>
 			<br /><br />
 
-			<b-button tag="router-link" to="/CreateTicket" type="is-primary">
+			<b-button tag="router-link" to="/crearticket" type="is-primary">
 				Crea tu primera incidencia
 			</b-button>
 		</div>

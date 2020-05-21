@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	import { auth, firestore, storage } from 'firebase';
+	import { auth, db, storage } from '@/firebase';
 	import Ticket from '@/components/Ticket';
 	import NoTickets from '@/components/NoTickets';
 	export default {
@@ -26,32 +26,26 @@
 			Ticket,
 			NoTickets
 		},
-		mounted: function() {
-			this.userTickets = this.getUserTickets();
+		firestore() {
+			db.collection('tickets')
+				.where('userUid', '==', auth.currentUser.uid)
+				.onSnapshot(snapshot => {
+					console.log(
+						'Tickets came from',
+						snapshot.metadata.fromCache ? 'cache' : 'server'
+					);
+					snapshot.forEach(t => {
+						let ticket = t.data();
+						ticket.id = t.id;
+						ticket.images = this.getTicketImages(t.id);
+						this.userTickets.push(ticket);
+					});
+				});
 		},
 		methods: {
-			getUserTickets() {
-				let readTickets = [];
-				firestore()
-					.collection('tickets')
-					.where('userUid', '==', auth().currentUser.uid)
-					.onSnapshot(snapshot => {
-						console.log(
-							'This data came from',
-							snapshot.metadata.fromCache ? 'cache' : 'server'
-						);
-						snapshot.forEach(t => {
-							let ticket = t.data();
-							ticket.id = t.id;
-							ticket.images = this.getTicketImages(t.id);
-							readTickets.push(ticket);
-						});
-					});
-				return readTickets;
-			},
 			getTicketImages(ticketId) {
 				let imagesUrl = [];
-				storage()
+				storage
 					.ref('tickets')
 					.child(ticketId)
 					.listAll()

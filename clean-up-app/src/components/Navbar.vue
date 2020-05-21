@@ -44,7 +44,7 @@
 </template>
 
 <script>
-	import { auth } from 'firebase';
+	import { auth } from '@/firebase';
 	import { getUserType } from '@/helpers/sessionHelper';
 
 	export default {
@@ -52,7 +52,7 @@
 			isUser: false
 		}),
 		mounted() {
-			if (auth().currentUser) {
+			if (this.isLoggedIn) {
 				getUserType().then(type => {
 					this.isUser = type == 'user';
 				});
@@ -63,16 +63,14 @@
 				return this.$route.path == '/';
 			},
 			isLoggedIn() {
-				return auth().currentUser != null;
+				return auth.currentUser != null;
 			}
 		},
 		methods: {
 			logout() {
-				auth()
-					.signOut()
-					.then(() => {
-						this.$router.push({ path: '/' });
-					});
+				auth.signOut().then(() => {
+					this.$router.push({ path: '/' });
+				});
 			}
 		}
 	};

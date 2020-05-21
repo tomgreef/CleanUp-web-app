@@ -19,7 +19,7 @@
 </template>
 
 <script>
-	import firebase from 'firebase';
+	import { auth } from '@/firebase';
 	import authErrors from '@/helpers/authErrors.js';
 	import { warning } from '@/helpers/notificaciones.js';
 
@@ -38,12 +38,10 @@
 		},
 		methods: {
 			inicio() {
-				firebase
-					.auth()
-					.signInWithEmailAndPassword(this.email, this.pass)
+				auth.signInWithEmailAndPassword(this.email, this.pass)
 					.catch(function(error) {
 						warning(authErrors(error));
-						throw error;
+						console.log(error);
 					})
 					.then(() => {
 						this.$router.push({ path: this.redirect });
