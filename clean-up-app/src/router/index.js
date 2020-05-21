@@ -8,25 +8,25 @@ Vue.use(VueRouter);
 const routes = [
 	{
 		path: '/',
-		name: 'Inicio',
-		component: () => import('@/views/Landing')
+		component: () => import('@/views/UserLanding'),
+		meta: {
+			title: 'Inicio'
+		}
 	},
 	{
-		path: '/listadotickets',
-		name: 'ListadoTickets',
-		component: () => import('@/views/ListadoTickets'),
+		path: '/mistickets',
+		component: () => import('@/views/TicketsUsuario'),
 		meta: {
-			requiresAuth: true,
-			allowType: 'user'
+			title: 'Mis tickets',
+			userType: 'user'
 		}
 	},
 	{
 		path: '/crearticket',
-		name: 'CrearTicket',
 		component: () => import('@/views/CrearTicket'),
 		meta: {
-			requiresAuth: true,
-			allowType: 'user'
+			title: 'Crear ticket',
+			userType: 'user'
 		}
 	}
 ];
@@ -38,23 +38,34 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	let canContinue = true;
-	let isLoggedIn = !!auth().currentUser;
-	let userType = getUserType();
+	document.title = to.meta.title;
 
-	if (isLoggedIn && to.path == '/') {
-		next({ name: 'ListadoTickets' });
-	} else if (to.matched.some(route => route.meta.requiresAuth)) {
-		canContinue = isLoggedIn;
-		if (canContinue && to.meta.userType) {
-			canContinue = userType != to.meta.userType;
+	function homeRedirect(type) {
+		switch (type) {
+			case 'user':
+				next({ path: '/mistickets' });
+				break;
+			case 'agent':
+				next({ path: '/listadotickets' });
+				break;
 		}
 	}
 
-	if (canContinue) {
-		next();
+	if (!auth().currentUser) {
+		if (to.path == '/' || to.path == '/agentlanding') {
+			next();
+		} else {
+			next({ path: '/' });
+		}
 	} else {
-		next({ name: 'Inicio' });
+		getUserType().then(type => {
+			let metaUserType = to.meta.userType;
+			if (metaUserType && metaUserType == type) {
+				next();
+			} else {
+				homeRedirect(type);
+			}
+		});
 	}
 });
 

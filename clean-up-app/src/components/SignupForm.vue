@@ -52,7 +52,7 @@
 					.then(() => {
 						this.addDisplayName();
 						this.registerUserType();
-						this.$router.replace({ name: this.redirect });
+						this.$router.push({ path: this.redirect });
 					});
 			},
 			addDisplayName() {
