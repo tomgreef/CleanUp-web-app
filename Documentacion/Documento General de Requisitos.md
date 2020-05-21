@@ -67,7 +67,7 @@
 
 ## __1. Introducción__
 ### __1.1 Objetivo del documento__
-Este documento está destinado a ser un primer paso en lo referente a las restricciones y requisitos que debe o puede tener el proyecto. También servirá como pre-contrato entre nuestro cliente y nosotros y para sentar las bases de lo que será el proyecto.
+Este documento está destinado a ser un primer paso en lo referente a las restricciones y requisitos que debe o puede tener el proyecto. También servirá como pre-contrato entre nuestro cliente y el grupo Clean Up y para sentar las bases de lo que será el proyecto.
 ### __1.2 Ámbito del proyecto__
 El producto pretende ofrecer y poner a disposición de las diferentes instituciones oficiales de una provincia una plataforma para poder comunicarse de alguna manera con sus ciudadanos sobre la ciudad en la que viven. Para ello, hemos creado una plataforma en la que el ciudadano podrá expresar las mejoras y el mantenimiento que distintas zonas de la ciudad necesitan, así como el Ayuntamiento o las instituciones pertinentes podrán tener conocimientos sobre las prioridades de la población.
 Para comunicarse, el ciudadano solo tendrá que subir a través de la aplicación una incidencia que haya en la ciudad, así como desperfectos. Cuantos más ciudadanos se hayan quejado de una incidencia, más prioridad tendrá.
@@ -94,18 +94,16 @@ Se trata de una plataforma web nueva compuesta por un servidor que atenderá las
 todos los usuarios que crearon esas incidencias.
 
 ### __2.3 Restricciones del producto__
-- Se utilizará una base de datos NoSQL
-- Se podrán subir un máximo de tres fotografías por incidencia.
-- Los archivos pueden ocupar hasta 10mb, en formato .JPG,    .TIF y :PNG.
-- El sistema operativo para la aplicación del administrador será Windows 10 Pro.
-- Se usará el certificado https.
+- Se utilizará una base de datos NoSQL (Firebase)
+- Se podrán subir un máximo de cinco fotografías por incidencia.
+- Los archivos pueden ocupar hasta 10mb, en formato .JPG,.TIF y :PNG.
 - El sistema deberá cumplir la Ley de Protección de Datos de Carácter Personal (LOPD).  
 
 ### __2.4 Perfiles de usuario__
 Los perfiles de usuarios serán aquellos ciudadanos que se preocupan por sus entornos, ya que la única forma en la que se puede arreglar algo en la vía pública es a través del ayuntamiento.
-El uso del software también se podrá ver afectado por la experiencia técnica de cada usuario y su nivel educativo.
+El uso del software también se podrá ver afectado por la experiencia técnica de cada usuario y su manejo de la nueva tecnología.
 Los agentes serán otro perfil de usuario, y son los trabajadores del ayuntamiento a los que se les asignarán las incidencias.
-Los adminitradores también son otro perfil de usuario, que son el equipo encargado de administrar todo el sistema.
+Los administradores también son otro perfil de usuario, que son el equipo encargado de administrar todo el sistema.
 
 ### __2.5 Suposiciones y dependencias__
 El sistema dependerá de otros sistemas y librerías externos:
@@ -113,7 +111,6 @@ El sistema dependerá de otros sistemas y librerías externos:
 - NPM: Gestor de paquetes de NodeJS.
 - Firebase de Google: Base de datos nosql, sistema de gestión de usuarios que por correo y/o cuenta de Google, almacenamiento de archivos.
 - Bulma: Framework de CSS.
-Además, la plataforma empleará un servicio de geolocalizacion con una api de geolocalización (propia del navegador o externa) y un servicio de mapas, o bien OpenStreetMap o Google Maps.
 
 ### __3 Interfaces externas__
 #### 3.1 Interfaces con el usuario 
@@ -136,7 +133,7 @@ administrar todas las incidencias, y verlas en un mapa con detalles.
 El sistema necesitará un servidor en el que ejecutar el backend, y los dispositivos de los usuarios y agentes (ordenadores o móviles). En el caso de los dispositivos móviles, necesitarán disponer de GPS. El servicio utilizará el protocolo HTTPS.
 #### __3.3 Interfaces con el Software__
 La plataforma empleará Firebase de Google como bases de datos, sistema de almacenamiento (Cloud Storage) y autentificación.
-La plataforma se comunica con el GPS del smartphone para obtener información geográfica sobre dónde se encuentra el usuario a la hora de crear una incidencia. La comunicación entre la base de datos y el portal web consiste en operaciones relacionadas tanto con la lectura como con la modificación de los datos
+La plataforma se comunica via email para obtener información sobre dónde se encuentra el usuario a la hora de crear una incidencia. La comunicación entre la base de datos y el portal web consiste en operaciones relacionadas tanto con la lectura como con la modificación de los datos
 ## __4. Requisitos__
 
 ### __4.1 Precedencia y prioridad__
@@ -151,13 +148,12 @@ La plataforma se comunica con el GPS del smartphone para obtener información ge
 | R3.1  | Cuenta agente                  | Los agentes tendrán acceso a más funcionalidades que los usuarios normales                                                       | Fundamental | R3.1               | Funcional    |
 | R4    | GDPR                           | Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de protección de datos                  | Fundamental | R1, R23            | Funcional    |
 | R5    | Verificación                   | Los usuarios deben de verificar su correo electrónico                                                           | Opcional | R1, R3             | Funcional    |
-| R5.1  | Verificación de teléfono       | Los usuarios verificarán su cuenta con su teléfono a través de un SMS                                     | Opcional | R1, R3             | No Funcional |
-| R5.2  | Verificación de cuenta         | Los usuarios verificarán su cuenta a través del correo electrónico                                                               | Fundamental | R1, R3             | No Funcional |
+| R5.1 | Verificación de cuenta         | Los usuarios verificarán su cuenta a través del correo electrónico                                                               | Fundamental | R1, R3             | No Funcional |
 | R6    | Iniciar sesión                 | Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web                                          | Fundamental | R1, R3             | Funcional    |
 | R6.1  | Tiempo de inactividad          | La sesión se mantendrá iniciada por un máximo de 1 hora después de que comience la inactividad                                   | Fundamental | R1, R3             | Funcional    |
 | R7    | Crear incidencias              |Solo el ciudadano podrá crear incidencias con imágenes, título, descripción y dirección                    | Fundamental | R1, R3, R3.1, R5   | Funcional    |
 | R7.1  | Imágenes en una incidencia     | Las incidencias se deberán subir con imágenes                                                                                    | Fundamental | R1, R1.1, R6       | Funcional    |
-| R7.1.1| Máximo de imágenes             | El número máximo de imágenes que se pueden subir son 3                                                                           | Fundamental | R1, R1.1           | No Funcional |
+| R7.1.1| Máximo de imágenes             | El número máximo de imágenes que se pueden subir son 5                                                                           | Fundamental | R1, R1.1           | No Funcional |
 | R7.1.2| Formato de imágenes            | El formato de las imágenes debe ser .PNG o .JPG                                                                                  | Fundamental | R1, R1.1           | No Funcional |
 | R7.1.3| Capacidad de imágenes          | Las imágenes ocuparán como máximo 15MD como máximo por incidencia                                                                            | Fundamental | R1, R1.1           | No Funcional |
 | R7.2  | Longitud del texto             | Los textos estarán limitados a un número máximo de 250 caracteres                                                                | Deseable    |                    | No Funcional |
@@ -390,10 +386,6 @@ __Precedencia:__ Ninguna
 __Prioridad:__ Opcional   
 
 #### __4.3.2 Seguridad__
-__R5.1 - Verificación teléfono__  
-Los usuarios verificarán su teléfono a traves de un SMS.   
-__Precedencia:__ R1, R3     
-__Prioridad:__ Opcional  
 
 __R5.2 - Verificación cuenta__  
 Los usuarios verificarán su cuenta a través del correo electrónico.  
