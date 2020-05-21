@@ -28,6 +28,17 @@ const routes = [
 			requiresAuth: true,
 			allowType: 'user'
 		}
+	},
+	{
+		path: '/HomeAgent',
+		name: 'HomeAgent',
+		component: () => import('@/views/HomeAgent'),
+		meta: {
+			requiresAuth: false,
+			//Cambiar a true
+			
+			allowType: 'agent'
+		}
 	}
 ];
 
