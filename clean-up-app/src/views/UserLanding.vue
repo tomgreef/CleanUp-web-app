@@ -5,13 +5,10 @@
 				<div class="column is-half">
 					<b-tabs position="is-centered" type="is-toggle" expanded>
 						<b-tab-item label="Iniciar sesión">
-							<UserLogin redirect="Crear ticket" />
+							<LoginForm :redirect="redirect" />
 						</b-tab-item>
 						<b-tab-item label="Crear cuenta">
-							<UserSignup
-								userType="user"
-								redirect="Crear ticket"
-							/>
+							<SignupForm userType="user" :redirect="redirect" />
 						</b-tab-item>
 					</b-tabs>
 				</div>
@@ -21,13 +18,16 @@
 </template>
 
 <script>
-	import UserLogin from '@/components/UserLogin';
-	import UserSignup from '@/components/UserSignUp';
+	import LoginForm from '@/components/LoginForm';
+	import SignupForm from '@/components/SignupForm';
 
 	export default {
+		data: () => ({
+			redirect: '/mistickets'
+		}),
 		components: {
-			UserLogin,
-			UserSignup
+			LoginForm,
+			SignupForm
 		}
 	};
 </script>

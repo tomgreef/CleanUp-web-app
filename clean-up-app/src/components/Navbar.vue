@@ -5,7 +5,7 @@
 				<h1 class="title">Clean Up</h1>
 			</b-navbar-item>
 		</template>
-		<template slot="start" v-if="showUser">
+		<template slot="start" v-if="isUser">
 			<b-navbar-item href="/">
 				Inicio
 			</b-navbar-item>
@@ -13,18 +13,29 @@
 				Crear incidencia
 			</b-navbar-item>
 		</template>
-		<template slot="end" v-if="showUser">
+		<template slot="end">
 			<b-navbar-item tag="div">
 				<div class="buttons">
 					<b-button
+						v-if="isUser"
 						tag="router-link"
 						to="/perfil"
 						inverted
 						type="is-link"
 						>Mi perfil</b-button
 					>
-					<b-button type="is-danger" @click="logout"
+					<b-button v-if="isLoggedIn" type="is-danger" @click="logout"
 						>Cerrar sesión</b-button
+					>
+					<b-button
+						v-if="!isLoggedIn"
+						tag="router-link"
+						:to="inUserLanding ? '/agentlanding' : '/'"
+						inverted
+						type="is-link"
+						>{{
+							inUserLanding ? 'Soy un agente' : 'Soy un usuario'
+						}}</b-button
 					>
 				</div>
 			</b-navbar-item>
@@ -33,24 +44,33 @@
 </template>
 
 <script>
-	import { auth } from 'firebase';
+	import { auth } from '@/firebase';
 	import { getUserType } from '@/helpers/sessionHelper';
 
 	export default {
+		data: () => ({
+			isUser: false
+		}),
+		mounted() {
+			if (this.isLoggedIn) {
+				getUserType().then(type => {
+					this.isUser = type == 'user';
+				});
+			}
+		},
 		computed: {
-			showUser() {
-				let log = auth().currentUser != null;
-				let type = getUserType();
-				return log && type;
+			inUserLanding() {
+				return this.$route.path == '/';
+			},
+			isLoggedIn() {
+				return auth.currentUser != null;
 			}
 		},
 		methods: {
 			logout() {
-				auth()
-					.signOut()
-					.then(() => {
-						this.$router.replace({ name: 'Inicio' });
-					});
+				auth.signOut().then(() => {
+					this.$router.push({ path: '/' });
+				});
 			}
 		}
 	};
