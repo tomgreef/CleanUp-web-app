@@ -5,7 +5,7 @@
 				<div class="column is-half">
 					<b-tabs position="is-centered" type="is-toggle" expanded>
 						<b-tab-item label="Iniciar sesión">
-							<UserLogin redirect="InicioAgente" />
+							<LoginForm redirect="/inicioagente" />
 						</b-tab-item>
 					</b-tabs>
 				</div>
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-	import UserLogin from '@/components/UserLogin';
+	import LoginForm from '@/components/LoginForm';
 
 	export default {
 		components: {
-			UserLogin,
+			LoginForm
 		}
 	};
 </script>

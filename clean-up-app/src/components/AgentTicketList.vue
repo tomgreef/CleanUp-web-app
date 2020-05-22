@@ -9,10 +9,9 @@
 			detailed
 			detail-key="id"
 			@details-open="
-				(row, index) =>
-					$buefy.toast.open(`Expanded ${row.titulo}`)
+				(row, index) => $buefy.toast.open(`Expanded ${row.titulo}`)
 			"
-			:show-detail-icon='false'
+			:show-detail-icon="false"
 			aria-next-label="Next page"
 			aria-previous-label="Previous page"
 			aria-page-label="Page"
@@ -23,7 +22,6 @@
 					{{ props.row.id }}
 				</b-table-column>
 
-                    
 				<b-table-column field="titulo" label="Título" sortable>
 					<template>
 						<a @click="toggle(props.row)">
@@ -43,21 +41,24 @@
 				<article class="media">
 					<figure class="media-left">
 						<p class="image is-128x128">
-							<img src="http://icons.iconarchive.com/icons/chrisl21/minecraft/512/Creeper-icon.png" alt="Image">
+							<img
+								src="http://icons.iconarchive.com/icons/chrisl21/minecraft/512/Creeper-icon.png"
+								alt="Image"
+							/>
 						</p>
 					</figure>
 					<div class="media-content">
 						<div class="content">
 							<p>
-							    {{ props.row.descripcion }}
-                            </p>
+								{{ props.row.descripcion }}
+							</p>
 						</div>
-                        <div>
-                            <p>
-                                <strong>Dirección: </strong>
-							    {{ props.row.direccion }}
-                            </p>
-                        </div>
+						<div>
+							<p>
+								<strong>Dirección: </strong>
+								{{ props.row.direccion }}
+							</p>
+						</div>
 					</div>
 				</article>
 			</template>
@@ -73,16 +74,18 @@
 					{
 						id: '12',
 						titulo: 'Testeo bueno',
-                        fecha: Date.now(),
-                        descripcion: 'Pero esta roto hermano',
-                        direccion: 'Calle' + ' ' + 'Numero' + ', ' + 'Codigo Postal'
+						fecha: Date.now(),
+						descripcion: 'Pero esta roto hermano',
+						direccion:
+							'Calle' + ' ' + 'Numero' + ', ' + 'Codigo Postal'
 					},
 					{
 						id: '10',
 						titulo: 'Testeo malo',
-                        fecha: Date.now(),
-                        descripcion: 'estoy pobre surmano',
-                        direccion: 'Calle' + ' ' + 'Numero' + ', ' + 'Codigo Postal'
+						fecha: Date.now(),
+						descripcion: 'estoy pobre surmano',
+						direccion:
+							'Calle' + ' ' + 'Numero' + ', ' + 'Codigo Postal'
 					}
 				],
 				defaultOpenedDetails: [1],

@@ -13,26 +13,10 @@ const routes = [
 			title: 'Inicio'
 		}
 	},
+	// Rutas de usuario
 	{
 		path: '/mistickets',
-		component: () => import('@/views/TicketsUsuario'),
-		path: '/landingagente',
-		name: 'LandingAgente',
-		component: () => import('@/views/LandingAgente')
-	},
-	{
-		path: '/inicioagente',
-		name: 'InicioAgente',
-		component: () => import('@/views/PaginaInicioAgente'),
-		meta:{
-			requiresAuth: true,
-			allowType: 'agent'
-		}
-	},
-	{
-		path: '/listadotickets',
-		name: 'ListadoTickets',
-		component: () => import('@/views/ListadoTickets'),
+		component: () => import('@/views/HomeUser'),
 		meta: {
 			title: 'Mis tickets',
 			userType: 'user'
@@ -46,12 +30,20 @@ const routes = [
 			userType: 'user'
 		}
 	},
+	// Rutas de agente
 	{
-		path: '/HomeAgent',
-		name: 'HomeAgent',
+		path: '/landingagente',
+		component: () => import('@/views/AgentLanding'),
+		meta: {
+			title: 'Inicio de agente'
+		}
+	},
+	{
+		path: '/inicioagente',
 		component: () => import('@/views/HomeAgent'),
 		meta: {
-			// allowType: 'agent'
+			title: 'Inicio de agente'
+			// userType: 'agent'
 		}
 	}
 ];

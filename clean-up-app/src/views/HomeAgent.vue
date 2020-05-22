@@ -1,15 +1,13 @@
 <template>
 	<section class="section">
-        <AgentTicketList/>          
+		<AgentTicketList />
 	</section>
 </template>
 
 <script>
 	import AgentTicketList from '@/components/AgentTicketList';
 	export default {
-		data: () => ({
-			
-		}),
+		data: () => ({}),
 		components: {
 			AgentTicketList
 		}
