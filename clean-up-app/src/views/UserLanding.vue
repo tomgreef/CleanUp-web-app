@@ -4,10 +4,10 @@
 			<div class="columns is-centered">
 				<div class="column is-half">
 					<b-tabs position="is-centered" type="is-toggle" expanded>
-						<b-tab-item label="Iniciar sesión">
+						<b-tab-item label="Inicio de sesión de usuario">
 							<LoginForm :redirect="redirect" />
 						</b-tab-item>
-						<b-tab-item label="Crear cuenta">
+						<b-tab-item label="Crear cuenta de usuario">
 							<SignupForm userType="user" :redirect="redirect" />
 						</b-tab-item>
 					</b-tabs>

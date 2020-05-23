@@ -32,7 +32,7 @@ const routes = [
 	},
 	// Rutas de agente
 	{
-		path: '/landingagente',
+		path: '/agentlanding',
 		component: () => import('@/views/AgentLanding'),
 		meta: {
 			title: 'Inicio de agente'
@@ -42,7 +42,8 @@ const routes = [
 		path: '/inicioagente',
 		component: () => import('@/views/HomeAgent'),
 		meta: {
-			title: 'Inicio de agente'
+			title: 'Inicio de agente',
+			userType: 'agent'
 			// userType: 'agent'
 		}
 	}
@@ -63,7 +64,7 @@ router.beforeEach((to, from, next) => {
 				next({ path: '/mistickets' });
 				break;
 			case 'agent':
-				next({ path: '/listadotickets' });
+				next({ path: '/inicioagente' });
 				break;
 		}
 	}

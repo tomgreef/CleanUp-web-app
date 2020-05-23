@@ -10,15 +10,12 @@ async function cacheManager(ref) {
 	return snap;
 }
 
-function getSnap(uid) {
-	let ref = db.collection('users').doc(uid);
-	return cacheManager(ref);
-}
-
 export async function getUserType() {
 	let type = null;
 	if (auth.currentUser) {
-		let snap = await getSnap(auth.currentUser.uid);
+		let snap = await cacheManager(
+			db.collection('users').doc(auth.currentUser.uid)
+		);
 		type = snap.data().type;
 	}
 	return type;

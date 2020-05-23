@@ -4,7 +4,7 @@
 			<div class="columns is-centered">
 				<div class="column is-half">
 					<b-tabs position="is-centered" type="is-toggle" expanded>
-						<b-tab-item label="Iniciar sesión">
+						<b-tab-item label="Inicio de sesión de agente">
 							<LoginForm redirect="/inicioagente" />
 						</b-tab-item>
 					</b-tabs>

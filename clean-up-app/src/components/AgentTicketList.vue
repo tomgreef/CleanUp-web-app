@@ -25,14 +25,16 @@
 				<b-table-column field="titulo" label="Título" sortable>
 					<template>
 						<a @click="toggle(props.row)">
-							{{ props.row.titulo }}
+							{{ props.row.data().title }}
 						</a>
 					</template>
 				</b-table-column>
 
 				<b-table-column field="fecha" label="Fecha" sortable centered>
 					<span class="tag is-success">
-						{{ new Date(props.row.fecha).toLocaleDateString() }}
+						{{
+							new Date(props.row.data().date).toLocaleDateString()
+						}}
 					</span>
 				</b-table-column>
 			</template>
@@ -42,22 +44,39 @@
 					<figure class="media-left">
 						<p class="image is-128x128">
 							<img
-								src="http://icons.iconarchive.com/icons/chrisl21/minecraft/512/Creeper-icon.png"
+								:src="props.row.data().images[0]"
 								alt="Image"
 							/>
 						</p>
 					</figure>
 					<div class="media-content">
 						<div class="content">
-							<p>
-								{{ props.row.descripcion }}
-							</p>
-						</div>
-						<div>
-							<p>
-								<strong>Dirección: </strong>
-								{{ props.row.direccion }}
-							</p>
+							<div class="columns">
+								<div class="column is-one-quarter">
+									<p>
+										<strong>Dirección: </strong>
+									</p>
+									<ul>
+										<li>
+											Código postal:
+											{{ props.row.data().cp }}
+										</li>
+										<li>
+											Calle: {{ props.row.data().street }}
+										</li>
+										<li>
+											Número:
+											{{ props.row.data().streetNumber }}
+										</li>
+									</ul>
+								</div>
+								<div class="column">
+									<p><strong>Descripción</strong></p>
+									<p>
+										{{ props.row.data().description }}
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</article>
@@ -67,27 +86,12 @@
 </template>
 
 <script>
+	import { db } from '@/firebase';
+
 	export default {
 		data() {
 			return {
-				tickets: [
-					{
-						id: '12',
-						titulo: 'Testeo bueno',
-						fecha: Date.now(),
-						descripcion: 'Pero esta roto hermano',
-						direccion:
-							'Calle' + ' ' + 'Numero' + ', ' + 'Codigo Postal'
-					},
-					{
-						id: '10',
-						titulo: 'Testeo malo',
-						fecha: Date.now(),
-						descripcion: 'estoy pobre surmano',
-						direccion:
-							'Calle' + ' ' + 'Numero' + ', ' + 'Codigo Postal'
-					}
-				],
+				tickets: [],
 				defaultOpenedDetails: [1],
 				showDetailIcon: true
 			};
@@ -96,6 +100,17 @@
 			toggle(row) {
 				this.$refs.table.toggleDetails(row);
 			}
+		},
+		firestore() {
+			db.collection('tickets').onSnapshot(snapshot => {
+				console.log(
+					'This came from:',
+					snapshot.metadata.fromCache ? 'cache' : 'database'
+				);
+				snapshot.forEach(ticket => {
+					this.tickets.push(ticket);
+				});
+			});
 		}
 	};
 </script>

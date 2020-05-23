@@ -1,6 +1,8 @@
 <template>
-	<section class="section container">
-		<ListadoTickets />
+	<section class="section">
+		<div class="container">
+			<ListadoTickets />
+		</div>
 	</section>
 </template>
 
