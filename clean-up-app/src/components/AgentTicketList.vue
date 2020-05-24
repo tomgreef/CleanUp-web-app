@@ -26,7 +26,7 @@
                     
 				<b-table-column field="titulo" label="Título" sortable>
 					<template>
-						<a @click="toggle(props.row)">
+						<a @click="toggle(<PopUpTicketAgente/>)">
 							{{ props.row.titulo }}
 						</a>
 					</template>
@@ -38,34 +38,12 @@
 					</span>
 				</b-table-column>
 			</template>
-
-			<template slot="detail" slot-scope="props">
-				<article class="media">
-					<figure class="media-left">
-						<p class="image is-128x128">
-							<img src="http://icons.iconarchive.com/icons/chrisl21/minecraft/512/Creeper-icon.png" alt="Image">
-						</p>
-					</figure>
-					<div class="media-content">
-						<div class="content">
-							<p>
-							    {{ props.row.descripcion }}
-                            </p>
-						</div>
-                        <div>
-                            <p>
-                                <strong>Dirección: </strong>
-							    {{ props.row.direccion }}
-                            </p>
-                        </div>
-					</div>
-				</article>
-			</template>
 		</b-table>
 	</section>
 </template>
 
 <script>
+	import PopUpTicketAgente from '@/components/PopUpTicketAgente';
 	export default {
 		data() {
 			return {
@@ -93,6 +71,9 @@
 			toggle(row) {
 				this.$refs.table.toggleDetails(row);
 			}
+		},
+		components: {
+			PopUpTicketAgente
 		}
 	};
 </script>
