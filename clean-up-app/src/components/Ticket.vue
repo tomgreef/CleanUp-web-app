@@ -1,14 +1,22 @@
 <template>
 	<article class="media">
 		<figure class="media-left">
-			<b-icon icon="ticket" size="is-large"> </b-icon>
+			<p class="image is-128x128">
+				<img :src="ticket.images[0]" alt="re" />
+			</p>
 		</figure>
 		<div class="media-content">
 			<div class="content">
 				<p>
-					<strong>{{ title }}</strong> - {{ id }}
+					<strong>{{ ticket.title }}</strong>
+					<small> {{ ticket.id }}</small>
 					<br />
-					{{ description }}
+					{{ ticket.description }}
+					<br />
+					<strong
+						>Ubicación: {{ ticket.cp }} {{ ticket.street }}
+						{{ ticket.streetNumber }}</strong
+					>
 				</p>
 			</div>
 		</div>
@@ -17,11 +25,8 @@
 
 <script>
 	export default {
-		name: 'Ticket',
 		props: {
-			id: String,
-			title: String,
-			description: String
+			ticket: Object
 		}
 	};
 </script>

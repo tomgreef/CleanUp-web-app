@@ -1,7 +1,9 @@
 <template>
 	<section class="section">
-        <AgentTicketList/> 
-		<PopUpTicketAgente/>
+		<div class="container">
+			<AgentTicketList/>
+            <PopUpTicketAgente/>
+		</div>
 	</section>
 </template>
 
@@ -9,9 +11,7 @@
 	import AgentTicketList from '@/components/AgentTicketList';
 	import PopUpTicketAgente from '@/components/PopUpTicketAgente';
 	export default {
-		data: () => ({
-			
-		}),
+		data: () => ({}),
 		components: {
 			AgentTicketList,
 			PopUpTicketAgente

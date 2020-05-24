@@ -6,7 +6,7 @@
 			position="is-centered"
 			expanded
 			:message="
-				titulo.length > 0 && titulo.length < 5
+				titulo.length > 0 && titulo.length < 10
 					? 'El título debe tener 10 caracteres como mínimo'
 					: ''
 			"
@@ -43,6 +43,7 @@
 					v-model="CP"
 					:controls="false"
 					min="29000"
+					max="29999"
 				></b-numberinput>
 			</b-field>
 			<b-field
@@ -63,6 +64,7 @@
 					v-model="numeroCalle"
 					:controls="false"
 					min="0"
+					max="999"
 				></b-numberinput>
 			</b-field>
 		</b-field>
@@ -72,7 +74,7 @@
 				<div class="column is-half">
 					<b-upload
 						v-model="images"
-						:disabled="invalidImg || invalidSize"
+						:disabled="!imgLimit || invalidImgLimit || invalidSize"
 						multiple
 						accept="image/*"
 						drag-drop
@@ -113,7 +115,7 @@
 		</b-field>
 		<br />
 		<b-button
-			:disabled="invalid"
+			:disabled="invalid || invalidSize"
 			type="is-primary"
 			@click="createTicket"
 			expanded
@@ -123,7 +125,7 @@
 </template>
 
 <script>
-	import firebase from 'firebase';
+	import { auth, db, storage } from '@/firebase';
 	import { warning } from '@/helpers/notificaciones';
 	import { success } from '@/helpers/notificaciones';
 
@@ -139,31 +141,35 @@
 		computed: {
 			invalid() {
 				return (
-					this.titulo.length < 5 ||
+					this.titulo.length < 10 ||
 					this.descripcion.length < 20 ||
 					this.CP == null ||
+					this.CP > 29999 ||
+					this.numeroCalle < 0 ||
+					this.numeroCalle > 999 ||
 					this.calle.length < 10 ||
 					this.images.length < 1 ||
 					this.images.length > 3
 				);
 			},
-			invalidImg() {
-				let invalid = this.images.length > 3;
-				if (invalid) {
-					warning('El límite es de 3 imagenes');
-				}
-				return invalid;
-			},
 			invalidSize() {
-				let invalid = true;
+				let invalid = false;
+				let tooBig = element => element.size > 15 * 1024 * 1024;
 				if (this.images.length > 0) {
-					let image = this.images[this.images.length - 1];
-					invalid = image.size > 15 * 1024 * 1024;
+					invalid = this.images.some(tooBig);
 					if (invalid) {
 						warning('Las imagenes no pueden pesar más de 15mb');
 					}
-				} else {
-					invalid = false;
+				}
+				return invalid;
+			},
+			imgLimit() {
+				return this.images.length < 3;
+			},
+			invalidImgLimit() {
+				let invalid = this.images.length > 3;
+				if (invalid) {
+					warning('El límite es de 3 imagenes');
 				}
 				return invalid;
 			}
@@ -171,7 +177,7 @@
 		methods: {
 			getType(index) {
 				let type = 'is-primary';
-				if (this.images[index].size > 10 * 1024 * 1024) {
+				if (this.images[index].size > 15 * 1024 * 1024) {
 					type = 'is-danger';
 				}
 				return type;
@@ -179,36 +185,57 @@
 			deleteDropFile(index) {
 				this.images.splice(index, 1);
 			},
-			uploadImages(ticketId) {
-				for (let i = 0; i < this.images.length; i++) {
-					let image = this.images[i];
-					let ref = firebase.storage().ref();
-					let ticketRef = ref.child('tickets/' + ticketId);
-					let imageRef = ticketRef.child(image.name);
-					imageRef.put(image);
-				}
+			getUploadPromises(ticketId) {
+				let uploadPromises = [];
+				let ticketRef = storage.ref().child('tickets/' + ticketId);
+				this.images.forEach(image => {
+					uploadPromises.push(ticketRef.child(image.name).put(image));
+				});
+				return Promise.all(uploadPromises);
+			},
+			getDownloadPromises(tasks) {
+				let downloadPromises = [];
+				tasks.forEach(task => {
+					downloadPromises.push(task.ref.getDownloadURL());
+				});
+				return Promise.all(downloadPromises);
 			},
 			createTicket() {
-				let uid = firebase.auth().currentUser.uid;
-				firebase
-					.firestore()
-					.collection('tickets')
-					.add({
-						title: this.titulo,
-						description: this.descripcion,
-						street: this.calle,
-						streetNumber: this.numeroCalle,
-						cp: this.CP,
-						date: Date.now(),
-						userUid: uid,
-						agentUid: '',
-						closed: false
-					})
-					.then(ticket => {
-						this.uploadImages(ticket.id);
-						success('Su ticket ha sido creado satisfactoriamente');
-						this.$router.replace({ name: 'Listado tickets' });
-					});
+				let uid = auth.currentUser.uid;
+				let ticketRef = db.collection('tickets').doc();
+				this.getUploadPromises(ticketRef.id).then(tasks => {
+					let imagesUrl = [];
+					this.getDownloadPromises(tasks)
+						.then(urls => {
+							urls.forEach(url => {
+								imagesUrl.push(url);
+							});
+						})
+						.then(() => {
+							db.collection('tickets')
+								.doc(ticketRef.id)
+								.set({
+									title: this.titulo,
+									description: this.descripcion,
+									street: this.calle,
+									streetNumber: this.numeroCalle,
+									cp: this.CP,
+									date: Date.now(),
+									images: imagesUrl,
+									userUid: uid,
+									agentUid: '',
+									closed: false
+								})
+								.then(() => {
+									success(
+										'Su ticket ha sido creado satisfactoriamente'
+									);
+									this.$router.replace({
+										path: '/mistickets'
+									});
+								});
+						});
+				});
 			}
 		}
 	};

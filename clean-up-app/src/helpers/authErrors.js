@@ -8,14 +8,14 @@ module.exports = function(error) {
 		case 'auth/account-exists-with-different-credential':
 		case 'auth/credential-already-in-use':
 		case 'auth/email-already-in-use':
-			msg = 'El usuario ya existe, inicia sesión o crea una cuenta nueva';
+			msg = 'El usuario ya existe, inicia sesión';
 			break;
 		// Errores de inicio de sesion
 		case 'auth/invalid-password':
 			msg = 'La contraseña es invalida';
 			break;
 		case 'auth/user-not-found':
-			msg = 'Las credenciales no coinciden';
+			msg = 'El usuario no existe';
 			break;
 	}
 	return msg;

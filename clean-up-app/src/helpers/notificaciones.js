@@ -2,22 +2,22 @@ import { SnackbarProgrammatic as Snackbar } from 'buefy';
 
 export function warning(msg) {
 	Snackbar.open({
-		duration: 5000,
+		duration: 2500,
 		message: msg,
 		type: 'is-warning',
 		position: 'is-top',
 		actionText: 'Ok',
-		indefinite: true
+		indefinite: false
 	});
 }
 
 export function success(msg) {
 	Snackbar.open({
-		duration: 5000,
+		duration: 2500,
 		message: msg,
 		type: 'is-success',
 		position: 'is-top',
 		actionText: 'Ok',
-		indefinite: true
+		indefinite: false
 	});
 }
