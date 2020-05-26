@@ -14,6 +14,9 @@ module.exports = function(error) {
 		case 'auth/invalid-password':
 			msg = 'La contraseña es invalida';
 			break;
+		case 'auth/wrong-password':
+			msg = 'La contraseña es incorrecta';
+			break;
 		case 'auth/user-not-found':
 			msg = 'El usuario no existe';
 			break;

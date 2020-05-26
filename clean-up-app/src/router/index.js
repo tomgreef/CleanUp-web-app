@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 const routes = [
 	{
 		path: '/',
-		component: () => import('@/views/UserLanding'),
+		component: () => import('@/views/Landing'),
 		meta: {
 			title: 'Inicio'
 		}
@@ -31,13 +31,6 @@ const routes = [
 		}
 	},
 	// Rutas de agente
-	{
-		path: '/agentlanding',
-		component: () => import('@/views/AgentLanding'),
-		meta: {
-			title: 'Inicio de agente'
-		}
-	},
 	{
 		path: '/inicioagente',
 		component: () => import('@/views/HomeAgent'),
@@ -70,7 +63,7 @@ router.beforeEach((to, from, next) => {
 	}
 
 	if (!auth.currentUser) {
-		if (to.path == '/' || to.path == '/agentlanding') {
+		if (to.path == '/') {
 			next();
 		} else {
 			next({ path: '/' });

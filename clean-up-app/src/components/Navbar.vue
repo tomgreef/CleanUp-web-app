@@ -5,37 +5,26 @@
 				<h1 class="title">Clean Up</h1>
 			</b-navbar-item>
 		</template>
-		<template slot="start" v-if="isUser">
+		<template slot="start" v-if="isLoggedIn">
 			<b-navbar-item href="/">
 				Inicio
 			</b-navbar-item>
-			<b-navbar-item href="CrearTicket">
+			<b-navbar-item v-if="isUser" href="CrearTicket">
 				Crear incidencia
 			</b-navbar-item>
 		</template>
 		<template slot="end">
 			<b-navbar-item tag="div">
-				<div class="buttons">
+				<div class="buttons" v-if="isLoggedIn">
 					<b-button
-						v-if="isUser"
 						tag="router-link"
 						to="/perfil"
 						inverted
 						type="is-link"
 						>Mi perfil</b-button
 					>
-					<b-button v-if="isLoggedIn" type="is-danger" @click="logout"
+					<b-button type="is-danger" @click="logout"
 						>Cerrar sesión</b-button
-					>
-					<b-button
-						v-if="!isLoggedIn"
-						tag="router-link"
-						:to="inUserLanding ? '/agentlanding' : '/'"
-						inverted
-						type="is-link"
-						>{{
-							inUserLanding ? 'Soy un agente' : 'Soy un usuario'
-						}}</b-button
 					>
 				</div>
 			</b-navbar-item>

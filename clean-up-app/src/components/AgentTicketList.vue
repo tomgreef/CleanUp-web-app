@@ -25,7 +25,6 @@
 			aria-previous-label="Página anterior"
 			aria-page-label="Página"
 			aria-current-label="Página actual"
-			narrowed
 			hoverable
 		>
 			<template slot-scope="props">
@@ -42,7 +41,6 @@
 					field="agentUid"
 					label="Agente asignado"
 					sortable
-					centered
 				>
 					{{
 						props.row.agentUid != ''
