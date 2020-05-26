@@ -4,7 +4,7 @@
 			<div class="content">
 				<p>
 					<strong>{{ comment.agentId }}</strong> ~
-					{{ new Date(comment.date).toLocaleDateString() }}
+					{{ new Date(comment.date).toLocaleString() }}
 					<br />
 					{{ comment.message }}
 				</p>

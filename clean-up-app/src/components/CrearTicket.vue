@@ -215,6 +215,7 @@
 							db.collection('tickets')
 								.doc(ticketRef.id)
 								.set({
+									id: ticketRef.id,
 									title: this.titulo,
 									description: this.descripcion,
 									street: this.calle,

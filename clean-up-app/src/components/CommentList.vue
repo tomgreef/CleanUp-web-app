@@ -1,53 +1,49 @@
 <template>
 	<div>
-		<b-collapse class="is-primary" animation="slide" :open.sync="isOpen">
+		<b-collapse
+			animation="slide"
+			:open.sync="isOpen"
+			v-if="this.comments ? this.comments.length > 0 : false"
+		>
 			<p class="panel-heading" slot="trigger">
-				<strong>
-					Listado de comentarios
-				</strong>
+				<strong> Listado de comentarios</strong>
 				<b-icon :icon="isOpen ? 'menu-down' : 'menu-up'"> </b-icon>
 			</p>
 			<p
-				v-for="comentario in comentarios"
-				:key="comentario.id"
-				class="panel-block"
+				v-for="comment in comments"
+				:key="comment.id"
+				class="panel-block is-marginless"
 			>
-				<Comment :comment="comentario" />
+				<Comment :comment="comment" />
 			</p>
 		</b-collapse>
+		<p v-else class="box">
+			<strong>Aún no hay comentarios en esta incidencia</strong>
+		</p>
 	</div>
 </template>
 
 <script>
+	import { db } from '@/firebase';
 	import Comment from '@/components/Comment';
 	export default {
 		data: () => ({
-			isOpen: true,
-			comentarios: [
-				{
-					id: 0,
-					agentId: 'agent0',
-					date: Date.now() - 24 * 60 * 60 * 1000 * 2,
-					message:
-						'Un equipo de reparadores ha sido enviado a la ubicación'
-				},
-				{
-					id: 1,
-					agentId: 'agent1',
-					date: Date.now() - 24 * 60 * 60 * 1000,
-					message:
-						'El equipo de reparadores han arreglado el semáforo'
-				},
-				{
-					id: 2,
-					agentId: 'agent007',
-					date: Date.now(),
-					message: 'Se procede a cerrar la incidencia'
-				}
-			]
+			isOpen: false
 		}),
+		props: {
+			ticketId: String
+		},
 		components: {
 			Comment
+		},
+		firestore() {
+			return {
+				comments: db
+					.collection('tickets')
+					.doc(this.ticketId)
+					.collection('comments')
+					.orderBy('date')
+			};
 		}
 	};
 </script>
