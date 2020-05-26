@@ -1,21 +1,12 @@
 <template>
-	<article class="media">
-		<div class="media-content">
-			<div class="field">
-				<p class="control">
-					<textarea
-						class="textarea"
-						placeholder="Add a comment..."
-					></textarea>
-				</p>
-			</div>
-			<nav class="level">
-				<div class="level-left">
-					<div class="level-item">
-						<a class="button is-info">Submit</a>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</article>
+	<section>
+		<b-field label="Añadir un comentario" label-position="on-border">
+			<b-input
+				placeholder="Escriba un comentario"
+				type="textarea"
+				maxlength="200"
+			></b-input>
+		</b-field>
+		<b-button type="is-primary" expanded>Añadir</b-button>
+	</section>
 </template>
