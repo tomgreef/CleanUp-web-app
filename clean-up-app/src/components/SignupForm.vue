@@ -34,7 +34,7 @@
 		}),
 		computed: {
 			validate: function() {
-				return this.pass.length < 6;
+				return this.pass.length < 6 || this.name.length < 1 || this.email.length < 10;
 			}
 		},
 		methods: {
@@ -47,6 +47,8 @@
 						this.addDisplayName();
 						this.registerUserType();
 						this.$router.push({ path: '/mistickets' });
+						this.verifyUser();
+
 					});
 			},
 			addDisplayName() {
@@ -63,7 +65,18 @@
 					.set({
 						type: 'user'
 					});
+			},
+			verifyUser() {
+				let user = auth.currentUser;
+				auth.useDeviceLanguage();
+    			user.sendEmailVerification().then(function() {
+					warning('Email de verificación enviado')
+				}).catch(function(error) {
+					console.log(error)
+				});
 			}
+
+			
 		}
 	};
 </script>
