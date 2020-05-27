@@ -9,53 +9,35 @@
 
 Índice
 =================
-[Introducción](#1-introducción)
+* 1 [Introducción](#1-introducción)
+  * 1.1 [Objetivo del documento](#11-objetivo-del-documento)
+  * 1.2 [Ámbito del proyecto](#12-ámbito-del-proyecto)
+  * 1.3 [Definiciones, acrónimos y abreviaturas](#13-definiciones-acrónimos-y-abreviaturas)
+  * 1.4 [Referencias](#14-referencias)
+  * 1.5 [Resumen del documento](#15-resumen-del-documento) 
 
-  1.1 Objetivo del documento 
+* 2 [Vista general del producto](#2-vista-general-del-producto)
+  * 2.1 [Perspectiva del producto](#21-perspectiva-del-producto)
+  * 2.2 [Funciones del producto](#22-funciones-del-producto)
+  * 2.3 [Restricciones del producto](#23-restricciones-del-producto)
+  * 2.4 [Perfiles de usuario](#24-perfiles-de-usuario)
+  * 2.5 [Suposiciones y dependencias](#25-suposiciones-y-dependencias)
 
-  1.2 Ámbito del proyecto 
+* 3 [Interfaces externas](#3-interfaces-externas)
+    * 3.1 [Interfaces con el Usuario](#31-interfaces-con-el-usuario)
+    * 3.2 [Interfaces con el Hardware](#32-interfaces-con-el-hardware)
+    * 3.3 [Interfaces con el Software](#33-interfaces-con-el-software)
 
-  1.3 Definiciones, acrónimos y abreviaturas 
-
-  1.5 Resumen del documento 
-
-### __2. Vista general del producto__
-
-   2.1 Perspectiva del producto 
-
-   2.2 Funciones del producto 
- 
-   2.3 Restricciones del producto 
-
-   2.4 Perfiles de usuario 
-
-   2.5 Suposiciones y dependencias 
-
-### __3. Interfaces externas__  
-
-   3.1 Interfaces con el usuario 
-
-   3.2 Interfaces con el Hardware 
-
-   3.3 Interfaces con el Software 
-
-### __4. Requisitos__  
-
-   4.1 Precedencia y prioridad 
-
-   4.2 Funcionales 
-
-   4.3 Calidad de Servicio  
-
-    4.3.1 Rendimiento 
-
-    4.3.2 Seguridad 
-
-    4.3.3 Disponibilidad 
-
-    4.3.4 Fecha de entrega 
-
- ### __5. Verificación__ 
+* 4 [Requisitos](#4-requisitos)
+  * 4.1 [Precedencia y prioridad](#41-precedencia-y-prioridad) 
+  * 4.2 [Funcionales](#42-funcionales)
+  * 4.3 [Calidad de Servicio](#43-calidad-de-servicio 
+    * 4.3.1 [Rendimiento](#431-rendimiento)
+    * 4.3.2 [Seguridad](#432-seguridad)
+    * 4.3.3 [Disponibilidad](#434-disponibilidad)    
+    * 4.3.4 [Fecha de Entrega](#457-fecha-de-entrega)
+    
+* 5 [Verificación](#5-verificación)
  
   
 ## Versiones
