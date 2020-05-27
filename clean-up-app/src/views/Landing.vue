@@ -4,19 +4,11 @@
 			<div class="columns is-centered">
 				<div class="column is-half">
 					<b-tabs position="is-centered" type="is-toggle" expanded>
-<<<<<<< HEAD:clean-up-app/src/views/UserLanding.vue
-						<b-tab-item label="Iniciar sesión">
-							<LoginForm :redirect="redirect" />
-						</b-tab-item>
-						<b-tab-item label="Crear cuenta">
-							<SignupForm userType="user" :redirect="redirect" />
-=======
 						<b-tab-item label="Inicio de sesión">
 							<LoginForm />
 						</b-tab-item>
 						<b-tab-item label="Crear cuenta de usuario">
 							<SignupForm />
->>>>>>> agente:clean-up-app/src/views/Landing.vue
 						</b-tab-item>
 					</b-tabs>
 				</div>
