@@ -34,8 +34,9 @@
   * 4.3 [Calidad de Servicio](#43-calidad-de-servicio)
     * 4.3.1 [Rendimiento](#431-rendimiento)
     * 4.3.2 [Seguridad](#432-seguridad)
-    * 4.3.3 [Disponibilidad](#434-disponibilidad)    
-    * 4.3.4 [Fecha de Entrega](#457-fecha-de-entrega)
+    * 4.3.3 [Disponibilidad](#434-disponibilidad)  
+    * 4.3.4 [Reusabilidad](#434-reusabilidad)
+    * 4.3.5 [Fecha de Entrega](#457-fecha-de-entrega)
     
 * 5 [Verificación](#5-verificación)
  
