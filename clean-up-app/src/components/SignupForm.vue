@@ -32,10 +32,6 @@
 			email: '',
 			pass: ''
 		}),
-		props: {
-			userType: String,
-			redirect: String
-		},
 		computed: {
 			validate: function() {
 				return this.pass.length < 6;
@@ -50,7 +46,7 @@
 					.then(() => {
 						this.addDisplayName();
 						this.registerUserType();
-						this.$router.push({ path: this.redirect });
+						this.$router.push({ path: '/mistickets' });
 					});
 			},
 			addDisplayName() {
@@ -65,7 +61,7 @@
 				db.collection('users')
 					.doc(auth.currentUser.uid)
 					.set({
-						type: this.userType
+						type: 'user'
 					});
 			}
 		}

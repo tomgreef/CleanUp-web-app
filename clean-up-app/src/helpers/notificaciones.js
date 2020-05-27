@@ -13,10 +13,11 @@ export function warning(msg) {
 
 export function success(msg) {
 	Snackbar.open({
+		duration: 2500,
 		message: msg,
 		type: 'is-success',
 		position: 'is-top',
 		actionText: 'Ok',
-		indefinite: true
+		indefinite: false
 	});
 }

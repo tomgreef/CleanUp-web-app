@@ -177,7 +177,7 @@
 		methods: {
 			getType(index) {
 				let type = 'is-primary';
-				if (this.images[index].size > 10 * 1024 * 1024) {
+				if (this.images[index].size > 15 * 1024 * 1024) {
 					type = 'is-danger';
 				}
 				return type;
@@ -185,34 +185,58 @@
 			deleteDropFile(index) {
 				this.images.splice(index, 1);
 			},
-			uploadImages(ticketId) {
-				for (let i = 0; i < this.images.length; i++) {
-					let image = this.images[i];
-					let ref = storage.ref();
-					let ticketRef = ref.child('tickets/' + ticketId);
-					let imageRef = ticketRef.child(image.name);
-					imageRef.put(image);
-				}
+			getUploadPromises(ticketId) {
+				let uploadPromises = [];
+				let ticketRef = storage.ref().child('tickets/' + ticketId);
+				this.images.forEach(image => {
+					uploadPromises.push(ticketRef.child(image.name).put(image));
+				});
+				return Promise.all(uploadPromises);
+			},
+			getDownloadPromises(tasks) {
+				let downloadPromises = [];
+				tasks.forEach(task => {
+					downloadPromises.push(task.ref.getDownloadURL());
+				});
+				return Promise.all(downloadPromises);
 			},
 			createTicket() {
 				let uid = auth.currentUser.uid;
-				db.collection('tickets')
-					.add({
-						title: this.titulo,
-						description: this.descripcion,
-						street: this.calle,
-						streetNumber: this.numeroCalle,
-						cp: this.CP,
-						date: Date.now(),
-						userUid: uid,
-						agentUid: '',
-						closed: false
-					})
-					.then(ticket => {
-						this.uploadImages(ticket.id);
-						success('Su ticket ha sido creado satisfactoriamente');
-						this.$router.replace({ name: 'Listado tickets' });
-					});
+				let ticketRef = db.collection('tickets').doc();
+				this.getUploadPromises(ticketRef.id).then(tasks => {
+					let imagesUrl = [];
+					this.getDownloadPromises(tasks)
+						.then(urls => {
+							urls.forEach(url => {
+								imagesUrl.push(url);
+							});
+						})
+						.then(() => {
+							db.collection('tickets')
+								.doc(ticketRef.id)
+								.set({
+									id: ticketRef.id,
+									title: this.titulo,
+									description: this.descripcion,
+									street: this.calle,
+									streetNumber: this.numeroCalle,
+									cp: this.CP,
+									date: Date.now(),
+									images: imagesUrl,
+									userUid: uid,
+									agentUid: '',
+									closed: false
+								})
+								.then(() => {
+									success(
+										'Su ticket ha sido creado satisfactoriamente'
+									);
+									this.$router.replace({
+										path: '/mistickets'
+									});
+								});
+						});
+				});
 			}
 		}
 	};

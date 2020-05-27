@@ -28,9 +28,6 @@
 			email: '',
 			pass: ''
 		}),
-		props: {
-			redirect: String
-		},
 		computed: {
 			validate: function() {
 				return this.pass.length < 6 || this.email.length < 10;
@@ -44,7 +41,7 @@
 						console.log(error);
 					})
 					.then(() => {
-						this.$router.push({ path: this.redirect });
+						this.$router.push({ path: '/home' });
 					});
 			}
 		}

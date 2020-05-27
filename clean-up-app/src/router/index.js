@@ -8,14 +8,15 @@ Vue.use(VueRouter);
 const routes = [
 	{
 		path: '/',
-		component: () => import('@/views/UserLanding'),
+		component: () => import('@/views/Landing'),
 		meta: {
 			title: 'Inicio'
 		}
 	},
+	// Rutas de usuario
 	{
 		path: '/mistickets',
-		component: () => import('@/views/TicketsUsuario'),
+		component: () => import('@/views/HomeUser'),
 		meta: {
 			title: 'Mis tickets',
 			userType: 'user'
@@ -27,6 +28,16 @@ const routes = [
 		meta: {
 			title: 'Crear ticket',
 			userType: 'user'
+		}
+	},
+	// Rutas de agente
+	{
+		path: '/inicioagente',
+		component: () => import('@/views/HomeAgent'),
+		meta: {
+			title: 'Inicio de agente',
+			userType: 'agent'
+			// userType: 'agent'
 		}
 	}
 ];
@@ -46,13 +57,13 @@ router.beforeEach((to, from, next) => {
 				next({ path: '/mistickets' });
 				break;
 			case 'agent':
-				next({ path: '/listadotickets' });
+				next({ path: '/inicioagente' });
 				break;
 		}
 	}
 
 	if (!auth.currentUser) {
-		if (to.path == '/' || to.path == '/agentlanding') {
+		if (to.path == '/') {
 			next();
 		} else {
 			next({ path: '/' });

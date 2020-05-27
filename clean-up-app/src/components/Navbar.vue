@@ -5,17 +5,17 @@
 				<h1 class="title">Clean Up</h1>
 			</b-navbar-item>
 		</template>
-		<template slot="start" v-if="isUser">
+		<template slot="start" v-if="isLoggedIn">
 			<b-navbar-item href="/">
 				Inicio
 			</b-navbar-item>
-			<b-navbar-item href="CrearTicket">
+			<b-navbar-item v-if="isUser" href="CrearTicket">
 				Crear incidencia
 			</b-navbar-item>
 		</template>
 		<template slot="end">
 			<b-navbar-item tag="div">
-				<div class="buttons">
+				<div class="buttons" v-if="isLoggedIn">
 					<b-button
 						v-if="isUser"
 						tag="router-link"
