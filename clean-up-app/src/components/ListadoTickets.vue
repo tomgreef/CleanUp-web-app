@@ -18,6 +18,7 @@
 	import { auth, db } from '@/firebase';
 	import Ticket from '@/components/Ticket';
 	import NoTickets from '@/components/NoTickets';
+
 	export default {
 		data: () => ({
 			userTickets: []
@@ -27,8 +28,11 @@
 			NoTickets
 		},
 		firestore() {
-			db.collection('tickets')
-				.where('userUid', '==', auth.currentUser.uid)
+			return {
+				userTickets: db
+					.collection('tickets')
+					.where('userUid', '==', auth.currentUser.uid)
+				/*
 				.onSnapshot(snapshot => {
 					console.log(
 						'Tickets came from',
@@ -40,6 +44,8 @@
 						this.userTickets.push(ticket);
 					});
 				});
+				*/
+			};
 		}
 	};
 </script>
