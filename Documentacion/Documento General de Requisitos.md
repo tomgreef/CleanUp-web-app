@@ -31,7 +31,7 @@
 * 4 [Requisitos](#4-requisitos)
   * 4.1 [Precedencia y prioridad](#41-precedencia-y-prioridad) 
   * 4.2 [Funcionales](#42-funcionales)
-  * 4.3 [Calidad de Servicio](#43-calidad-de-servicio 
+  * 4.3 [Calidad de Servicio](#43-calidad-de-servicio)
     * 4.3.1 [Rendimiento](#431-rendimiento)
     * 4.3.2 [Seguridad](#432-seguridad)
     * 4.3.3 [Disponibilidad](#434-disponibilidad)    
