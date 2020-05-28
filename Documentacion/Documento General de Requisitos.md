@@ -214,7 +214,7 @@ __Precedencia:__ R1, R1.1, R3, R6
 __Prioridad:__ Fundamental  
 
 __R7.4 - Duplicado de incidencia__  
-El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.  
+El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.                                                                           
 __Precedencia:__ R7 
 __Prioridad:__ Fundamental   
 
@@ -311,12 +311,12 @@ __Precedencia:__ R1, R1.1
 __Prioridad:__ Fundamental  
 
 __R7.1.2 - Formato de imágenes__  
-El formato de las imágenes debe ser .PNG o .JPG.
+El formato de las imágenes debe ser .PNG o .JPG.                                                               
 __Precedencia:__ R1, R1.1                                                                                                                                                                                                                                                                                                                           
 __Prioridad:__ Fundamental  
 
 __R7.1.3 - Capacidad imágenes__  
-Lás imágenes ocuparán como máximo 50mb por incidencia.
+Lás imágenes ocuparán como máximo 50mb por incidencia.                                                                                            
 __Precedencia:__ R1, R1.1                                                                                                                                                                                                                     
 __Prioridad:__ Fundamental  
 
