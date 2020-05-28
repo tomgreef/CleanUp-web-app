@@ -185,7 +185,7 @@ __Prioridad:__ Fundamental
 
 __R4 - GDPR__  
 Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de la protección de datos.  
-__Precedencia:__ R1, R23  
+__Precedencia:__ R1, R23 
 __Prioridad:__ Fundamental  
 
 __R5 - Verificación__  
