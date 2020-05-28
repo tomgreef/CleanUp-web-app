@@ -195,7 +195,7 @@ __Prioridad:__ Opcional
 
 __R6 - Iniciar sesión__  
 Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web.  
-__Precedencia:__  R1,R3 
+__Precedencia:__  R1, R3 
 __Prioridad:__ Fundamental  
 
 __R6.1 - Tiempo de inactividad__  
@@ -210,7 +210,7 @@ __Prioridad:__ Fundamental
 
 __R7.1 - Imágenes en una incidencia__  
 Las incidencias se deberán subir con imágenes.    
-__Precedencia:__ R1, R1.1,R3, R6   
+__Precedencia:__ R1, R1.1, R3, R6   
 __Prioridad:__ Fundamental  
 
 __R7.4 - Duplicado de incidencia__  
@@ -236,11 +236,11 @@ __Prioridad:__ Fundamental
 __R11 - Anidar incidencias__  
 Los agentes tendrán la posibilidad de anidar una o varias incidencias.  
 __Precedencia:__ R1, R6 , R7    
-__Prioridad:__Opcional 
+__Prioridad:__ Opcional 
 
 __R12 - Seleccionar incidencias__  
 Los agentes deberán poder seleccionar varias incidencias a la vez.  
-__Precedencia:__ R1, R6  ,R7 
+__Precedencia:__ R1, R6 ,R7                 
 __Prioridad:__ Deseable  
 
 __R13 -Comentarios__  
@@ -250,7 +250,7 @@ __Prioridad:__ Fundamental
 
 __R14 - Asignación de incidencias__  
 Se podrán asignar las incidencias a un agente.  
-__Precedencia:__  R1, R3, R7
+__Precedencia:__ R1, R3, R7   
 __Prioridad:__ Deseable  
 
 __R15 - Ajustes de perfil__  
@@ -298,8 +298,6 @@ Los agentes podrán ver una pestaña de estadísticas sobre las incidencias.
 __Precedencia:__ R1, R3, R6  
 __Prioridad:__ Opcional  
 
-Además, este [enlace](https://github.com/tomgreef/clean-up/blob/master/Documentacion/CasosDeUSoDelGrupo.pdf) te llevará al documento de MagicDraw en el que se describen las principales funcionalidades del sistema
-
 ### __4.3 Calidad de Servicio__
 #### __4.3.1 Rendimiento__
 __R1.1 - Navegador Web__  
@@ -334,7 +332,7 @@ __Prioridad:__ Fundamental
 
 __R7.4 - Duplicado de incidencias__  
 El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.   
-__Precedencia:__ NINGUNA  
+__Precedencia:__ Ninguna  
 __Prioridad:__ Fundamental  
 
 __R7.4.1 -Reconocimiento duplicados__  
