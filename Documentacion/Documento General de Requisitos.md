@@ -180,17 +180,17 @@ __Prioridad:__ Fundamental
 
 __R3.1 - Cuenta Agente__  
 Los agentes tendrán acceso a más funcionalidades que los usuarios normales.  
-__Precedencia:__ R3
+__Precedencia:__ R3                                                                                   
 __Prioridad:__ Fundamental  
 
 __R4 - GDPR__  
 Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de la protección de datos.  
-__Precedencia:__ R1, R23 
+__Precedencia:__ R1, R23                                                                                                     
 __Prioridad:__ Fundamental  
 
 __R5 - Verificación__  
 Los usuarios deben de verificar su correo electrónico.    
-__Precedencia:__ R1 
+__Precedencia:__ R1                                                                                                                 
 __Prioridad:__ Opcional  
 
 __R6 - Iniciar sesión__  
