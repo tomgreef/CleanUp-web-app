@@ -180,32 +180,32 @@ __Prioridad:__ Fundamental
 
 __R3.1 - Cuenta Agente__  
 Los agentes tendrán acceso a más funcionalidades que los usuarios normales.  
-__Precedencia:__ R3                                                                                   
+__Precedencia:__ R3                                                                                                                                                                                               
 __Prioridad:__ Fundamental  
 
 __R4 - GDPR__  
 Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de la protección de datos.  
-__Precedencia:__ R1, R23                                                                                                     
+__Precedencia:__ R1, R23                                                                                                                                                                                                     
 __Prioridad:__ Fundamental  
 
 __R5 - Verificación__  
 Los usuarios deben de verificar su correo electrónico.    
-__Precedencia:__ R1                                                                                                                 
+__Precedencia:__ R1                                                                                                                                                                                                          
 __Prioridad:__ Opcional  
 
 __R6 - Iniciar sesión__  
 Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web.  
-__Precedencia:__  R1, R3 
+__Precedencia:__  R1, R3                                                                                               
 __Prioridad:__ Fundamental  
 
 __R6.1 - Tiempo de inactividad__  
 La sesión se mantendrá iniciada por un máximo de 1 hora después de que comience la inactividad.  
-__Precedencia:__ R1  
+__Precedencia:__ R1                                                                                                           
 __Prioridad:__ Opcional  
 
 __R7 - Crear incidencias__  
 Solo el ciudadano podrá crear incidencias con imágenes, título, descripción y dirección.  
-__Precedencia:__   R1, R3, R5  
+__Precedencia:__   R1, R3, R5                                                                                                
 __Prioridad:__ Fundamental  
 
 __R7.1 - Imágenes en una incidencia__  
@@ -220,17 +220,17 @@ __Prioridad:__ Fundamental
 
 __R8 - Información al usuario__  
 Se presentará al usuario toda información legal necesaria.  
-__Precedencia:__ Ninguna  
+__Precedencia:__ Ninguna                                                                                               
 __Prioridad:__ Fundamental  
 
 __R9 - Editar incidencia__  
 Los usuarios podrán editar las incidencias creadas.  
-__Precedencia:__ R1, R6 ,R7 
+__Precedencia:__ R1, R6 ,R7                                                                                                       
 __Prioridad:__ Fundamental  
 
 __R10 - Cerrar incidencia__  
 Los agentes y usuarios podrán cerrar las incidencias que se les hayan asignado o creado, respectivamente.  
-__Precedencia:__ R1, R6 ,R7 
+__Precedencia:__ R1, R6 ,R7                                                                                                         
 __Prioridad:__ Fundamental  
 
 __R11 - Anidar incidencias__  
@@ -312,12 +312,12 @@ __Prioridad:__ Fundamental
 
 __R7.1.2 - Formato de imágenes__  
 El formato de las imágenes debe ser .PNG o .JPG.
-__Precedencia:__ R1, R1.1  
+__Precedencia:__ R1, R1.1                                                                                                                                                                                                                   
 __Prioridad:__ Fundamental  
 
 __R7.1.3 - Capacidad imágenes__  
 Lás imágenes ocuparán como máximo 50mb por incidencia.
-__Precedencia:__ R1, R1.1  
+__Precedencia:__ R1, R1.1                                                                                                         
 __Prioridad:__ Fundamental  
 
 __R7.2 - Longitud del texto__  
@@ -337,7 +337,7 @@ __Prioridad:__ Fundamental
 
 __R7.4.1 -Reconocimiento duplicados__  
 El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle.   
-__Precedencia:__ R3, R7.3 
+__Precedencia:__ R3, R7.3                                                                                                           
 __Prioridad:__ Fundamental  
 
 __R13.1 - Recibir notificaciones__  
@@ -347,7 +347,7 @@ __Prioridad:__ Fundamental
 
 __R13.2 - Formato comentarios__  
 Los comentarios tendrá un límite de 200 caracteres.  
-__Precedencia:__   R1, R5, R6, R7
+__Precedencia:__   R1, R5, R6, R7                                                                                                    
 __Prioridad:__ Fundamental  
 
 __R18.1 -  	Máximo numero incidencias__   
