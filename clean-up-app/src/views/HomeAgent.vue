@@ -1,20 +1,18 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<AgentTicketList />
-			<PopUpTicketAgente />
+			<TicketList :isAgent="true" />
 		</div>
 	</section>
 </template>
 
 <script>
-	import AgentTicketList from '@/components/AgentTicketList';
-	import PopUpTicketAgente from '@/components/PopUpTicketAgente';
+	import TicketList from '@/components/TicketList';
+
 	export default {
 		data: () => ({}),
 		components: {
-			AgentTicketList,
-			PopUpTicketAgente
+			TicketList
 		}
 	};
 </script>

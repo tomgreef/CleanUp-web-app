@@ -20,8 +20,9 @@
 
 <script>
 	import { auth } from '@/firebase';
-	import authErrors from '@/helpers/authErrors.js';
-	import { warning } from '@/helpers/notificaciones.js';
+	import { authErrors } from '@/helpers/authErrors';
+	import { warning } from '@/helpers/notificaciones';
+	import { getUserType } from '@/helpers/sessionHelper';
 
 	export default {
 		data: () => ({
@@ -40,8 +41,26 @@
 						warning(authErrors(error));
 						console.log(error);
 					})
-					.then(() => {
-						this.$router.push({ path: '/home' });
+					.then(userRef => {
+						getUserType().then(type => {
+							console.log('Tipo', type);
+							if (type == 'agent' || userRef.user.emailVerified) {
+								console.log('Puede inicar');
+
+								this.$store.commit('change', type);
+								console.log(
+									'Tipo guardado',
+									this.$store.getters.type
+								);
+
+								this.$router.replace({ path: '/home' });
+							} else {
+								warning(
+									'Verifica tu correo para iniciar sesión'
+								);
+								auth.singout();
+							}
+						});
 					});
 			}
 		}

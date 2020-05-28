@@ -45,7 +45,6 @@
 
 <script>
 	import { auth } from '@/firebase';
-	import { getUserType } from '@/helpers/sessionHelper';
 
 	export default {
 		data: () => ({
@@ -53,9 +52,7 @@
 		}),
 		mounted() {
 			if (this.isLoggedIn) {
-				getUserType().then(type => {
-					this.isUser = type == 'user';
-				});
+				this.isUser = this.$store.getters.type == 'user';
 			}
 		},
 		computed: {

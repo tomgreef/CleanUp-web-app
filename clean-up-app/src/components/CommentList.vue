@@ -28,7 +28,7 @@
 	import Comment from '@/components/Comment';
 	export default {
 		data: () => ({
-			isOpen: false
+			isOpen: true
 		}),
 		props: {
 			ticketId: String

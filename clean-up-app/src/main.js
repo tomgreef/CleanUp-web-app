@@ -4,6 +4,7 @@ import './registerServiceWorker';
 import router from './router';
 import Buefy from 'buefy';
 import { auth } from '@/firebase';
+import store from '@/store/store';
 import VueFirestore from 'vue-firestore';
 import './assets/scss/app.scss';
 
@@ -17,6 +18,7 @@ Vue.config.productionTip = false;
 auth.onAuthStateChanged(() => {
 	if (!app) {
 		new Vue({
+			store,
 			router,
 			render: h => h(App)
 		}).$mount('#app');

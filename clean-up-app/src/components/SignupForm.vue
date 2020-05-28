@@ -10,6 +10,16 @@
 		<b-field label="Contraseña" label-position="on-border">
 			<b-input v-model="pass" type="password" password-reveal></b-input>
 		</b-field>
+		<div class="field">
+			<b-checkbox v-model="gdpr">
+				Al seleccionar esta casilla reconoce que ha leído y acepta las
+				<router-link to="/GDPR" target="_blank"
+					>condiciones de uso y la política de protección de datos
+					personales</router-link
+				>
+				de Clean-Up
+			</b-checkbox>
+		</div>
 		<b-button
 			class="button"
 			type="is-primary"
@@ -24,17 +34,23 @@
 <script>
 	import { auth, db } from '@/firebase';
 	import authErrors from '@/helpers/authErrors';
-	import { warning } from '@/helpers/notificaciones.js';
+	import { warning, success } from '@/helpers/notificaciones.js';
 
 	export default {
 		data: () => ({
 			name: '',
 			email: '',
-			pass: ''
+			pass: '',
+			gdpr: false
 		}),
 		computed: {
 			validate: function() {
-				return this.pass.length < 6 || this.name.length < 1 || this.email.length < 10;
+				return (
+					this.pass.length < 6 ||
+					this.name.length < 1 ||
+					this.email.length < 8 ||
+					this.gdpr == false
+				);
 			}
 		},
 		methods: {
@@ -43,40 +59,35 @@
 					.catch(function(error) {
 						warning(authErrors(error));
 					})
-					.then(() => {
-						this.addDisplayName();
-						this.registerUserType();
-						this.$router.push({ path: '/mistickets' });
-						this.verifyUser();
-
+					.then(userRef => {
+						userRef.user
+							.updateProfile({
+								displayName: this.name
+							})
+							.then(() => {
+								db.collection('users')
+									.doc(userRef.user.uid)
+									.set({
+										type: 'user'
+									});
+							})
+							.then(() => {
+								userRef.user
+									.sendEmailVerification()
+									.then(function() {
+										success(
+											'Email de verificación enviado'
+										);
+									});
+							})
+							.then(() => {
+								this.name = '';
+								this.email = '';
+								this.password = '';
+								this.gdpr = false;
+							});
 					});
-			},
-			addDisplayName() {
-				let user = auth.currentUser;
-				user.updateProfile({
-					displayName: this.name
-				}).catch(function(error) {
-					warning(authErrors(error));
-				});
-			},
-			registerUserType() {
-				db.collection('users')
-					.doc(auth.currentUser.uid)
-					.set({
-						type: 'user'
-					});
-			},
-			verifyUser() {
-				let user = auth.currentUser;
-				auth.useDeviceLanguage();
-    			user.sendEmailVerification().then(function() {
-					warning('Email de verificación enviado')
-				}).catch(function(error) {
-					console.log(error)
-				});
 			}
-
-			
 		}
 	};
 </script>

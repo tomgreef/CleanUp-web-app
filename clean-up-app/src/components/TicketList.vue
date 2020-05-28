@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<b-field grouped group-multiline>
+		<b-field grouped group-multiline v-if="isAgent">
 			<p class="control">
 				<b-button type="is-primary" @click="asign">Asignar</b-button>
 			</p>
@@ -32,31 +32,47 @@
 		</b-field>
 		<b-table
 			:data="filteredTickets"
-			paginated
+			:paginated="filteredTickets.length > 10"
 			per-page="10"
-			checkable
+			:checkable="isAgent"
 			:checked-rows.sync="selection"
 			hoverable
 		>
 			<template slot-scope="props">
-				<b-table-column field="title" label="Título" sortable>
-					<PopUpTicketAgente :ticket="props.row" />
+				<b-table-column
+					field="title"
+					label="Título"
+					sortable
+					searchable
+				>
+					<PopUpTicket :ticket="props.row" :isAgent="isAgent" />
+				</b-table-column>
+
+				<b-table-column field="cp" label="Código postal" sortable>
+					{{ props.row.cp }}
+				</b-table-column>
+
+				<b-table-column
+					field="street"
+					label="Calle"
+					sortable
+					searchable
+				>
+					{{ props.row.street }}
 				</b-table-column>
 
 				<b-table-column field="closed" label="Estado" centered>
 					{{ props.row.closed ? 'Cerrado' : 'Abierto' }}
 				</b-table-column>
 
-				<b-table-column
-					field="agentUid"
-					label="Agente asignado"
-					sortable
-				>
+				<b-table-column field="agentUid" label="Agente asignado">
 					{{
 						props.row.agentUid != ''
 							? props.row.agentUid == currentUserUid
 								? 'Yo'
-								: props.row.agentUid
+								: isAgent
+								? props.row.agentUid
+								: 'Si'
 							: 'Sin asignar'
 					}}
 				</b-table-column>
@@ -87,7 +103,7 @@
 <script>
 	import { auth, db } from '@/firebase';
 	import { success } from '@/helpers/notificaciones';
-	import PopUpTicketAgente from '@/components/PopUpTicketAgente';
+	import PopUpTicket from '@/components/PopUpTicket';
 
 	export default {
 		data: () => ({
@@ -95,8 +111,11 @@
 			filterAgent: false,
 			filterClosed: false
 		}),
+		props: {
+			isAgent: Boolean
+		},
 		components: {
-			PopUpTicketAgente
+			PopUpTicket
 		},
 		computed: {
 			currentUserUid() {
@@ -138,9 +157,18 @@
 			}
 		},
 		firestore() {
+			let ticketsRef = db.collection('tickets');
+			if (!this.isAgent) {
+				ticketsRef = ticketsRef.where(
+					'userUid',
+					'==',
+					auth.currentUser.uid
+				);
+			}
 			return {
-				tickets: db.collection('tickets').orderBy('date', 'desc')
+				tickets: ticketsRef.orderBy('date', 'desc')
 			};
+
 			/*
 			.onSnapshot(snapshot => {
 				console.log(

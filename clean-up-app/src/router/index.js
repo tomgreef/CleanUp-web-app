@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { auth } from '@/firebase';
-import { getUserType } from '@/helpers/sessionHelper';
+import store from '@/store/store';
 
 Vue.use(VueRouter);
 
@@ -39,6 +39,13 @@ const routes = [
 			userType: 'agent'
 			// userType: 'agent'
 		}
+	},
+	{
+		path: '/GDPR',
+		component: () => import('@/views/GDPR'),
+		meta: {
+			title: 'GDPR'
+		}
 	}
 ];
 
@@ -63,20 +70,20 @@ router.beforeEach((to, from, next) => {
 	}
 
 	if (!auth.currentUser) {
-		if (to.path == '/') {
+		if (!to.meta.userType) {
 			next();
 		} else {
 			next({ path: '/' });
 		}
 	} else {
-		getUserType().then(type => {
-			let metaUserType = to.meta.userType;
-			if (metaUserType && metaUserType == type) {
-				next();
-			} else {
-				homeRedirect(type);
-			}
-		});
+		let type = store.getters.type;
+		if (to.path == '/home' || to.path == '/') {
+			homeRedirect(type);
+		} else if (!to.meta.userType || to.meta.userType == type) {
+			next();
+		} else {
+			homeRedirect(type);
+		}
 	}
 });
 

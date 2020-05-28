@@ -39,7 +39,7 @@
 					<div class="content">
 						<CommentList :ticketId="ticket.id" />
 						<br />
-						<CreateComment :ticketId="ticket.id" />
+						<CreateComment :ticketId="ticket.id" v-if="isAgent" />
 					</div>
 				</div>
 			</div>
@@ -55,7 +55,8 @@
 			isCardModalActive: false
 		}),
 		props: {
-			ticket: Object
+			ticket: Object,
+			isAgent: Boolean
 		},
 		components: {
 			CommentList,
