@@ -312,12 +312,12 @@ __Prioridad:__ Fundamental
 
 __R7.1.2 - Formato de imágenes__  
 El formato de las imágenes debe ser .PNG o .JPG.
-__Precedencia:__ R1, R1.1                                                                                                                                                                                                                   
+__Precedencia:__ R1, R1.1                                                                                                                                                                                                                                                                                                                           
 __Prioridad:__ Fundamental  
 
 __R7.1.3 - Capacidad imágenes__  
 Lás imágenes ocuparán como máximo 50mb por incidencia.
-__Precedencia:__ R1, R1.1                                                                                                         
+__Precedencia:__ R1, R1.1                                                                                                                                                                                                                     
 __Prioridad:__ Fundamental  
 
 __R7.2 - Longitud del texto__  
@@ -327,12 +327,12 @@ __Prioridad:__ Deseable
 
 __R7.3.1 -Formato dirección__  
 La dirección deberá contener la calle, número de puerta y código postal.   
-__Precedencia:__ R1, R1.1 , R3
+__Precedencia:__ R1, R1.1 , R3                                                                                                        
 __Prioridad:__ Fundamental  
 
 __R7.4 - Duplicado de incidencias__  
 El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.   
-__Precedencia:__ Ninguna  
+__Precedencia:__ Ninguna                                                                                                         
 __Prioridad:__ Fundamental  
 
 __R7.4.1 -Reconocimiento duplicados__  
