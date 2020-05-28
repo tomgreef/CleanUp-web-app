@@ -214,8 +214,8 @@ __Precedencia:__ R1, R1.1, R3, R6
 __Prioridad:__ Fundamental  
 
 __R7.4 - Duplicado de incidencia__  
-El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.                                                                           
-__Precedencia:__ R7 
+El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.                                                                                            
+__Precedencia:__ R7                                                                                                               
 __Prioridad:__ Fundamental   
 
 __R8 - Información al usuario__  
@@ -331,13 +331,13 @@ __Precedencia:__ R1, R1.1 , R3
 __Prioridad:__ Fundamental  
 
 __R7.4 - Duplicado de incidencias__  
-El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.   
-__Precedencia:__ Ninguna                                                                                                         
+El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.                   
+__Precedencia:__ Ninguna                                                                                                                                                                                                                                   
 __Prioridad:__ Fundamental  
 
 __R7.4.1 -Reconocimiento duplicados__  
-El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle.   
-__Precedencia:__ R3, R7.3                                                                                                           
+El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle.                                         
+__Precedencia:__ R3, R7.3                                                                                                                                                                                                                          
 __Prioridad:__ Fundamental  
 
 __R13.1 - Recibir notificaciones__  
