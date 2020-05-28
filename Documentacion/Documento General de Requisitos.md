@@ -127,7 +127,6 @@ La plataforma se comunica via email para obtener información sobre dónde se en
 | R2   | Cerrar sesión             |Los ciudadanos y agentes pueden cerrar sesión | Fundamental |  R1,R3 ,R6       | Funcional    |       
 | R3   | Crear cuenta                   | Todo el mundo podrá crear una cuenta ciudadano desde la plataforma web                                                                   | Fundamental | R1                 | Funcional    |
 | R3.1  | Cuenta agente                  | Los agentes tendrán acceso a más funcionalidades que los usuarios normales                                                       | Fundamental | R3              | Funcional    |
-
 | R4    | GDPR                           | Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de protección de datos                  | Fundamental | R1, R23            | Funcional    |
 | R5    | Verificación                   | Los usuarios deben de verificar su correo electrónico                                                           | Opcional | R1          | Funcional    |
 | R5.1 | Verificación de cuenta         | Los usuarios verificarán su cuenta                                                                | Fundamental | R1,R3             | No Funcional |
