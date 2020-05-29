@@ -6,12 +6,12 @@
 			position="is-centered"
 			expanded
 			:message="
-				titulo.length > 0 && titulo.length < 10
+				title.length > 0 && title.length < 10
 					? 'El título debe tener 10 caracteres como mínimo'
 					: ''
 			"
 		>
-			<b-input v-model="titulo" placeholder="Ej: Contenedor Arroyo de la Miel" maxlength="40"></b-input>
+			<b-input v-model="title" placeholder="Ej: Contenedor Arroyo de la Miel" maxlength="40"></b-input>
 		</b-field>
 
 		<b-field
@@ -19,8 +19,8 @@
 			label-position="on-border"
 			position="is-centered"
 			:message="
-				descripcion.length > 0 && descripcion.length < 20
-					? 'La descripcion debe tener 20 caracteres como mínimo'
+				description.length > 0 && description.length < 20
+					? 'La descripción debe tener 20 caracteres como mínimo'
 					: ''
 			"
 		>
@@ -28,7 +28,7 @@
 				maxlength="250"
 				type="textarea"
 				placeholder="Ej: El contenedor de reciclaje en el Arroyo de la Miel está..."
-				v-model="descripcion"
+				v-model="description"
 			></b-input>
 		</b-field>
 
@@ -41,15 +41,15 @@
 				label-position="on-border"
 				expanded
 				:message="
-					calle.length > 0 && calle.length < 10
+					street.length > 0 && street.length < 10
 						? 'La calle debe tener 10 caracteres como mínimo'
 						: ''
 				"
 			>
-				<b-input placeholder="Calle cómpeta" v-model="calle"></b-input>
+				<b-input placeholder="Calle cómpeta" v-model="street"></b-input>
 			</b-field>
 			<b-field label="Número" label-position="on-border" expanded>
-				<b-numberinput placeholder="Nº 42" v-model="numeroCalle" :controls="false" min="0" max="999"></b-numberinput>
+				<b-numberinput placeholder="Nº 42" v-model="streetNumber" :controls="false" min="0" max="999"></b-numberinput>
 			</b-field>
 		</b-field>
 		<br />
@@ -108,11 +108,11 @@ import { invalidTextSize } from '@/helpers/ticketHelper';
 
 export default {
 	data: () => ({
-		titulo: '',
-		descripcion: '',
+		title: '',
+		description: '',
 		cp: null,
-		calle: '',
-		numeroCalle: null,
+		street: '',
+		streetNumber: null,
 		images: [],
 		isCreating: false
 	}),
@@ -120,11 +120,11 @@ export default {
 		invalid() {
 			return (
 				invalidTextSize(
-					this.titulo,
-					this.descripcion,
+					this.title,
+					this.description,
 					this.cp,
-					this.numeroCalle,
-					this.calle
+					this.streetNumber,
+					this.street
 				) ||
 				this.images.length > 3 ||
 				this.images.length < 1
@@ -195,10 +195,10 @@ export default {
 							.doc(ticketRef.id)
 							.set({
 								id: ticketRef.id,
-								title: this.titulo,
-								description: this.descripcion,
-								street: this.calle,
-								streetNumber: this.numeroCalle,
+								title: this.title,
+								description: this.description,
+								street: this.street,
+								streetNumber: this.streetNumber,
 								cp: this.cp,
 								date: Date.now(),
 								images: imagesUrl,
