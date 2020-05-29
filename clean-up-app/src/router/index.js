@@ -13,6 +13,13 @@ const routes = [
 			title: 'Inicio'
 		}
 	},
+	{
+		path: '/miperfil',
+		component: () => import('@/views/Profile'),
+		meta: {
+			title: 'Mi perfil'
+		}
+	},
 	// Rutas de usuario
 	{
 		path: '/mistickets',
@@ -79,14 +86,24 @@ router.beforeEach((to, from, next) => {
 			next({ path: '/' }); // Ve al inicio
 		}
 	} else {
+		console.log('Quiere ir a', to.path);
+
 		// Si ha iniciado sesión ...
 		let type = store.getters.type; // Obten el tipo de usuario
-		if (to.path == '/home' || to.path == '/' || to.meta.userType != type) {
-			// Si va a 'home', inicio, o no tiene permisos...
-			homeRedirect(type); // Ve a la pagina de inicio de su tipo de usuario
-		} else if (!to.meta.userType || to.meta.userType == type) {
+		if (!to.meta.userType || to.meta.userType == type) {
+			console.log('B');
+
 			// Pero si tiene permisos...
 			next(); // Continua a la ruta
+		} else if (
+			to.path == '/home' ||
+			to.path == '/' ||
+			to.meta.userType != type
+		) {
+			console.log('A');
+
+			// Si va a 'home', inicio, o no tiene permisos...
+			homeRedirect(type); // Ve a la pagina de inicio de su tipo de usuario
 		}
 	}
 });

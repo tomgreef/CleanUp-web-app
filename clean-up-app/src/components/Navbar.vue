@@ -18,7 +18,7 @@
 				<div class="buttons">
 					<b-button
 						tag="router-link"
-						to="/perfil"
+						to="/miperfil"
 						inverted
 						type="is-link"
 						>Mi perfil</b-button
