@@ -6,36 +6,25 @@
 			</b-navbar-item>
 		</template>
 		<template slot="start" v-if="isLoggedIn">
-			<b-navbar-item href="/">
+			<b-navbar-item :href="isUser ? '/mistickets' : 'inicioagente'">
 				Inicio
 			</b-navbar-item>
-			<b-navbar-item v-if="isUser" href="CrearTicket">
+			<b-navbar-item v-if="isUser" href="/crearticket">
 				Crear incidencia
 			</b-navbar-item>
 		</template>
-		<template slot="end">
+		<template slot="end" v-if="isLoggedIn">
 			<b-navbar-item tag="div">
-				<div class="buttons" v-if="isLoggedIn">
+				<div class="buttons">
 					<b-button
-						v-if="isUser"
 						tag="router-link"
 						to="/perfil"
 						inverted
 						type="is-link"
 						>Mi perfil</b-button
 					>
-					<b-button v-if="isLoggedIn" type="is-danger" @click="logout"
+					<b-button type="is-danger" @click="logout"
 						>Cerrar sesión</b-button
-					>
-					<b-button
-						v-if="!isLoggedIn"
-						tag="router-link"
-						:to="inUserLanding ? '/agentlanding' : '/'"
-						inverted
-						type="is-link"
-						>{{
-							inUserLanding ? 'Soy un agente' : 'Soy un usuario'
-						}}</b-button
 					>
 				</div>
 			</b-navbar-item>
@@ -47,15 +36,10 @@
 	import { auth } from '@/firebase';
 
 	export default {
-		data: () => ({
-			isUser: false
-		}),
-		mounted() {
-			if (this.isLoggedIn) {
-				this.isUser = this.$store.getters.type == 'user';
-			}
-		},
 		computed: {
+			isUser() {
+				return this.$store.getters.type == 'user';
+			},
 			inUserLanding() {
 				return this.$route.path == '/';
 			},

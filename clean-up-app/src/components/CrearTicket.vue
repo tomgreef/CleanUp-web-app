@@ -40,7 +40,7 @@
 			<b-field label="Código postal" label-position="on-border" expanded>
 				<b-numberinput
 					placeholder="29007"
-					v-model="CP"
+					v-model="cp"
 					:controls="false"
 					min="29000"
 					max="29999"
@@ -115,7 +115,7 @@
 		</b-field>
 		<br />
 		<b-button
-			:disabled="invalid || invalidSize"
+			:disabled="invalid || invalidSize || isCreating"
 			type="is-primary"
 			@click="createTicket"
 			expanded
@@ -133,18 +133,19 @@
 		data: () => ({
 			titulo: '',
 			descripcion: '',
-			CP: null,
+			cp: null,
 			calle: '',
 			numeroCalle: null,
-			images: []
+			images: [],
+			isCreating: false
 		}),
 		computed: {
 			invalid() {
 				return (
 					this.titulo.length < 10 ||
 					this.descripcion.length < 20 ||
-					this.CP == null ||
-					this.CP > 29999 ||
+					this.cp == null ||
+					this.cp > 29999 ||
 					this.numeroCalle < 0 ||
 					this.numeroCalle > 999 ||
 					this.calle.length < 10 ||
@@ -201,6 +202,7 @@
 				return Promise.all(downloadPromises);
 			},
 			createTicket() {
+				this.isCreating = true;
 				let uid = auth.currentUser.uid;
 				let ticketRef = db.collection('tickets').doc();
 				this.getUploadPromises(ticketRef.id).then(tasks => {
@@ -220,7 +222,7 @@
 									description: this.descripcion,
 									street: this.calle,
 									streetNumber: this.numeroCalle,
-									cp: this.CP,
+									cp: this.cp,
 									date: Date.now(),
 									images: imagesUrl,
 									userUid: uid,

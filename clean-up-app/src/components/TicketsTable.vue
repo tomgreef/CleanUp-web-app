@@ -78,9 +78,13 @@
 				</b-table-column>
 
 				<b-table-column field="date" label="Fecha" sortable centered>
-					<span class="tag is-success">
+					<b-tag type="is-success">
 						{{ new Date(props.row.date).toLocaleDateString() }}
-					</span>
+					</b-tag>
+				</b-table-column>
+
+				<b-table-column v-if="!isAgent" centered>
+					<PopUpEditTicket :ticket="props.row" />
 				</b-table-column>
 			</template>
 			<template slot="empty">
@@ -104,6 +108,7 @@
 	import { auth, db } from '@/firebase';
 	import { success } from '@/helpers/notificaciones';
 	import PopUpTicket from '@/components/PopUpTicket';
+	import PopUpEditTicket from '@/components/PopUpEditTicket';
 
 	export default {
 		data: () => ({
@@ -115,7 +120,8 @@
 			isAgent: Boolean
 		},
 		components: {
-			PopUpTicket
+			PopUpTicket,
+			PopUpEditTicket
 		},
 		computed: {
 			currentUserUid() {

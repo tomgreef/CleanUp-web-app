@@ -1,11 +1,11 @@
 <template>
 	<section>
-		<a expanded @click="isCardModalActive = true">
+		<a expanded @click="isTicketModalActive = true">
 			<p class="has-text-left">
 				{{ ticket.title }}
 			</p>
 		</a>
-		<b-modal :active.sync="isCardModalActive" :width="720">
+		<b-modal :active.sync="isTicketModalActive" :width="720">
 			<div class="card">
 				<b-carousel :autoplay="false" :indicator-inside="false">
 					<b-carousel-item
@@ -38,8 +38,11 @@
 					</div>
 					<div class="content">
 						<CommentList :ticketId="ticket.id" />
-						<br />
-						<CreateComment :ticketId="ticket.id" v-if="isAgent" />
+						<br v-if="showCreateComment" />
+						<CreateComment
+							:ticketId="ticket.id"
+							v-if="showCreateComment"
+						/>
 					</div>
 				</div>
 			</div>
@@ -52,7 +55,7 @@
 	import CreateComment from '@/components/CreateComment';
 	export default {
 		data: () => ({
-			isCardModalActive: false
+			isTicketModalActive: false
 		}),
 		props: {
 			ticket: Object,
@@ -61,6 +64,11 @@
 		components: {
 			CommentList,
 			CreateComment
+		},
+		computed: {
+			showCreateComment() {
+				return this.isAgent && !this.ticket.closed;
+			}
 		}
 	};
 </script>
