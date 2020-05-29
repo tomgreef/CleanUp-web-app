@@ -89,7 +89,10 @@
 			</template>
 			<template slot="empty">
 				<section class="section">
-					<div class="content has-text-grey has-text-centered">
+					<div
+						v-if="isAgent"
+						class="content has-text-grey has-text-centered"
+					>
 						<p>
 							<b-icon
 								icon="package-variant"
@@ -98,6 +101,7 @@
 						</p>
 						<p>Nada por aquí</p>
 					</div>
+					<NoTickets v-else />
 				</section>
 			</template>
 		</b-table>
@@ -107,6 +111,7 @@
 <script>
 	import { auth, db } from '@/firebase';
 	import { success } from '@/helpers/notificaciones';
+	import NoTickets from '@/components/NoTickets';
 	import PopUpTicket from '@/components/PopUpTicket';
 	import PopUpEditTicket from '@/components/PopUpEditTicket';
 
@@ -120,6 +125,7 @@
 			isAgent: Boolean
 		},
 		components: {
+			NoTickets,
 			PopUpTicket,
 			PopUpEditTicket
 		},
