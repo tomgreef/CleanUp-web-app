@@ -1,18 +1,18 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<TicketList :isAgent="true" />
+			<TicketsTable :isAgent="true" />
 		</div>
 	</section>
 </template>
 
 <script>
-	import TicketList from '@/components/TicketList';
+	import TicketsTable from '@/components/TicketsTable';
 
 	export default {
 		data: () => ({}),
 		components: {
-			TicketList
+			TicketsTable
 		}
 	};
 </script>

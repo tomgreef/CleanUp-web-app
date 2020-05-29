@@ -70,19 +70,23 @@ router.beforeEach((to, from, next) => {
 	}
 
 	if (!auth.currentUser) {
+		// Si no ha iniciado sesión ...
 		if (!to.meta.userType) {
-			next();
+			// Y la ruta no requiere un tipo concreto de usuario ...
+			next(); // Continua a la ruta
 		} else {
-			next({ path: '/' });
+			// En caso contrario ...
+			next({ path: '/' }); // Ve al inicio
 		}
 	} else {
-		let type = store.getters.type;
-		if (to.path == '/home' || to.path == '/') {
-			homeRedirect(type);
+		// Si ha iniciado sesión ...
+		let type = store.getters.type; // Obten el tipo de usuario
+		if (to.path == '/home' || to.path == '/' || to.meta.userType != type) {
+			// Si va a 'home', inicio, o no tiene permisos...
+			homeRedirect(type); // Ve a la pagina de inicio de su tipo de usuario
 		} else if (!to.meta.userType || to.meta.userType == type) {
-			next();
-		} else {
-			homeRedirect(type);
+			// Pero si tiene permisos...
+			next(); // Continua a la ruta
 		}
 	}
 });

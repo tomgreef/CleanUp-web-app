@@ -1,16 +1,16 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<TicketList :isAgent="false" />
+			<TicketsTable :isAgent="false" />
 		</div>
 	</section>
 </template>
 
 <script>
-	import TicketList from '@/components/TicketList';
+	import TicketsTable from '@/components/TicketsTable';
 	export default {
 		components: {
-			TicketList
+			TicketsTable
 		}
 	};
 </script>
