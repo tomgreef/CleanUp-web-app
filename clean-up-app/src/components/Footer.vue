@@ -14,10 +14,9 @@
 				CLEAN UP 2020 @Copyright. Todos los derechos reservados
 			</p>
 			<div>
-				<router-link
-  					to="/GDPR"
-					class="has-text-light"
-				>Política de protección de datos personales</router-link>
+				<router-link to="/GDPR" class="has-text-light"
+					>Política de protección de datos personales</router-link
+				>
 			</div>
 		</div>
 	</footer>
