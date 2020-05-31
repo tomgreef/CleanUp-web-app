@@ -46,10 +46,13 @@
 				>
 			</p>
 			<p class="control">
-				<b-switch v-model="filterClosed" :rounded="false" size="is-medium" type="is-primary">
-					{{
-					filterClosed ? 'Mostrar abiertas' : 'Mostrar cerradas'
-					}}
+				<b-switch
+					v-model="filterClosed"
+					:rounded="false"
+					size="is-medium"
+					type="is-primary"
+				>
+					{{ filterClosed ? 'Mostrar abiertas' : 'Mostrar cerradas' }}
 				</b-switch>
 			</p>
 		</b-field>
@@ -62,34 +65,47 @@
 			hoverable
 		>
 			<template slot-scope="props">
-				<b-table-column field="title" label="Título" sortable searchable>
+				<b-table-column
+					field="title"
+					label="Título"
+					sortable
+					searchable
+				>
 					<PopUpTicket :ticket="props.row" :isAgent="isAgent" />
 				</b-table-column>
 
-				<b-table-column field="cp" label="Código postal" sortable>{{ props.row.cp }}</b-table-column>
-
-				<b-table-column field="street" label="Calle" sortable searchable>{{ props.row.street }}</b-table-column>
+				<b-table-column field="cp" label="Código postal" sortable>{{
+					props.row.cp
+				}}</b-table-column>
 
 				<b-table-column
-					field="closed"
-					label="Estado"
-					centered
-				>{{ props.row.closed ? 'Cerrado' : 'Abierto' }}</b-table-column>
+					field="street"
+					label="Calle"
+					sortable
+					searchable
+					>{{ props.row.street }}</b-table-column
+				>
+
+				<b-table-column field="closed" label="Estado" centered>{{
+					props.row.closed ? 'Cerrado' : 'Abierto'
+				}}</b-table-column>
 
 				<b-table-column field="agentUid" label="Agente asignado">
 					{{
-					props.row.agentUid != ''
-					? props.row.agentUid == currentUserUid
-					? 'Yo'
-					: isAgent
-					? props.row.agentUid
-					: 'Si'
-					: 'Sin asignar'
+						props.row.agentUid != ''
+							? props.row.agentUid == currentUserUid
+								? 'Yo'
+								: isAgent
+								? props.row.agentUid
+								: 'Si'
+							: 'Sin asignar'
 					}}
 				</b-table-column>
 
 				<b-table-column field="date" label="Fecha" sortable centered>
-					<b-tag type="is-success">{{ new Date(props.row.date).toLocaleDateString() }}</b-tag>
+					<b-tag type="is-success">{{
+						new Date(props.row.date).toLocaleDateString()
+					}}</b-tag>
 				</b-table-column>
 
 				<b-table-column v-if="!isAgent" centered>
@@ -103,7 +119,10 @@
 						class="content has-text-grey has-text-centered"
 					>
 						<p>
-							<b-icon icon="package-variant" size="is-large"></b-icon>
+							<b-icon
+								icon="package-variant"
+								size="is-large"
+							></b-icon>
 						</p>
 						<p>Nada por aquí</p>
 					</div>
@@ -121,27 +140,24 @@
 	import PopUpTicket from '@/components/PopUpTicket';
 	import PopUpEditTicket from '@/components/PopUpEditTicket';
 
-export default {
-	data: () => ({
-		selection: [],
-		filterAgent: false,
-		filterClosed: false
-	}),
-	props: {
-		isAgent: Boolean
-	},
-	components: {
-		PopUpTicket,
-		PopUpEditTicket
-	},
-	computed: {
-		currentUserUid() {
-			return auth.currentUser.uid;
+	export default {
+		data: () => ({
+			selection: [],
+			filterAgent: false,
+			filterClosed: false
+		}),
+		props: {
+			isAgent: Boolean
 		},
 		components: {
 			NoTickets,
 			PopUpTicket,
 			PopUpEditTicket
+		},
+		computed: {
+			currentUserUid() {
+				return auth.currentUser.uid;
+			}
 		},
 		asign() {
 			this.update(
