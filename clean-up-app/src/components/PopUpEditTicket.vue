@@ -1,5 +1,6 @@
 <template>
 	<section>
+		<hr />
 		<b-button
 			expanded
 			type="is-primary"

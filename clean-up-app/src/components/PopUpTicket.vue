@@ -43,8 +43,7 @@
 							<p>
 								{{ ticket.description }}
 							</p>
-							<hr />
-							<PopUpEditTicket :ticket="ticket" v-if="isAgent" />
+							<PopUpEditTicket :ticket="ticket" v-if="!isAgent" />
 							<SubTicketPagination
 								v-if="ticket.hasChildren"
 								:isAgent="isAgent"
