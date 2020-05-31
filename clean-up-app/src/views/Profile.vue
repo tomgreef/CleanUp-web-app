@@ -1,8 +1,9 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<h1 class="title">Hola {{ user.displayName }}</h1>
+			<h1 class="title">Mi Perfil</h1>
 			<ModifyProfileForm />
+			<br>
 			<ProfileDangerZone />
 		</div>
 	</section>
