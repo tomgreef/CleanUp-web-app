@@ -12,7 +12,7 @@
 * 1 [Introducción](#1-introducción)
   * 1.1 [Objetivo del documento](#11-objetivo-del-documento)
   * 1.2 [Ámbito del proyecto](#12-ámbito-del-proyecto)
-  * 1.3 [Definiciones, acrónimos y abreviaturas](#13-definiciones-acrónimos-y-abreviaturas)
+  * 1.3 [Definiciones, acrónimos y abreviaturas](#13-definiciones-acrónimos-y-abreviaturas)  
   * 1.4 [Referencias](#14-referencias)
   * 1.5 [Resumen del documento](#15-resumen-del-documento) 
 
@@ -143,8 +143,8 @@ La plataforma se comunica via email para obtener información sobre dónde se en
 | R7.4  | Duplicado de incidencias       | El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma  | Fundamental          | R7 |                    | Funcional    |
 | R7.4.1| Reconocimiento duplicados      | El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle                | Fundamental | R7.3               | No Funcional |
 | R8    | Información al usuario         | Se presentará al usuario toda información legal necesaria                                                                        | Fundamental |                    | Funcional    |
-| R9    | Editar incidencia              | Los usuarios podrán editar las incidencias creadas        | Fundamental | R1, R6 ,R7       | Funcional    |
-| R10   | Cerrar incidencia            |  Los agentes y usuarios podrán cerrar las incidencias que se les hayan asignado o creado, respectivamente                       | Fundamental | R1, R6 ,R7       | Funcional    |
+| R9    | Editar incidencia              | Los usuarios podrán editar el texto de las incidencias creadas        | Fundamental | R1, R6 ,R7       | Funcional    |
+| R10   | Cerrar incidencia            |  Los agentes podrán cerrar las incidencias que se les hayan asignado, respectivamente                       | Fundamental | R1, R6 ,R7       | Funcional    |
 | R11   | Anidar incidencias           |Los agentes tendrán la posibilidad de anidar una o varias incidencias                                                     | Opcional    | R1, R6 , R7      | Funcional    |
 | R12   | Seleccionar incidencias        | Los agentes deberán poder seleccionar varias incidencias a la vez                                                                | Deseable    | R1, R6  ,R7       | Funcional    |
 | R13   | Comentarios               | Los agentes podrán comentar las incidencias        | Fundamental | R1, R6         | Funcional    |
@@ -158,7 +158,7 @@ La plataforma se comunica via email para obtener información sobre dónde se en
 | R17   | Estado de incidencias          | Los agentes podrán cambiar el estado de las incidencias                                                                          | Fundamental   | R1,R3, R6, R9     | Funcional    |
 | R18   | Lista de incidencias           | Los usuarios y agentes tendrán una pestaña donde podrán ver todas las incidencias que hayan creado o sido asignados              | Deseable    | R1, R3,R6         | Funcional    |
 | R18.1 | Máximo numero incidencias      | Las listas enseñarán un maximo de 10 incidencias por página                                                                      | Opcional    |                    | No Funcional |R1,R3,R6
-| R19   | Página de inicio               |Muestra una lista de mis incidencias y incidencias asignadas al usuario y agente, respectivamente                                                                 | Fundamental | R1, R6         | Funcional    |
+| R19   | Página de inicio               |Muestra una lista de las incidencias creadas por el usuario y asignadas al agente.                                                                 | Fundamental | R1, R6         | Funcional    |
 | R20   | Mapa de incidencias            | Los agentes tendrán acceso a un mapa con todas las incidencias señalizadas por ubicación                                         | Deseable    | R1,R3, R6         | Funcional    |
 | R21   | Estadísticas                   | Los agentes podrán ver una pestaña de estadísticas sobre las incidencias                                                         | Opcional    | R1,R3, R6         | Funcional    |
 | R22   | Archivar incidencias           | Las incidencias deberán ser archivadas después de estar más de dos años en estado cerrado                                        | Opcional    |R3, R9                 | Funcional    |
@@ -224,12 +224,12 @@ __Precedencia:__ Ninguna
 __Prioridad:__ Fundamental  
 
 __R9 - Editar incidencia__  
-Los usuarios podrán editar las incidencias creadas.  
+Los usuarios podrán editar el texto de las incidencias creadas.  
 __Precedencia:__ R1, R6 ,R7                                                                                                       
 __Prioridad:__ Fundamental  
 
 __R10 - Cerrar incidencia__  
-Los agentes y usuarios podrán cerrar las incidencias que se les hayan asignado o creado, respectivamente.  
+Los agentes podrán cerrar las incidencias que se les hayan asignado.    
 __Precedencia:__ R1, R6 ,R7                                                                                                         
 __Prioridad:__ Fundamental  
 
@@ -284,7 +284,7 @@ __Precedencia:__ R1, R6
 __Prioridad:__ Deseable 
 
 __R19 - Página de inicio__  
-Muestra una lista de mis incidencias y incidencias asignadas al usuario y agente, respectivamente.  
+Muestra una lista de las incidencias creadas por el usuario y asignadas al agente.   
 __Precedencia:__ R1, R6  
 __Prioridad:__ Fundamental  
 
