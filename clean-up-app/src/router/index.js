@@ -31,7 +31,7 @@ const routes = [
 	},
 	{
 		path: '/crearticket',
-		component: () => import('@/views/CrearTicket'),
+		component: () => import('@/views/CreateTicket'),
 		meta: {
 			title: 'Crear ticket',
 			userType: 'user'
