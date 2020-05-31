@@ -39,27 +39,6 @@
 					></b-input>
 				</b-field>
 
-				<b-field label="Código postal" label-position="on-border">
-					<b-numberinput
-						:controls="false"
-						v-model="cp"
-						min="29000"
-						max="29999"
-					></b-numberinput>
-				</b-field>
-
-				<b-field
-					label="Calle"
-					label-position="on-border"
-					:message="
-						street.length > 0 && street.length < 10
-							? 'La calle debe tener 10 caracteres como mínimo'
-							: ''
-					"
-				>
-					<b-input v-model="street"></b-input>
-				</b-field>
-
 				<b-field label="Número" label-position="on-border">
 					<b-numberinput
 						:controls="false"
@@ -128,8 +107,6 @@
 					.update({
 						title: this.title,
 						description: this.description,
-						cp: this.cp,
-						street: this.street,
 						streetNumber: this.streetNumber
 					})
 					.then(() => {
