@@ -5,8 +5,9 @@
 			type="is-primary"
 			@click="isEditTicketModalActive = true"
 			size="is-small"
-			:disabled="ticket.closed || ticket.userUid != currentUserUid"
-			>Editar</b-button
+			:disabled="ticket.closed"
+			v-if="ticket.userUid != currentUserUid"
+			>Editar detalles de la incidencia</b-button
 		>
 		<b-modal :active.sync="isEditTicketModalActive" :width="720">
 			<div class="card box">

@@ -108,10 +108,6 @@
 						new Date(props.row.date).toLocaleDateString()
 					}}</b-tag>
 				</b-table-column>
-
-				<b-table-column v-if="!isAgent" centered>
-					<PopUpEditTicket :ticket="props.row" />
-				</b-table-column>
 			</template>
 			<template slot="empty">
 				<section class="section">
@@ -139,7 +135,6 @@
 	import { success, warning } from '@/helpers/notificaciones';
 	import NoTickets from '@/components/NoTickets';
 	import PopUpTicket from '@/components/PopUpTicket';
-	import PopUpEditTicket from '@/components/PopUpEditTicket';
 
 	export default {
 		data: () => ({
@@ -152,8 +147,7 @@
 		},
 		components: {
 			NoTickets,
-			PopUpTicket,
-			PopUpEditTicket
+			PopUpTicket
 		},
 		computed: {
 			currentUserUid() {

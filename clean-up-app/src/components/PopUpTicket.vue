@@ -43,6 +43,8 @@
 							<p>
 								{{ ticket.description }}
 							</p>
+							<hr />
+							<PopUpEditTicket :ticket="ticket" v-if="isAgent" />
 							<SubTicketPagination
 								v-if="ticket.hasChildren"
 								:isAgent="isAgent"
@@ -68,6 +70,7 @@
 	import CommentList from '@/components/CommentList';
 	import CreateComment from '@/components/CreateComment';
 	import SubTicketPagination from '@/components/SubTicketPagination';
+	import PopUpEditTicket from '@/components/PopUpEditTicket';
 
 	export default {
 		name: 'PopUpTicket',
@@ -80,6 +83,7 @@
 			isChild: Boolean
 		},
 		components: {
+			PopUpEditTicket,
 			CommentList,
 			CreateComment,
 			SubTicketPagination
