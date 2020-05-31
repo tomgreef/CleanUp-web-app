@@ -5,7 +5,7 @@
 			type="is-primary"
 			@click="isEditTicketModalActive = true"
 			size="is-small"
-			:disabled="ticket.closed"
+			:disabled="ticket.closed || ticket.userUid != currentUserUid"
 			>Editar</b-button
 		>
 		<b-modal :active.sync="isEditTicketModalActive" :width="720">
@@ -83,7 +83,7 @@
 </template>
 
 <script>
-	import { db } from '@/firebase';
+	import { auth, db } from '@/firebase';
 	import { success } from '@/helpers/notificaciones';
 	import { invalidTextSize } from '@/helpers/ticketHelper';
 
@@ -106,6 +106,20 @@
 			this.street = this.ticket.street;
 			this.streetNumber = this.ticket.streetNumber;
 		},
+		computed: {
+			invalid() {
+				return invalidTextSize(
+					this.title,
+					this.description,
+					this.cp,
+					this.streetNumber,
+					this.street
+				);
+			},
+			currentUserUid() {
+				return auth.currentUser.uid;
+			}
+		},
 		methods: {
 			saveChanges() {
 				db.collection('tickets')
@@ -123,17 +137,6 @@
 						);
 						this.isEditTicketModalActive = false;
 					});
-			}
-		},
-		computed: {
-			invalid() {
-				return invalidTextSize(
-					this.title,
-					this.description,
-					this.cp,
-					this.streetNumber,
-					this.street
-				);
 			}
 		}
 	};
