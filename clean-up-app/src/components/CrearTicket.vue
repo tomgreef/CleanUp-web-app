@@ -206,40 +206,44 @@
 				this.isCreating = true;
 				let uid = auth.currentUser.uid;
 				let ticketRef = db.collection('tickets').doc();
-				this.getUploadPromises(ticketRef.id).then(tasks => {
-					let imagesUrl = [];
-					this.getDownloadPromises(tasks)
-						.then(urls => {
-							urls.forEach(url => {
-								imagesUrl.push(url);
-							});
-						})
-						.then(() => {
-							db.collection('tickets')
-								.doc(ticketRef.id)
-								.set({
-									id: ticketRef.id,
-									title: this.title,
-									description: this.description,
-									street: this.street,
-									streetNumber: this.streetNumber,
-									cp: this.cp,
-									date: Date.now(),
-									images: imagesUrl,
-									userUid: uid,
-									agentUid: '',
-									closed: false
-								})
-								.then(() => {
-									success(
-										'Su ticket ha sido creado satisfactoriamente'
-									);
-									this.$router.replace({
-										path: '/mistickets'
-									});
+				this.getUploadPromises(ticketRef.id)
+					.then(tasks => {
+						let imagesUrl = [];
+						this.getDownloadPromises(tasks)
+							.then(urls => {
+								urls.forEach(url => {
+									imagesUrl.push(url);
 								});
-						});
-				});
+							})
+							.then(() => {
+								db.collection('tickets')
+									.doc(ticketRef.id)
+									.set({
+										id: ticketRef.id,
+										title: this.title,
+										description: this.description,
+										street: this.street,
+										streetNumber: this.streetNumber,
+										cp: this.cp,
+										date: Date.now(),
+										images: imagesUrl,
+										userUid: uid,
+										agentUid: '',
+										closed: false
+									})
+									.then(() => {
+										success(
+											'Su ticket ha sido creado satisfactoriamente'
+										);
+										this.$router.replace({
+											path: '/mistickets'
+										});
+									});
+							});
+					})
+					.catch(err => {
+						warning(err);
+					});
 			}
 		}
 	};

@@ -160,12 +160,14 @@
 				return auth.currentUser.uid;
 			},
 			filteredTickets() {
-				return this.tickets.filter(
-					t =>
-						(this.filterAgent
-							? t.agentUid == auth.currentUser.uid
-							: true) && (this.filterClosed ? t.closed : true)
-				);
+				let filter = t =>
+					this.isAgent
+						? (this.filterAgent
+								? t.agentUid == auth.currentUser.uid
+								: true) && (this.filterClosed ? t.closed : true)
+						: t.userUid == auth.currentUser.uid ||
+						  t.allowedUsers.includes(auth.currentUser.uid);
+				return this.tickets.filter(filter);
 			}
 		},
 		methods: {
@@ -192,9 +194,11 @@
 						}
 					}
 				});
-				Promise.all(updatePromises).then(
-					success('Acción realizada con éxito')
-				);
+				Promise.all(updatePromises)
+					.then(success('Acción realizada con éxito'))
+					.catch(err => {
+						warning(err);
+					});
 				this.selection = [];
 			},
 			asign() {
@@ -213,32 +217,30 @@
 					this.selection.length
 				);
 				let ticketsRef = db.collection('tickets');
-				let parentTicketChildrenRef = ticketsRef
-					.doc(parentTicket.id)
-					.collection('children');
+				let parentTicketRef = ticketsRef.doc(parentTicket.id);
+				let ChildrenRef = parentTicketRef.collection('children');
+				let allowedUsers = [];
+				let updatePromises = [];
 				childrenTickets.forEach(child => {
-					parentTicketChildrenRef
-						.doc(child.id)
-						.add(child)
-						.then(ticketsRef.doc(child.id).delete())
-						.then(() => {
-							success('Incidencias anidadas con éxito');
-						})
-						.catch(err => {
-							warning(err);
-						});
+					allowedUsers.push(child.userUid);
+					updatePromises.push(ChildrenRef.doc(child.id).set(child));
+					ticketsRef.doc(child.id).delete();
 				});
+				Promise.all(updatePromises)
+					.then(() => {
+						success('Incidencias anidadas con éxito');
+						console.log('The allowedUsers are', allowedUsers);
+						parentTicketRef.update({
+							allowedUsers: allowedUsers
+						});
+					})
+					.catch(err => {
+						warning(err);
+					});
 			}
 		},
 		firestore() {
 			let ticketsRef = db.collection('tickets');
-			if (!this.isAgent) {
-				ticketsRef = ticketsRef.where(
-					'userUid',
-					'==',
-					auth.currentUser.uid
-				);
-			}
 			return {
 				tickets: ticketsRef.orderBy('date', 'desc')
 			};
