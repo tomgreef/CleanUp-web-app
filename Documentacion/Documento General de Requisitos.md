@@ -140,7 +140,7 @@ La plataforma se comunica via email para obtener información sobre dónde se en
 | R7.2  | Longitud del texto             | Los textos estarán limitados a un número máximo de 250 caracteres                                                                | Deseable    |                    | No Funcional |
 | R7.3  | Dirección incidencia            |Se pedirá al ciudadano por la dirección de la incidencia              | Fundamental | R1, R1.1 ,R3        | No Funcional |
 | R7.3.1| Formato dirección          |La dirección deberá contener la calle, número de puerta y código postal                                                          | Fundamental | R1, R1.1 ,R3          | No Funcional |
-| R7.4  | Duplicado de incidencias       | El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma  | R7          | Fundamental |                    | Funcional    |
+| R7.4  | Duplicado de incidencias       | El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma  | Fundamental          | R7 |                    | Funcional    |
 | R7.4.1| Reconocimiento duplicados      | El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle                | Fundamental | R7.3               | No Funcional |
 | R8    | Información al usuario         | Se presentará al usuario toda información legal necesaria                                                                        | Fundamental |                    | Funcional    |
 | R9    | Editar incidencia              | Los usuarios podrán editar las incidencias creadas        | Fundamental | R1, R6 ,R7       | Funcional    |
