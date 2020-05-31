@@ -58,7 +58,7 @@
 		</b-field>
 		<b-table
 			:data="filteredTickets"
-			:paginated="filteredTickets.length > 10"
+			:paginated="filteredTickets.length > 10 || false"
 			per-page="10"
 			:checkable="isAgent"
 			:checked-rows.sync="selection"
@@ -189,9 +189,12 @@
 						}
 					}
 				});
-				Promise.all(updatePromises).then(
-					success('Acción realizada con éxito')
-				);
+				Promise.all(updatePromises)
+					.then(success('Acción realizada con éxito'))
+					.catch(err => {
+						console.log('Error en Promise.all');
+						console.error(err);
+					});
 				this.selection = [];
 			},
 			asign() {
