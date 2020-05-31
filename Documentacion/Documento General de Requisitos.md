@@ -47,6 +47,7 @@
 | Departamento de Requisitos | 27/04/2020 | Primera versión:Propuesta del equipo | 0.1 |
 | Departamento de Requisitos | 07/05/2020 | Segunda Versión:Primera cita con el cliente | 0.2 |  
 | Departamento de Requisitos | 20/05/2020 | Tercera Versión: Confirmación del cliente y del equipo | 1.0 | 
+| Departamento de Requisitos | 31/05/2020 | Cuarta Versión: Puesta en común con el equipo de implementación | 1.1 |
 
 ## __1. Introducción__
 ### __1.1 Objetivo del documento__
@@ -128,7 +129,7 @@ La plataforma se comunica via email para obtener información sobre dónde se en
 | R3   | Crear cuenta                   | Todo el mundo podrá crear una cuenta ciudadano desde la plataforma web                                                                   | Fundamental | R1                 | Funcional    |
 | R3.1  | Cuenta agente                  | Los agentes tendrán acceso a más funcionalidades que los usuarios normales                                                       | Fundamental | R3              | Funcional    |
 | R4    | GDPR                           | Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de protección de datos                  | Fundamental | R1, R23            | Funcional    |
-| R5    | Verificación                   | Los usuarios deben de verificar su correo electrónico                                                           | Opcional | R1          | Funcional    |
+| R5    | Verificación                   | Los usuarios deben de verificar su correo electrónico                                                           | Fundamental | R1          | Funcional    |
 | R5.1 | Verificación de cuenta         | Los usuarios verificarán su cuenta                                                                | Fundamental | R1,R3             | No Funcional |
 | R6    | Iniciar sesión                 | Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web                                          | Fundamental | R1,R3            | Funcional    |
 | R6.1  | Tiempo de inactividad          | La sesión se mantendrá iniciada por un máximo de 1 hora después de que comience la inactividad                                   | Opcional | R1        | Funcional    |
@@ -136,20 +137,20 @@ La plataforma se comunica via email para obtener información sobre dónde se en
 | R7.1  | Imágenes en una incidencia     | Las incidencias se deberán subir con imágenes                                                                                    | Fundamental | R1, R1.1,R3, R6       | Funcional    |
 | R7.1.1| Máximo de imágenes             | El número máximo de imágenes que se pueden subir son 3                                                                          | Fundamental | R1, R1.1, R3          | No Funcional |
 | R7.1.2| Formato de imágenes            | El formato de las imágenes debe ser .PNG o .JPG                                                                                  | Fundamental | R1, R1.1, R3, R6       | No Funcional |
-| R7.1.3| Capacidad de imágenes          | Las imágenes ocuparán como máximo 15md como máximo por incidencia                                                                            | Fundamental | R1, R1.1 , R3,  R6       | No Funcional |
+| R7.1.3| Capacidad de imágenes          | Las imágenes ocuparán, como máximo, 15mb cada una                                                                            | Fundamental | R1, R1.1 , R3,  R6       | No Funcional |
 | R7.2  | Longitud del texto             | Los textos estarán limitados a un número máximo de 250 caracteres                                                                | Deseable    |                    | No Funcional |
 | R7.3  | Dirección incidencia            |Se pedirá al ciudadano por la dirección de la incidencia              | Fundamental | R1, R1.1 ,R3        | No Funcional |
 | R7.3.1| Formato dirección          |La dirección deberá contener la calle, número de puerta y código postal                                                          | Fundamental | R1, R1.1 ,R3          | No Funcional |
-| R7.4  | Duplicado de incidencias       | El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma  | Fundamental          | R7 |                    | Funcional    |
-| R7.4.1| Reconocimiento duplicados      | El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle                | Fundamental | R7.3               | No Funcional |
+| R7.4  | Duplicado de incidencias       | El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma  | Deseable          | R7 |                    | Funcional    |
+| R7.4.1| Reconocimiento duplicados      | El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle                | Deseable | R7.3               | No Funcional |
 | R8    | Información al usuario         | Se presentará al usuario toda información legal necesaria                                                                        | Fundamental |                    | Funcional    |
 | R9    | Editar incidencia              | Los usuarios podrán editar el texto de las incidencias creadas        | Fundamental | R1, R6 ,R7       | Funcional    |
-| R10   | Cerrar incidencia            |  Los agentes podrán cerrar las incidencias que se les hayan asignado, respectivamente                       | Fundamental | R1, R6 ,R7       | Funcional    |
+| R10   | Cerrar incidencia            |  Los agentes podrán cerrar las incidencias que se les hayan asignado                       | Fundamental | R1, R6 ,R7       | Funcional    |
 | R11   | Anidar incidencias           |Los agentes tendrán la posibilidad de anidar una o varias incidencias                                                     | Opcional    | R1, R6 , R7      | Funcional    |
 | R12   | Seleccionar incidencias        | Los agentes deberán poder seleccionar varias incidencias a la vez                                                                | Deseable    | R1, R6  ,R7       | Funcional    |
 | R13   | Comentarios               | Los agentes podrán comentar las incidencias        | Fundamental | R1, R6         | Funcional    |
 | R13.1 | Recibir notificaciones         | Las notificaciones serán a través de correo electrónico                                                                          | Deseable    | R1,R3, R6  ,R7       | No Funcional |
-| R13.2 | Formato comentarios         | Los comentarios tendrá un límite de 200 caracteres                                                                         | Fundamental    | R1,R3, R5, R6, R7         | No Funcional |
+| R13.2 | Formato comentarios         | Los comentarios tendrán un límite de 200 caracteres                                                                         | Fundamental    | R1,R3, R5, R6, R7         | No Funcional |
 | R14   | Asignación de incidencias      | Se podrán asignar las incidencias a un agente                                                                                    | Deseable    | R1, R3, R7  | Funcional    |
 | R15   | Ajustes de perfil              | Los agentes y usuarios podrán ajustar su perfil en la sección de ajustes                                                         | Fundamental | R1,R3, R6         | Funcional    |
 | R15.1 | Eliminar cuenta en ajustes     | Los agentes y usuarios podrán eliminar su cuenta en la sección de ajustes                                                        | Fundamental | R1,R3, R6         | Funcional    |
@@ -190,8 +191,8 @@ __Prioridad:__ Fundamental
 
 __R5 - Verificación__  
 Los usuarios deben de verificar su correo electrónico.    
-__Precedencia:__ R1                                                                                                                                                                                                          
-__Prioridad:__ Opcional  
+__Precedencia:__ R1                                                                                                        
+__Prioridad:__ Fundamental      
 
 __R6 - Iniciar sesión__  
 Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web.  
@@ -214,9 +215,9 @@ __Precedencia:__ R1, R1.1, R3, R6
 __Prioridad:__ Fundamental  
 
 __R7.4 - Duplicado de incidencia__  
-El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.                                                                                            
+El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.                      
 __Precedencia:__ R7                                                                                                               
-__Prioridad:__ Fundamental   
+__Prioridad:__ Deseable   
 
 __R8 - Información al usuario__  
 Se presentará al usuario toda información legal necesaria.  
@@ -316,7 +317,7 @@ __Precedencia:__ R1, R1.1
 __Prioridad:__ Fundamental  
 
 __R7.1.3 - Capacidad imágenes__  
-Lás imágenes ocuparán como máximo 50mb por incidencia.                                                                                            
+Lás imágenes ocuparán, como máximo, 15mb cada una.                                                                                            
 __Precedencia:__ R1, R1.1                                                                                                                                                                                                                     
 __Prioridad:__ Fundamental  
 
@@ -330,15 +331,10 @@ La dirección deberá contener la calle, número de puerta y código postal.
 __Precedencia:__ R1, R1.1 , R3                                                                                                        
 __Prioridad:__ Fundamental  
 
-__R7.4 - Duplicado de incidencias__  
-El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma.                   
-__Precedencia:__ Ninguna                                                                                                                                                                                                                                   
-__Prioridad:__ Fundamental  
-
 __R7.4.1 -Reconocimiento duplicados__  
-El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle.                                         
-__Precedencia:__ R3, R7.3                                                                                                                                                                                                                          
-__Prioridad:__ Fundamental  
+El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle.     
+__Precedencia:__ R3, R7.3                                                                                    
+__Prioridad:__ Deseable    
 
 __R13.1 - Recibir notificaciones__  
 Las notificaciones serán a traves del correo electrónico.  
@@ -346,7 +342,7 @@ __Precedencia:__   R1, R3, R6
 __Prioridad:__ Fundamental  
 
 __R13.2 - Formato comentarios__  
-Los comentarios tendrá un límite de 200 caracteres.  
+Los comentarios tendrán un límite de 200 caracteres.  
 __Precedencia:__   R1, R5, R6, R7                                                                                                    
 __Prioridad:__ Fundamental  
 
@@ -370,7 +366,7 @@ __Prioridad:__ Fundamental
 __R24 - Protocolo del servidor__  
 La web se servirá mediante HTTPS.   
 __Precedencia:__ Ninguna  
-__Prioridad:__ Fundamental   
+__Prioridad:__ Deseable     
 
 #### __4.3.3 Disponibilidad__
 
