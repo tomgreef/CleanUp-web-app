@@ -39,11 +39,20 @@
 				auth.signInWithEmailAndPassword(this.email, this.pass)
 					.catch(function(error) {
 						warning(authErrors(error));
+						console.log(error);
 					})
 					.then(userRef => {
 						getUserType().then(type => {
+							console.log('Tipo', type);
 							if (type == 'agent' || userRef.user.emailVerified) {
+								console.log('Puede inicar');
+
 								this.$store.commit('change', type);
+								console.log(
+									'Tipo guardado',
+									this.$store.getters.type
+								);
+
 								this.$router.replace({ path: '/home' });
 							} else {
 								warning(

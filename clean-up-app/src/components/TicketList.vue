@@ -2,37 +2,10 @@
 	<div>
 		<b-field grouped group-multiline v-if="isAgent">
 			<p class="control">
-				<b-button
-					type="is-primary"
-					@click="asign"
-					:disabled="selection.length == 0"
-					>Asignar</b-button
-				>
+				<b-button type="is-primary" @click="asign">Asignar</b-button>
 			</p>
 			<p class="control">
-				<b-tooltip
-					type="is-dark"
-					:active="selection.length > 1"
-					always
-					square
-					multilined
-					label="La primera incidencia que selecciones será la incidencia padre"
-				>
-					<b-button
-						type="is-primary"
-						@click="anidar"
-						:disabled="selection.length <= 1"
-						>Anidar</b-button
-					>
-				</b-tooltip>
-			</p>
-			<p class="control">
-				<b-button
-					type="is-danger"
-					@click="close"
-					:disabled="selection.length == 0"
-					>Cerrar</b-button
-				>
+				<b-button type="is-danger" @click="close">Cerrar</b-button>
 			</p>
 			<p class="control">
 				<b-switch
@@ -40,11 +13,10 @@
 					:rounded="false"
 					size="is-medium"
 					type="is-primary"
-				>
-					{{
+					>{{
 						filterAgent ? 'Asignadas a mi' : 'Todas las incidencias'
-					}}
-				</b-switch>
+					}}</b-switch
+				>
 			</p>
 			<p class="control">
 				<b-switch
@@ -52,9 +24,10 @@
 					:rounded="false"
 					size="is-medium"
 					type="is-primary"
+					>{{
+						filterClosed ? 'Mostrar abiertas' : 'Mostrar cerradas'
+					}}</b-switch
 				>
-					{{ filterClosed ? 'Mostrar abiertas' : 'Mostrar cerradas' }}
-				</b-switch>
 			</p>
 		</b-field>
 		<b-table
@@ -75,21 +48,22 @@
 					<PopUpTicket :ticket="props.row" :isAgent="isAgent" />
 				</b-table-column>
 
-				<b-table-column field="cp" label="Código postal" sortable>{{
-					props.row.cp
-				}}</b-table-column>
+				<b-table-column field="cp" label="Código postal" sortable>
+					{{ props.row.cp }}
+				</b-table-column>
 
 				<b-table-column
 					field="street"
 					label="Calle"
 					sortable
 					searchable
-					>{{ props.row.street }}</b-table-column
 				>
+					{{ props.row.street }}
+				</b-table-column>
 
-				<b-table-column field="closed" label="Estado" centered>{{
-					props.row.closed ? 'Cerrado' : 'Abierto'
-				}}</b-table-column>
+				<b-table-column field="closed" label="Estado" centered>
+					{{ props.row.closed ? 'Cerrado' : 'Abierto' }}
+				</b-table-column>
 
 				<b-table-column field="agentUid" label="Agente asignado">
 					{{
@@ -104,21 +78,14 @@
 				</b-table-column>
 
 				<b-table-column field="date" label="Fecha" sortable centered>
-					<b-tag type="is-success">{{
-						new Date(props.row.date).toLocaleDateString()
-					}}</b-tag>
-				</b-table-column>
-
-				<b-table-column v-if="!isAgent" centered>
-					<PopUpEditTicket :ticket="props.row" />
+					<span class="tag is-success">
+						{{ new Date(props.row.date).toLocaleDateString() }}
+					</span>
 				</b-table-column>
 			</template>
 			<template slot="empty">
 				<section class="section">
-					<div
-						v-if="isAgent"
-						class="content has-text-grey has-text-centered"
-					>
+					<div class="content has-text-grey has-text-centered">
 						<p>
 							<b-icon
 								icon="package-variant"
@@ -127,7 +94,6 @@
 						</p>
 						<p>Nada por aquí</p>
 					</div>
-					<NoTickets v-else />
 				</section>
 			</template>
 		</b-table>
@@ -136,10 +102,8 @@
 
 <script>
 	import { auth, db } from '@/firebase';
-	import { success, warning } from '@/helpers/notificaciones';
-	import NoTickets from '@/components/NoTickets';
+	import { success } from '@/helpers/notificaciones';
 	import PopUpTicket from '@/components/PopUpTicket';
-	import PopUpEditTicket from '@/components/PopUpEditTicket';
 
 	export default {
 		data: () => ({
@@ -151,9 +115,7 @@
 			isAgent: Boolean
 		},
 		components: {
-			NoTickets,
-			PopUpTicket,
-			PopUpEditTicket
+			PopUpTicket
 		},
 		computed: {
 			currentUserUid() {
@@ -172,24 +134,11 @@
 			update(action, condition) {
 				let ticketsRef = db.collection('tickets');
 				let updatePromises = [];
-				this.selection.forEach(selected => {
-					if (condition(selected)) {
-						let ticket = ticketsRef.doc(selected.id);
-						updatePromises.push(ticket.update(action));
-						if (selected.hasChildren) {
-							let childrenSubCollection = ticket.collection(
-								'children'
-							);
-							childrenSubCollection.get().then(children => {
-								children.forEach(child => {
-									updatePromises.push(
-										childrenSubCollection
-											.doc(child.id)
-											.update(action)
-									);
-								});
-							});
-						}
+				this.selection.forEach(t => {
+					if (condition(t)) {
+						updatePromises.push(
+							ticketsRef.doc(t.id).update(action)
+						);
 					}
 				});
 				Promise.all(updatePromises).then(
@@ -205,29 +154,6 @@
 			},
 			close() {
 				this.update({ closed: true }, t => t.closed == false);
-			},
-			anidar() {
-				let parentTicket = this.selection[0];
-				let childrenTickets = this.selection.slice(
-					1,
-					this.selection.length
-				);
-				let ticketsRef = db.collection('tickets');
-				let parentTicketChildrenRef = ticketsRef
-					.doc(parentTicket.id)
-					.collection('children');
-				childrenTickets.forEach(child => {
-					parentTicketChildrenRef
-						.doc(child.id)
-						.add(child)
-						.then(ticketsRef.doc(child.id).delete())
-						.then(() => {
-							success('Incidencias anidadas con éxito');
-						})
-						.catch(err => {
-							warning(err);
-						});
-				});
 			}
 		},
 		firestore() {
@@ -242,6 +168,19 @@
 			return {
 				tickets: ticketsRef.orderBy('date', 'desc')
 			};
+
+			/*
+			.onSnapshot(snapshot => {
+				console.log(
+					'This came from:',
+					snapshot.metadata.fromCache ? 'cache' : 'database'
+				);
+				snapshot.forEach(ticket => {
+					let id = ticket.id;
+					this.tickets.push({ id, ...ticket.data() });
+				});
+			});
+			*/
 		}
 	};
 </script>

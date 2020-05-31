@@ -1,10 +1,19 @@
 <template>
 	<section>
-		<a expanded @click="isTicketModalActive = true">
+		<a v-if="!isChild" expanded @click="isTicketModalActive = true">
 			<p class="has-text-left">
 				{{ ticket.title }}
 			</p>
 		</a>
+		<b-button
+			v-else
+			@click="isTicketModalActive = true"
+			type="is-primary"
+			expanded
+		>
+			{{ ticket.title }}
+		</b-button>
+
 		<b-modal :active.sync="isTicketModalActive" :width="720">
 			<div class="card">
 				<b-carousel :autoplay="false" :indicator-inside="false">
@@ -20,20 +29,25 @@
 				</b-carousel>
 				<div class="card-content">
 					<div class="media">
-						<div class="media-content">
+						<div class="media-content box">
 							<h4 class="title is-4">{{ ticket.title }}</h4>
-							<h6 class="subtitle is-6">
+							<p>
 								CP: {{ ticket.cp }}, {{ ticket.street }}
 								<span v-if="ticket.streetNumber != null">
 									, número
 									{{ ticket.streetNumber }}
 								</span>
-							</h6>
+							</p>
+							<hr />
+							<h4 class="title is-4">Descripción</h4>
 							<p>
-								<strong>Descripción</strong>
-								<br />
 								{{ ticket.description }}
 							</p>
+							<SubTicketPagination
+								v-if="ticket.hasChildren"
+								:isAgent="isAgent"
+								:parentId="ticket.id"
+							/>
 						</div>
 					</div>
 					<div class="content">
@@ -53,17 +67,22 @@
 <script>
 	import CommentList from '@/components/CommentList';
 	import CreateComment from '@/components/CreateComment';
+	import SubTicketPagination from '@/components/SubTicketPagination';
+
 	export default {
+		name: 'PopUpTicket',
 		data: () => ({
 			isTicketModalActive: false
 		}),
 		props: {
 			ticket: Object,
-			isAgent: Boolean
+			isAgent: Boolean,
+			isChild: Boolean
 		},
 		components: {
 			CommentList,
-			CreateComment
+			CreateComment,
+			SubTicketPagination
 		},
 		computed: {
 			showCreateComment() {

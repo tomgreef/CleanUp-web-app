@@ -4,6 +4,7 @@
 			expanded
 			type="is-primary"
 			@click="isEditTicketModalActive = true"
+			size="is-small"
 			:disabled="ticket.closed"
 			>Editar</b-button
 		>

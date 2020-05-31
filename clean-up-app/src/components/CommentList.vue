@@ -5,9 +5,13 @@
 			:open.sync="isOpen"
 			v-if="this.comments ? this.comments.length > 0 : false"
 		>
-			<p class="panel-heading" slot="trigger">
-				<strong> Listado de comentarios</strong>
-				<b-icon :icon="isOpen ? 'menu-down' : 'menu-up'"> </b-icon>
+			<p class="panel-heading has-text-left" slot="trigger">
+				<strong> Listado de comentarios </strong>
+				<b-icon
+					:icon="isOpen ? 'chevron-down' : 'chevron-up'"
+					size="is-small"
+				>
+				</b-icon>
 			</p>
 			<p
 				v-for="comment in comments"
@@ -17,7 +21,7 @@
 				<Comment :comment="comment" />
 			</p>
 		</b-collapse>
-		<p v-else class="box">
+		<p v-else class="box has-text-left">
 			<strong>Aún no hay comentarios en esta incidencia</strong>
 		</p>
 	</div>
