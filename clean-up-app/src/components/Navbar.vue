@@ -6,15 +6,12 @@
 			</b-navbar-item>
 		</template>
 		<template slot="start" v-if="isLoggedIn">
-			<b-button
-				tag="router-link"
-				:to="isUser ? '/mistickets' : 'inicioagente'"
-				type="is-primary"
-				>Inicio
-			</b-button>
-			<b-button tag="router-link" to="/crearticket" type="is-primary">
+			<b-navbar-item :href="isUser ? '/mistickets' : 'inicioagente'">
+				Inicio
+			</b-navbar-item>
+			<b-navbar-item v-if="isUser" href="/crearticket">
 				Crear incidencia
-			</b-button>
+			</b-navbar-item>
 		</template>
 		<template slot="end" v-if="isLoggedIn">
 			<b-navbar-item tag="div">

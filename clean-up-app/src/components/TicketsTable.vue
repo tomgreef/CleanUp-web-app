@@ -2,37 +2,17 @@
 	<div>
 		<b-field grouped group-multiline v-if="isAgent">
 			<p class="control">
-				<b-button
-					type="is-primary"
-					@click="asign"
-					:disabled="selection.length == 0"
-					>Asignar</b-button
-				>
+				<b-button type="is-primary" @click="asign">Asignar</b-button>
 			</p>
 			<p class="control">
-				<b-tooltip
-					type="is-dark"
-					:active="selection.length > 1"
-					always
-					square
-					multilined
-					label="La primera incidencia que selecciones será la incidencia padre"
-				>
-					<b-button
-						type="is-primary"
-						@click="anidar"
-						:disabled="selection.length <= 1"
-						>Anidar</b-button
-					>
-				</b-tooltip>
+				<b-button type="is-danger" @click="close">Cerrar</b-button>
 			</p>
 			<p class="control">
-				<b-button
-					type="is-danger"
-					@click="close"
-					:disabled="selection.length == 0"
-					>Cerrar</b-button
-				>
+				<b-switch v-model="filterAgent" :rounded="false" size="is-medium" type="is-primary">
+					{{
+					filterAgent ? 'Asignadas a mi' : 'Todas las incidencias'
+					}}
+				</b-switch>
 			</p>
 			<p class="control">
 				<b-switch
@@ -114,10 +94,7 @@
 			</template>
 			<template slot="empty">
 				<section class="section">
-					<div
-						v-if="isAgent"
-						class="content has-text-grey has-text-centered"
-					>
+					<div class="content has-text-grey has-text-centered">
 						<p>
 							<b-icon
 								icon="package-variant"
@@ -126,7 +103,6 @@
 						</p>
 						<p>Nada por aquí</p>
 					</div>
-					<NoTickets v-else />
 				</section>
 			</template>
 		</b-table>
@@ -134,11 +110,10 @@
 </template>
 
 <script>
-	import { auth, db } from '@/firebase';
-	import { success, warning } from '@/helpers/notificaciones';
-	import NoTickets from '@/components/NoTickets';
-	import PopUpTicket from '@/components/PopUpTicket';
-	import PopUpEditTicket from '@/components/PopUpEditTicket';
+import { auth, db } from '@/firebase';
+import { success } from '@/helpers/notificaciones';
+import PopUpTicket from '@/components/PopUpTicket';
+import PopUpEditTicket from '@/components/PopUpEditTicket';
 
 	export default {
 		data: () => ({
@@ -149,10 +124,28 @@
 		props: {
 			isAgent: Boolean
 		},
-		components: {
-			NoTickets,
-			PopUpTicket,
-			PopUpEditTicket
+		filteredTickets() {
+			return this.tickets.filter(
+				t =>
+					(this.filterAgent
+						? t.agentUid == auth.currentUser.uid
+						: true) && (this.filterClosed ? t.closed : true)
+			);
+		}
+	},
+	methods: {
+		update(action, condition) {
+			let ticketsRef = db.collection('tickets');
+			let updatePromises = [];
+			this.selection.forEach(t => {
+				if (condition(t)) {
+					updatePromises.push(ticketsRef.doc(t.id).update(action));
+				}
+			});
+			Promise.all(updatePromises).then(
+				success('Acción realizada con éxito')
+			);
+			this.selection = [];
 		},
 		computed: {
 			currentUserUid() {
@@ -228,20 +221,8 @@
 							warning(err);
 						});
 				});
-			}
-		},
-		firestore() {
-			let ticketsRef = db.collection('tickets');
-			if (!this.isAgent) {
-				ticketsRef = ticketsRef.where(
-					'userUid',
-					'==',
-					auth.currentUser.uid
-				);
-			}
-			return {
-				tickets: ticketsRef.orderBy('date', 'desc')
-			};
-		}
-	};
+			});
+			*/
+	}
+};
 </script>
