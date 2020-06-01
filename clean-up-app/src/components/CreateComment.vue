@@ -32,7 +32,7 @@
 					.doc(this.ticketId)
 					.collection('comments')
 					.add({
-						agentId: agentId,
+						agent: auth.currentUser.displayName || agentId,
 						message: this.message,
 						date: Date.now()
 					})

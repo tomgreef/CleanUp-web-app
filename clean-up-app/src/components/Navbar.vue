@@ -8,11 +8,16 @@
 		<template slot="start" v-if="isLoggedIn">
 			<b-button
 				tag="router-link"
-				:to="isUser ? '/mistickets' : 'inicioagente'"
+				:to="isUser ? '/mistickets' : '/inicioagente'"
 				type="is-primary"
 				>Inicio
 			</b-button>
-			<b-button tag="router-link" to="/crearticket" type="is-primary">
+			<b-button
+				v-if="isUser"
+				tag="router-link"
+				to="/crearticket"
+				type="is-primary"
+			>
 				Crear incidencia
 			</b-button>
 		</template>

@@ -1,4 +1,4 @@
-module.exports = function(error) {
+export function authErrors(error) {
 	let msg = '';
 	switch (error.code) {
 		// Errores de creación de cuenta
@@ -11,6 +11,9 @@ module.exports = function(error) {
 			msg = 'El usuario ya existe, inicia sesión';
 			break;
 		// Errores de inicio de sesion
+		case 'auth/too-many-requests':
+			msg = 'Demasiados intentos, pruebe de nuevo más tarde';
+			break;
 		case 'auth/invalid-password':
 			msg = 'La contraseña es invalida';
 			break;
@@ -22,4 +25,4 @@ module.exports = function(error) {
 			break;
 	}
 	return msg;
-};
+}

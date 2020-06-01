@@ -213,30 +213,50 @@
 				let ticketsRef = db.collection('tickets');
 				let parentTicketRef = ticketsRef.doc(parentTicket.id);
 				let ChildrenRef = parentTicketRef.collection('children');
-				let allowedUsers = [];
+				let allowedUsers;
 				let updatePromises = [];
-				childrenTickets.forEach(child => {
-					allowedUsers.push(child.userUid);
-					updatePromises.push(ChildrenRef.doc(child.id).set(child));
-					ticketsRef.doc(child.id).delete();
-				});
-				Promise.all(updatePromises)
+				parentTicketRef
+					.get()
+					.then(t => {
+						allowedUsers = t.data().allowedUsers;
+					})
 					.then(() => {
-						success('Incidencias anidadas con éxito');
-						console.log('The allowedUsers are', allowedUsers);
-						parentTicketRef.update({
-							allowedUsers: allowedUsers
+						childrenTickets.forEach(child => {
+							allowedUsers.push(child.allowedUsers[0]);
+							updatePromises.push(
+								ChildrenRef.doc(child.id).set(child)
+							);
+							ticketsRef.doc(child.id).delete();
 						});
 					})
-					.catch(err => {
-						warning(err);
+					.then(() => {
+						Promise.all(updatePromises)
+							.then(() => {
+								success('Incidencias anidadas con éxito');
+								parentTicketRef.update({
+									hasChildren: true,
+									allowedUsers: allowedUsers
+								});
+							})
+							.catch(() => {
+								warning('Se ha producido un error');
+							});
 					});
 			}
 		},
 		firestore() {
 			let ticketsRef = db.collection('tickets');
+			if (!this.isAgent) {
+				ticketsRef = ticketsRef.where(
+					'allowedUsers',
+					'array-contains',
+					auth.currentUser.uid
+				);
+			} else {
+				ticketsRef = ticketsRef.orderBy('date', 'desc');
+			}
 			return {
-				tickets: ticketsRef.orderBy('date', 'desc')
+				tickets: ticketsRef
 			};
 		}
 	};

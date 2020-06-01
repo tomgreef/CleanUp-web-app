@@ -76,7 +76,7 @@
 									.sendEmailVerification()
 									.then(function() {
 										success(
-											'Email de verificación enviado'
+											'Email de verificación enviado, comprueba tu correo'
 										);
 									});
 							})

@@ -37,11 +37,11 @@
 		methods: {
 			inicio() {
 				auth.signInWithEmailAndPassword(this.email, this.pass)
-					.catch(function(error) {
-						warning(authErrors(error));
-					})
 					.then(userRef => {
+						console.log('User ref is', userRef.user);
 						getUserType().then(type => {
+							console.log('Type is', type);
+
 							if (type == 'agent' || userRef.user.emailVerified) {
 								this.$store.commit('change', type);
 								this.$router.replace({ path: '/home' });
@@ -52,6 +52,9 @@
 								auth.singout();
 							}
 						});
+					})
+					.catch(error => {
+						warning(authErrors(error));
 					});
 			}
 		}
