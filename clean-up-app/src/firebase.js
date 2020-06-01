@@ -14,12 +14,14 @@ const firebaseApp = firebase.initializeApp({
 	measurementId: 'G-EPFMYW0M7H'
 });
 
-firebaseApp
-	.firestore()
-	.enablePersistence()
-	.catch(function(err) {
-		console.log('No persistence for because of', err);
-	});
+if (process.env.NODE_ENV != 'test') {
+	firebaseApp
+		.firestore()
+		.enablePersistence()
+		.catch(err => {
+			console.log('Error when enabling persistence:', err);
+		});
+}
 
 export const auth = firebaseApp.auth();
 export const db = firebaseApp.firestore();
