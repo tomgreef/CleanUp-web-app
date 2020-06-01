@@ -37,22 +37,13 @@
 		methods: {
 			inicio() {
 				auth.signInWithEmailAndPassword(this.email, this.pass)
-					.catch(function(error) {
-						warning(authErrors(error));
-						console.log(error);
-					})
 					.then(userRef => {
+						console.log('User ref is', userRef.user);
 						getUserType().then(type => {
-							console.log('Tipo', type);
+							console.log('Type is', type);
+
 							if (type == 'agent' || userRef.user.emailVerified) {
-								console.log('Puede inicar');
-
 								this.$store.commit('change', type);
-								console.log(
-									'Tipo guardado',
-									this.$store.getters.type
-								);
-
 								this.$router.replace({ path: '/home' });
 							} else {
 								warning(
@@ -61,6 +52,9 @@
 								auth.singout();
 							}
 						});
+					})
+					.catch(error => {
+						warning(authErrors(error));
 					});
 			}
 		}

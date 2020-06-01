@@ -3,18 +3,18 @@
 		<div class="columns is-centered">
 			<div class="column is-half">
 				<h1 class="title">Crear una incidencia</h1>
-				<CrearTicket />
+				<CreateTicket />
 			</div>
 		</div>
 	</section>
 </template>
 
 <script>
-	import CrearTicket from '@/components/CrearTicket';
+	import CreateTicket from '@/components/CreateTicket';
 
 	export default {
 		components: {
-			CrearTicket
+			CreateTicket
 		}
 	};
 </script>
