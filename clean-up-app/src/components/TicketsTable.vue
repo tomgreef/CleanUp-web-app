@@ -159,8 +159,7 @@
 						? (this.filterAgent
 								? t.agentUid == auth.currentUser.uid
 								: true) && (this.filterClosed ? t.closed : true)
-						: t.userUid == auth.currentUser.uid ||
-						  t.allowedUsers.includes(auth.currentUser.uid);
+						: t.allowedUsers.includes(auth.currentUser.uid);
 				return this.tickets.filter(filter);
 			}
 		},
