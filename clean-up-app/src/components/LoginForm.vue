@@ -38,10 +38,7 @@
 			inicio() {
 				auth.signInWithEmailAndPassword(this.email, this.pass)
 					.then(userRef => {
-						console.log('User ref is', userRef.user);
 						getUserType().then(type => {
-							console.log('Type is', type);
-
 							if (type == 'agent' || userRef.user.emailVerified) {
 								this.$store.commit('change', type);
 								this.$router.replace({ path: '/home' });

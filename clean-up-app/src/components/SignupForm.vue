@@ -47,7 +47,7 @@
 			validate: function() {
 				return (
 					this.pass.length < 6 ||
-					this.name.length < 1 ||
+					this.name.length < 3 ||
 					this.email.length < 8 ||
 					this.gdpr == false
 				);
