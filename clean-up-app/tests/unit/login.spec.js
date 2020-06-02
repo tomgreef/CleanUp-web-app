@@ -10,7 +10,7 @@ describe('Estado del botón de inicio de sesión', () => {
 	it('Deshabilitado si no hay datos', () => {
 		const component = shallowMount(LoginForm);
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -24,7 +24,7 @@ describe('Estado del botón de inicio de sesión', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -38,7 +38,7 @@ describe('Estado del botón de inicio de sesión', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -52,7 +52,7 @@ describe('Estado del botón de inicio de sesión', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -66,7 +66,7 @@ describe('Estado del botón de inicio de sesión', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
-		).toBeFalsy();
+			component.get('b-button-stub').attributes('disabled')
+		).toBeUndefined();
 	});
 });

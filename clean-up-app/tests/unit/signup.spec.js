@@ -14,7 +14,7 @@ describe('Estado del botón de crear cuenta', () => {
 	it('El botón de crear cuenta está deshabilitado si no hay datos', () => {
 		const component = shallowMount(SignupForm);
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -30,7 +30,7 @@ describe('Estado del botón de crear cuenta', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -46,7 +46,7 @@ describe('Estado del botón de crear cuenta', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -62,7 +62,7 @@ describe('Estado del botón de crear cuenta', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -78,7 +78,7 @@ describe('Estado del botón de crear cuenta', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -94,7 +94,7 @@ describe('Estado del botón de crear cuenta', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
+			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
 	});
 
@@ -110,7 +110,7 @@ describe('Estado del botón de crear cuenta', () => {
 			}
 		});
 		expect(
-			component.find('b-button-stub').attributes('disabled')
-		).toBeFalsy();
+			component.get('b-button-stub').attributes('disabled')
+		).toBeUndefined();
 	});
 });
