@@ -154,12 +154,28 @@
 				return auth.currentUser.uid;
 			},
 			filteredTickets() {
-				let filter = t =>
-					this.isAgent
-						? (this.filterAgent
-								? t.agentUid == auth.currentUser.uid
-								: true) && (this.filterClosed ? t.closed : true)
-						: t.allowedUsers.includes(auth.currentUser.uid);
+				let filter = t => {
+					if (this.isAgent) {
+						let applyAgentFilters = true;
+						if (this.filterAgent) {
+							applyAgentFilters =
+								t.agentUid == auth.currentUser.uid;
+						}
+						if (this.filterClosed) {
+							applyAgentFilters &= t.closed;
+						}
+						return applyAgentFilters;
+					} else {
+						return t.allowedUsers.includes(auth.currentUser.uid);
+					}
+				};
+				/*
+				let filter = t => this.isAgent
+					? (this.filterAgent
+							? t.agentUid == auth.currentUser.uid
+							: true) && (this.filterClosed ? t.closed : true)
+					: t.allowedUsers.includes(auth.currentUser.uid);
+					*/
 				return this.tickets.filter(filter);
 			}
 		},

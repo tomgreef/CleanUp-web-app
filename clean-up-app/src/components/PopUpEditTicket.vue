@@ -7,7 +7,7 @@
 			@click="isEditTicketModalActive = true"
 			size="is-small"
 			:disabled="ticket.closed"
-			v-if="ticket.allowedUsers[0] != currentUserUid"
+			v-if="ticket.userUid != currentUserUid"
 			>Editar detalles de la incidencia</b-button
 		>
 		<b-modal :active.sync="isEditTicketModalActive" :width="720">
