@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import Navbar from '@/components/Navbar.vue';
 
-describe('Botón "Inicio"', () => {
+describe('Botón Inicio', () => {
 	it('No se muestra si no se ha iniciado sesión', () => {
 		const component = shallowMount(Navbar, {
 			computed: {
@@ -40,7 +40,7 @@ describe('Botón "Inicio"', () => {
 	});
 });
 
-describe('Botón "Crear incidencia"', () => {
+describe('Botón Crear incidencia', () => {
 	it('No se muestra si no se ha iniciado sesión', () => {
 		const component = shallowMount(Navbar, {
 			computed: {
@@ -51,7 +51,7 @@ describe('Botón "Crear incidencia"', () => {
 		});
 		expect(component.text()).not.toContain('Crear incidencia');
 	});
-	it('No se muestra si no se es usuario', () => {
+	it('No se muestra si no se ha iniciado sesión como usuario', () => {
 		const component = shallowMount(Navbar, {
 			computed: {
 				isUser() {
@@ -65,7 +65,7 @@ describe('Botón "Crear incidencia"', () => {
 		expect(component.text()).not.toContain('Crear incidencia');
 	});
 
-	it('Se muestra si se es usuario', () => {
+	it('Se muestra si se ha iniciado sesión como usuario', () => {
 		const component = shallowMount(Navbar, {
 			computed: {
 				isUser() {
@@ -80,7 +80,7 @@ describe('Botón "Crear incidencia"', () => {
 	});
 });
 
-describe('Botón "Mi perfil"', () => {
+describe('Botón Mi perfil', () => {
 	it('No se muestra si no se ha iniciado sesión', () => {
 		const component = shallowMount(Navbar, {
 			computed: {
@@ -119,7 +119,7 @@ describe('Botón "Mi perfil"', () => {
 	});
 });
 
-describe('Botón "Cerrar sesión"', () => {
+describe('Botón Cerrar sesión', () => {
 	it('No se muestra si no se ha iniciado sesión', () => {
 		const component = shallowMount(Navbar, {
 			computed: {

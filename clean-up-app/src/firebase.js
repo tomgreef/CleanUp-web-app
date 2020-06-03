@@ -26,3 +26,9 @@ if (process.env.NODE_ENV != 'test') {
 export const auth = firebaseApp.auth();
 export const db = firebaseApp.firestore();
 export const storage = firebaseApp.storage();
+
+export default {
+	auth,
+	db,
+	storage
+};

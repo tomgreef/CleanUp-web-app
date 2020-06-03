@@ -39,20 +39,21 @@
 				auth.signInWithEmailAndPassword(this.email, this.pass)
 					.then(userRef => {
 						getUserType().then(type => {
-							if (type == 'agent' || userRef.user.emailVerified) {
-								this.$store.commit('change', type);
-								this.$router.replace({ path: '/home' });
-							} else {
-								warning(
-									'Verifica tu correo para iniciar sesión'
-								);
-								auth.singout();
-							}
+							this.check(type, userRef.user.emailVerified);
 						});
 					})
 					.catch(error => {
 						warning(authErrors(error));
 					});
+			},
+			check(type, emailVerified) {
+				if (type == 'agent' || emailVerified) {
+					this.$store.commit('change', type);
+					this.$router.replace({ path: '/home' });
+				} else {
+					warning('Verifica tu correo para iniciar sesión');
+					auth.singout();
+				}
 			}
 		}
 	};
