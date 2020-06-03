@@ -12,7 +12,9 @@ describe('Estado del botón de crear cuenta', () => {
 		nombreValido = 'Bob';
 
 	it('El botón de crear cuenta está deshabilitado si no hay datos', () => {
-		const component = shallowMount(SignupForm);
+		const component = shallowMount(SignupForm, {
+			stubs: ['router-link']
+		});
 		expect(
 			component.get('b-button-stub').attributes('disabled')
 		).toBeTruthy();
@@ -20,6 +22,7 @@ describe('Estado del botón de crear cuenta', () => {
 
 	it('El botón de crear cuenta está deshabilitado si hay datos inválidos y no se ha aceptado el GDPR', () => {
 		const component = shallowMount(SignupForm, {
+			stubs: ['router-link'],
 			data() {
 				return {
 					name: nombreInvalido,
@@ -36,6 +39,7 @@ describe('Estado del botón de crear cuenta', () => {
 
 	it('El botón de crear cuenta está deshabilitado si hay datos válidos y no se ha aceptado el GDPR', () => {
 		const component = shallowMount(SignupForm, {
+			stubs: ['router-link'],
 			data() {
 				return {
 					name: nombreValido,
@@ -52,6 +56,7 @@ describe('Estado del botón de crear cuenta', () => {
 
 	it('Deshabilitado si el nombre de usuario es invalido y los demás datos son válidos', () => {
 		const component = shallowMount(SignupForm, {
+			stubs: ['router-link'],
 			data() {
 				return {
 					name: nombreInvalido,
@@ -68,6 +73,7 @@ describe('Estado del botón de crear cuenta', () => {
 
 	it('Deshabilitado si el correo es invalido y los demás datos son válidos', () => {
 		const component = shallowMount(SignupForm, {
+			stubs: ['router-link'],
 			data() {
 				return {
 					name: nombreValido,
@@ -84,6 +90,7 @@ describe('Estado del botón de crear cuenta', () => {
 
 	it('Deshabilitado si la contraseña es invalida y los demás datos son válidos', () => {
 		const component = shallowMount(SignupForm, {
+			stubs: ['router-link'],
 			data() {
 				return {
 					name: nombreValido,
@@ -100,6 +107,7 @@ describe('Estado del botón de crear cuenta', () => {
 
 	it('Habilitado si los datos son válidos', () => {
 		const component = shallowMount(SignupForm, {
+			stubs: ['router-link'],
 			data() {
 				return {
 					name: nombreValido,

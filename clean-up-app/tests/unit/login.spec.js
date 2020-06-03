@@ -86,7 +86,6 @@ describe('Función de inicio', () => {
 		firebase.auth.singout.mockClear();
 		component = shallowMount(LoginForm, {
 			mocks: {
-				auth: true,
 				$router: {
 					replace: jest.fn()
 				},

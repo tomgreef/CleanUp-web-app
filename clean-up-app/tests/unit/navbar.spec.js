@@ -43,6 +43,7 @@ describe('Botón Inicio', () => {
 describe('Botón Crear incidencia', () => {
 	it('No se muestra si no se ha iniciado sesión', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isLoggedIn() {
 					return false;
@@ -53,6 +54,7 @@ describe('Botón Crear incidencia', () => {
 	});
 	it('No se muestra si no se ha iniciado sesión como usuario', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isUser() {
 					return false;
@@ -67,6 +69,7 @@ describe('Botón Crear incidencia', () => {
 
 	it('Se muestra si se ha iniciado sesión como usuario', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isUser() {
 					return true;
@@ -83,6 +86,7 @@ describe('Botón Crear incidencia', () => {
 describe('Botón Mi perfil', () => {
 	it('No se muestra si no se ha iniciado sesión', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isLoggedIn() {
 					return false;
@@ -93,6 +97,7 @@ describe('Botón Mi perfil', () => {
 	});
 	it('Se muestra si se ha iniciado sesión como usuario', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isUser() {
 					return false;
@@ -106,6 +111,7 @@ describe('Botón Mi perfil', () => {
 	});
 	it('Se muestra si se ha iniciado sesión como agente', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isUser() {
 					return false;
@@ -122,6 +128,7 @@ describe('Botón Mi perfil', () => {
 describe('Botón Cerrar sesión', () => {
 	it('No se muestra si no se ha iniciado sesión', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isLoggedIn() {
 					return false;
@@ -132,6 +139,7 @@ describe('Botón Cerrar sesión', () => {
 	});
 	it('Se muestra si se ha iniciado sesión como usuario', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isUser() {
 					return false;
@@ -145,6 +153,7 @@ describe('Botón Cerrar sesión', () => {
 	});
 	it('Se muestra si se ha iniciado sesión como agente', () => {
 		const component = shallowMount(Navbar, {
+			stubs: ['router-link'],
 			computed: {
 				isUser() {
 					return false;
