@@ -20,9 +20,9 @@
 
 <script>
 	import { auth } from '@/firebase';
-	import { authErrors } from '@/helpers/authErrors';
+	import authErrors from '@/helpers/authErrors';
 	import { warning } from '@/helpers/notificaciones';
-	import { getUserType } from '@/helpers/sessionHelper';
+	import getUserType from '@/helpers/sessionHelper';
 
 	export default {
 		data: () => ({
@@ -39,21 +39,21 @@
 				auth.signInWithEmailAndPassword(this.email, this.pass)
 					.then(userRef => {
 						getUserType().then(type => {
-							this.check(type, userRef.user.emailVerified);
+							if (type == 'agent' || userRef.user.emailVerified) {
+								this.$store.commit('change', type);
+								this.$router.replace({ path: '/home' });
+							} else {
+								warning(
+									'Verifica tu correo para iniciar sesión'
+								);
+								auth.singout();
+							}
 						});
 					})
 					.catch(error => {
+						auth.singout();
 						warning(authErrors(error));
 					});
-			},
-			check(type, emailVerified) {
-				if (type == 'agent' || emailVerified) {
-					this.$store.commit('change', type);
-					this.$router.replace({ path: '/home' });
-				} else {
-					warning('Verifica tu correo para iniciar sesión');
-					auth.singout();
-				}
 			}
 		}
 	};

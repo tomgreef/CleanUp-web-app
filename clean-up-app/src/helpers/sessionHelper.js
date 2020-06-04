@@ -10,7 +10,7 @@ async function cacheManager(ref) {
 	return snap;
 }
 
-export async function getUserType() {
+export default async function getUserType() {
 	let type = null;
 	if (auth.currentUser) {
 		let snap = await cacheManager(

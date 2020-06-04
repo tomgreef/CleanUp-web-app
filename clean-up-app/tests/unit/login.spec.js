@@ -1,14 +1,16 @@
 import { shallowMount } from '@vue/test-utils';
 import LoginForm from '@/components/LoginForm.vue';
 import firebase from '@/firebase';
+import getUserType from '@/helpers/sessionHelper';
 
-jest.mock('../../src/firebase.js', () => {
-	return {
-		auth: {
-			singout: jest.fn()
-		}
-	};
-});
+jest.mock('../../src/helpers/sessionHelper.js', () => jest.fn());
+
+jest.mock('../../src/firebase.js', () => ({
+	auth: {
+		signInWithEmailAndPassword: jest.fn(),
+		singout: jest.fn()
+	}
+}));
 
 describe('Estado del botón de inicio de sesión', () => {
 	const correoInvalido = 'abc',
@@ -81,55 +83,61 @@ describe('Estado del botón de inicio de sesión', () => {
 });
 
 describe('Función de inicio', () => {
-	let component;
+	let component, type, emailVerified;
+	const $router = {
+			replace: jest.fn()
+		},
+		$store = {
+			commit: jest.fn()
+		};
+
 	beforeEach(() => {
+		$router.replace.mockClear();
+		$store.commit.mockClear();
+		getUserType.mockClear();
 		firebase.auth.singout.mockClear();
 		component = shallowMount(LoginForm, {
 			mocks: {
-				$router: {
-					replace: jest.fn()
-				},
-				$store: {
-					commit: jest.fn()
-				}
+				$router,
+				$store
 			}
 		});
 	});
-	it('Guarda el tipo agente si es agente', () => {
-		const check = jest.spyOn(component.vm, 'check');
-		check('agent', false);
-		expect(check).toHaveBeenCalled();
-		expect(component.vm.$store.commit).toHaveBeenCalledWith(
-			'change',
-			'agent'
-		);
-		expect(component.vm.$router.replace).toHaveBeenCalledWith({
-			path: '/home'
+
+	function setMocks(t, eV) {
+		type = t;
+		emailVerified = eV;
+		getUserType.mockResolvedValue(type);
+		firebase.auth.signInWithEmailAndPassword.mockResolvedValue({
+			user: {
+				emailVerified: emailVerified
+			}
 		});
+	}
+
+	it('Procede si es agente', async () => {
+		setMocks('agent', false);
+		const inicio = jest.spyOn(component.vm, 'inicio');
+		inicio();
+		await component.vm.$nextTick();
+		expect($router.replace).toHaveBeenCalledWith({ path: '/home' });
+		expect($store.commit).toHaveBeenCalledWith('change', type);
 	});
-	it('Guarda el tipo usuario si es usuario válido', () => {
-		const check = jest.spyOn(component.vm, 'check');
-		check('user', true);
-		expect(check).toHaveBeenCalled();
-		expect(component.vm.$store.commit).toHaveBeenCalledWith(
-			'change',
-			'user'
-		);
-		expect(component.vm.$router.replace).toHaveBeenCalledWith({
-			path: '/home'
-		});
+
+	it('Procede si es usuario con correo válido', async () => {
+		setMocks('user', true);
+		const inicio = jest.spyOn(component.vm, 'inicio');
+		inicio();
+		await component.vm.$nextTick();
+		expect($router.replace).toHaveBeenCalledWith({ path: '/home' });
+		expect($store.commit).toHaveBeenCalledWith('change', type);
 	});
-	it('No guarda el tipo usuario si es usuario inválido', () => {
-		const check = jest.spyOn(component.vm, 'check');
-		check('user', false);
-		expect(check).toHaveBeenCalled();
-		expect(component.vm.$store.commit).not.toHaveBeenCalledWith(
-			'change',
-			'user'
-		);
-		expect(component.vm.$router.replace).not.toHaveBeenCalledWith({
-			path: '/home'
-		});
+
+	it('No procede si es usuario con correo inválido', async () => {
+		setMocks('user', false);
+		const inicio = jest.spyOn(component.vm, 'inicio');
+		inicio();
+		await component.vm.$nextTick();
 		expect(firebase.auth.singout).toHaveBeenCalled();
 	});
 });
