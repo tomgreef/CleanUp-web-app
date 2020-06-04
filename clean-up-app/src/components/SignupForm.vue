@@ -56,10 +56,7 @@
 		methods: {
 			signup() {
 				auth.createUserWithEmailAndPassword(this.email, this.pass)
-					.catch(function(error) {
-						warning(authErrors(error));
-					})
-					.then(userRef => {
+				.then(userRef => {
 						userRef.user
 							.updateProfile({
 								displayName: this.name
@@ -86,7 +83,10 @@
 								this.password = '';
 								this.gdpr = false;
 							});
-					});
+					})
+					.catch(function(error) {
+						warning(authErrors(error));
+					})
 			}
 		}
 	};

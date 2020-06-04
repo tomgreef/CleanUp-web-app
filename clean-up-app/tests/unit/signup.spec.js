@@ -1,5 +1,18 @@
 import { shallowMount } from '@vue/test-utils';
 import SignupForm from '@/components/SignupForm.vue';
+import firebase from '@/firebase';
+import notificaciones from '@/helpers/notificaciones';
+
+jest.mock('../../src/helpers/notificaciones.js', () => ({
+	warning: jest.fn(),
+	success: jest.fn()
+}));
+
+jest.mock('../../src/firebase.js', () => ({
+	auth: {
+		createUserWithEmailAndPassword: jest.fn(),
+	}
+}));
 
 // Tal vez se podría simplificar o meter varios expect por test, ya que son +8 tests solo para el estado del botón
 
@@ -120,5 +133,35 @@ describe('Estado del botón de crear cuenta', () => {
 		expect(
 			component.get('b-button-stub').attributes('disabled')
 		).toBeUndefined();
+	});
+});
+
+describe('Función de registro', () => {
+	
+	let component;
+	
+	beforeEach(() => {
+		notificaciones.warning.mockClear();
+		notificaciones.success.mockClear();
+		firebase.auth.createUserWithEmailAndPassword.mockClear();
+		component = shallowMount(SignupForm,{
+			stubs: ['router-link'],
+		});
+	});
+
+	it('Se actualiza el nombre del usuario', async () => {
+		firebase.auth.createUserWithEmailAndPassword.mockResolvedValue();
+		const signup = jest.spyOn(component.vm, 'signup');
+		signup();
+		await notificaciones.success();
+		expect(notificaciones.success).toHaveBeenCalled();
+	})
+
+	it('No procede si el correo es inválido', async () => {
+		firebase.auth.createUserWithEmailAndPassword.mockRejectedValue(new Error('auth/invalid-email'));
+		const signup = jest.spyOn(component.vm, 'signup');
+		signup();
+		await component.vm.$nextTick();
+		expect(notificaciones.warning).toHaveBeenCalled();
 	});
 });
