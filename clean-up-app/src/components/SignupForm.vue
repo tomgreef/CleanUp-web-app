@@ -56,9 +56,6 @@
 		methods: {
 			signup() {
 				auth.createUserWithEmailAndPassword(this.email, this.pass)
-					.catch(function(error) {
-						warning(authErrors(error));
-					})
 					.then(userRef => {
 						userRef.user
 							.updateProfile({
@@ -86,6 +83,11 @@
 								this.password = '';
 								this.gdpr = false;
 							});
+					})
+					.catch(function(error) {
+						console.log(error);
+
+						warning(authErrors(error));
 					});
 			}
 		}
