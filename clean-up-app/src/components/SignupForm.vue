@@ -71,24 +71,23 @@
 							.then(() => {
 								userRef.user
 									.sendEmailVerification()
-									.then(function() {
+									.then(() => {
 										success(
 											'Email de verificación enviado, comprueba tu correo'
 										);
 									});
-							})
-							.then(() => {
-								this.name = '';
-								this.email = '';
-								this.password = '';
-								this.gdpr = false;
+								this.reset();
 							});
 					})
-					.catch(function(error) {
-						console.log(error);
-
+					.catch(error => {
 						warning(authErrors(error));
 					});
+			},
+			reset() {
+				this.name = '';
+				this.email = '';
+				this.password = '';
+				this.gdpr = false;
 			}
 		}
 	};

@@ -22,7 +22,7 @@ export function success(msg) {
 	});
 }
 
-export default{
+export default {
 	success,
 	warning
-}
+};
