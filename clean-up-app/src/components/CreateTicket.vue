@@ -227,6 +227,7 @@
 										cp: this.cp,
 										date: Date.now(),
 										images: imagesUrl,
+										userUid: uid,
 										allowedUsers: [uid],
 										hasChildren: false,
 										agentUid: '',
