@@ -2,9 +2,12 @@ import { shallowMount } from '@vue/test-utils';
 import SignupForm from '@/components/SignupForm.vue';
 import firebase from '@/firebase';
 import notificaciones from '@/helpers/notificaciones';
+import authErrors from '@/helpers/authErrors';
 
 jest.mock('../../src/helpers/authErrors.js', () =>
-	jest.fn(() => 'AUTH ERRORS')
+	jest.fn(() => {
+		return 'authError';
+	})
 );
 
 jest.mock('../../src/helpers/notificaciones.js', () => ({
@@ -157,6 +160,7 @@ describe('Función de registro', () => {
 	beforeEach(() => {
 		notificaciones.warning.mockClear();
 		notificaciones.success.mockClear();
+		firebase.db.collection.mockClear();
 		firebase.auth.createUserWithEmailAndPassword.mockClear();
 		component = shallowMount(SignupForm, {
 			stubs: ['router-link']
@@ -171,11 +175,12 @@ describe('Función de registro', () => {
 		expect(component.vm.$data.gdpr).toBe(false);
 	});
 
-	it('Se actualiza el nombre del usuario', async () => {
-		firebase.auth.createUserWithEmailAndPassword.mockResolvedValue({
+	it('Se crea el usuario', async () => {
+		const emailVerification = jest.fn().mockResolvedValueOnce();
+		firebase.auth.createUserWithEmailAndPassword.mockResolvedValueOnce({
 			user: {
-				updateProfile: jest.fn().mockResolvedValue(),
-				sendEmailVerification: jest.fn().mockResolvedValue()
+				updateProfile: jest.fn().mockResolvedValueOnce(),
+				sendEmailVerification: emailVerification
 			}
 		});
 		const signup = jest.spyOn(component.vm, 'signup');
@@ -185,22 +190,20 @@ describe('Función de registro', () => {
 		await component.vm.$nextTick();
 		expect(firebase.auth.createUserWithEmailAndPassword).toHaveBeenCalled();
 		expect(firebase.db.collection).toHaveBeenCalledWith('users');
+		expect(emailVerification).toHaveBeenCalled();
 		expect(notificaciones.success).toHaveBeenCalled();
 		expect(reset).toHaveBeenCalled();
 	});
 
 	it('No procede si el correo es inválido', async () => {
-		firebase.auth.createUserWithEmailAndPassword.mockRejectedValue(
-			'auth/invalid-email'
+		const error = new Error();
+		firebase.auth.createUserWithEmailAndPassword.mockRejectedValueOnce(
+			error
 		);
 		const signup = jest.spyOn(component.vm, 'signup');
-		try {
-			signup();
-			await component.vm.$nextTick();
-			await component.vm.$nextTick();
-		} catch (e) {
-			expect(notificaciones.warning).toHaveBeenCalled();
-			expect(e).toMatch('auth/invalid-email');
-		}
+		signup();
+		await component.vm.$nextTick();
+		expect(authErrors).toHaveBeenCalledWith(error);
+		expect(notificaciones.warning).toHaveBeenCalledWith('authError');
 	});
 });

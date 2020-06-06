@@ -46,13 +46,13 @@
 								warning(
 									'Verifica tu correo para iniciar sesión'
 								);
-								auth.singout();
+								auth.signOut();
 							}
 						});
 					})
 					.catch(error => {
-						auth.singout();
 						warning(authErrors(error));
+						auth.signOut();
 					});
 			}
 		}
