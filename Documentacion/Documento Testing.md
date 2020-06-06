@@ -1,113 +1,102 @@
 # Especificación de Testing
 ## Del proyecto <Clean-Up>
 
-Versión 0.0.1  
-Generada por <Departamento de Testing>  
-<Clean-Up Group>  
-<18/05/2020>  
+Versión 0.1  
+Generada por **Departamento de Testing**  
+**Clean-Up Group**  
+**06/06/2020**  
 
 ## Versiones
-| Nombre | Fecha    | Motivos del cambio  | Version   |
-| ------ | -------- | ------------------- | --------- |
-| Departamento Testing | 18/05/2020 | Primera versión | 0.0.1 |
-| Departamento Testing | 19/05/2020 | Cambios propuesta Tom | 0.0.2 |
+| Nombre               | Fecha      | Motivos del cambio                               | Version |
+| -------------------- | ---------- | ------------------------------------------------ | ------- |
+| Departamento Testing | 18/05/2020 | Primera versión                                  | 0.0.1   |
+| Departamento Testing | 19/05/2020 | Cambios propuesta Tom                            | 0.0.2   |
+| Departamento Testing | 31/05/2020 | Adaptación a los cambios de requisitos y formato | 0.0.3   |
+| Departamento Testing | 06/06/2020 | Cambios totales y actualización. Formato de pruebas establecido | 0.1  |
 
-## Requisitos
-| ID    | Título                         | Descripción                                                                                                                      | Prioridad   | Precedencia        | Tipo         |
-|-------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------|-------------|--------------------|--------------|  
-| R1    | Conexión a Internet            | Deberán tener una conexión estable a internet                                                                                    | Fundamental |                    | Funcional    |
-| R1.1  | Navegador Web                  | Es necesario que el navegador web soporte HTML5, geolocalización y subida de imágenes                                            | Fundamental |                    | No Funcional |
-| R2    | Aplicación de escritorio       | Los agentes necesitan instalar la aplicación en su PC                                                                            | Fundamental | R3, R3.1           | Funcional    |
-| R2.2  | Sistema operativo              | Deben tener un sistema operativo Windows 10 home o Pro                                                                           | Fundamental |                    | No Funcional |
-| +R3    | Crear cuenta                   | Todo el mundo podrá crearse una cuenta desde la plataforma web                                                                   | Fundamental | R1                 | Funcional    |
-| +R3.1  | Cuenta agente                  | Los agentes tendrán acceso a más funcionalidades que los usuarios normales                                                       | Fundamental | R3.1               | Funcional    |
-| R4    | GDPR                           | Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de protección de datos                  | Fundamental | R1, R23            | Funcional    |
-| R5    | Verificación                   | Los usuarios deben de verificar su cuenta                                                                                        | Fundamental | R1, R3             | Funcional    |
-| R5.1  | Verificación de teléfono       | Los usuarios verificarán su teléfono a través de un SMS                                                                          | Fundamental | R1, R3             | No Funcional |
-| R5.2  | Verificación de cuenta         | Los usuarios verificarán su cuenta a través del correo electrónico                                                               | Fundamental | R1, R3             | No Funcional |
-| +R6    | Iniciar sesión                 | Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web                                          | Fundamental | R1, R3             | Funcional    |
-| R6.1  | Tiempo de inactividad          | La sesión se mantendrá iniciada por un máximo de 1 hora después de que comience la inactividad                                   | Opcional | R1, R3             | Funcional    |
-| +R7    | Crear incidencias              | El usuario podrán crear incidencias con imágenes, título, descripción y coordenadas                                              | Fundamental | R1, R3, R3.1, R5   | Funcional    |
-| R7.1  | Imágenes en una incidencia     | Las incidencias se deberán subir con imágenes                                                                                    | Fundamental | R1, R1.1, R6       | Funcional    |
-| R7.1.1| Máximo de imágenes             | El número máximo de imágenes que se pueden subir son 3                                                                           | Fundamental | R1, R1.1           | No Funcional |
-| R7.1.2| Formato de imágenes            | El formato de las imágenes debe ser .PNG o .JPG                                                                                  | Fundamental | R1, R1.1           | No Funcional |
-| R7.1.3| Capacidad de imágenes          | Las imágenes ocuparán como máximo 50MB por incidencia                                                                            | Fundamental | R1, R1.1           | No Funcional |
-| R7.2  | Longitud del texto             | Los textos estarán limitados a un número máximo de 250 caracteres                                                                | Deseable    |                    | No Funcional |
-| R7.3  | Coordenadas GPS                | Las coordenadas se obtienen desde el GPS del móvil o a través del uso de coordenadas                                             | Fundamental | R1, R1.1           | No Funcional |
-| R7.3.1| Tipo de coordenadas            | Las coordenadas deberán estar expresadas en grados, minutos y segundos                                                           | Fundamental | R1, R1.1           | No Funcional |
-| R7.4  | Duplicado de incidencias       | El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma            | Fundamental |                    | Funcional    |
-| R7.4.1| Reconocimiento duplicados      | El sistema reconocerá las posibles incidencias duplicadas a mediante el uso de las coordenadas                                   | Fundamental | R7.3               | No Funcional |
-| R8    | Información al usuario         | Se presentará al usuario toda información legal necesaria                                                                        | Fundamental |                    | Funcional    |
-| R9    | Editar incidencia              | Los agentes y usuarios podrán editar las incidencias que se les hayan asignado o creado, respectivamente                         | Fundamental | R1, R3, R6         | Funcional    |
-| R10   | Eliminar incidencia            | Los agentes y usuarios podrán eliminar las incidencias que se les hayan asignado o creado, respectivamente                       | Fundamental | R1, R3, R6         | Funcional    |
-| R11   | Fusionar incidencias           | Los agentes tendrán la posibilidad de fusionar una o varias incidencias                                                          | Deseable    | R1, R3, R6         | Funcional    |
-| R12   | Seleccionar incidencias        | Los agentes deberán poder seleccionar varias incidencias a la vez                                                                | Deseable    | R1, R3, R6         | Funcional    |
-| R13   | Notificaciones                 | Los usuarios y agentes podrán comentar las incidencias. Tras cada comentario, se notificará a los usuarios implicados            | Fundamental | R1, R3, R6         | Funcional    |
-| R13.1 | Recibir notificaciones         | Las notificaciones serán a través de correo electrónico                                                                          | Deseable    | R1, R3, R6         | No Funcional |
-| R14   | Asignación de incidencias      | Se podrán asignar las incidencias a un agente                                                                                    | Deseable    | R1, R3             | Funcional    |
-| R15   | Ajustes de perfil              | Los agentes y usuarios podrán ajustar su perfil en la sección de ajustes                                                         | Fundamental | R1, R3, R6         | Funcional    |
-| R15.1 | Cambiar datos en ajustes       | Los agentes y usuarios podrán cambiar sus datos en la sección de ajustes                                                         | Fundamental | R1, R3, R6         | Funcional    |
-| R15.2 | Eliminar cuenta en ajustes     | Los agentes y usuarios podrán eliminar su cuenta en la sección de ajustes                                                        | Fundamental | R1, R3, R6         | Funcional    |
-| R15.3 | Preferencia de notificaciones  | Los agentes y usuarios podrán cambiar la prefencia de las notificaciones en la sección de ajustes                                | Fundamental | R1, R3, R6         | Funcional    |
-| R16   | Restablecer contraseña         | Los usuarios y agentes podrán restablecer su contraseñas en la pantalla de inicio de sesión y en los ajustes de perfil           | Fundamental | R1, R3, R6         | Funcional    |
-| R17   | Estado de incidencias          | Los agentes podrán cambiar el estado de las incidencias                                                                          | Deseable    | R1, R3, R6, R9     | Funcional    |
-| R18   | Lista de incidencias           | Los usuarios y agentes tendrán una pestaña donde podrán ver todas las incidencias que hayan creado o sido asignados              | Deseable    | R1, R3, R6         | Funcional    |
-| R18.1 | Máximo numero incidencias      | Las listas enseñarán un maximo de 10 incidencias por página                                                                      | Opcional    |                    | No Funcional |
-| R19   | Página de inicio               | Muestra una lista de incidencias relevantes al usuario y agente                                                                  | Fundamental | R1, R3, R6         | Funcional    |
-| R20   | Mapa de incidencias            | Los agentes tendrán acceso a un mapa con todas las incidencias señalizadas por ubicación                                         | Deseable    | R1, R3, R6         | Funcional    |
-| R21   | Estadísticas                   | Los agentes podrán ver una pestaña de estadísticas sobre las incidencias                                                         | Opcional    | R1, R3, R6         | Funcional    |
-| R22   | Archivar incidencias           | Las incidencias deberán ser archivadas después de estar más de dos años en estado cerrado                                        | Opcional    | R9                 | Funcional    |
-| R23   | Certificación SSL              | Se usarán certificaciones SSL                                                                                                    | Fundamental |                    | No Funcional |
-| R24   | Protocolo del servidor         | La web se servira mediante HTTPS                                                                                                 | Deseable    |                    | No Funcional |
+### __4.1 Precedencia y prioridad__
+| ID     | Título                        | Descripción                                                                                                              | Prioridad   | Precedencia        | Tipo         |
+| ------ | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------- | ------------------ | ------------ |
+| R1     | Conexión a Internet           | Deberán tener una conexión estable a internet                                                                            | Fundamental |                    | No Funcional |
+| R1.1   | Navegador Web                 | Es necesario que el navegador web soporte HTML5 y subida de imágenes                                                     | Fundamental |                    | No Funcional |
+| R2     | Cerrar sesión                 | Los ciudadanos y agentes pueden cerrar sesión                                                                            | Fundamental | R1,R3 ,R6          | Funcional    |
+| R3     | Crear cuenta                  | Todo el mundo podrá crear una cuenta ciudadano desde la plataforma web                                                   | Fundamental | R1                 | Funcional    |
+| R3.1   | Cuenta agente                 | Los agentes tendrán acceso a más funcionalidades que los ciudadanos                                                      | Fundamental | R3                 | Funcional    |
+| R4     | GDPR                          | Los usuarios y agentes deberán aceptar las normas establecidas por Clean-Up sobre la ley de protección de datos          | Fundamental | R1, R23            | Funcional    |
+| R5     | Verificación                  | Los usuarios deben de verificar su correo electrónico                                                                    | Fundamental | R1                 | Funcional    |
+| R5.1   | Verificación de cuenta        | Los usuarios verificarán su cuenta                                                                                       | Fundamental | R1,R3              | No Funcional |
+| R6     | Iniciar sesión                | Cualquier persona registrada podrá iniciar sesión en el sistema desde la plataforma web                                  | Fundamental | R1,R3              | Funcional    |
+| R6.1   | Tiempo de inactividad         | La sesión se mantendrá iniciada por un máximo de 1 hora después de que comience la inactividad                           | Opcional    | R1                 | Funcional    |
+| R7     | Crear incidencias             | Solo el ciudadano podrá crear incidencias con imágenes, título, descripción y dirección                                  | Fundamental | R1,R3, R5          | Funcional    |
+| R7.1   | Imágenes en una incidencia    | Las incidencias se deberán subir con imágenes                                                                            | Fundamental | R1, R1.1,R3, R6    | Funcional    |
+| R7.1.1 | Máximo de imágenes            | El número máximo de imágenes que se pueden subir son 3                                                                   | Fundamental | R1, R1.1, R3       | No Funcional |
+| R7.1.2 | Formato de imágenes           | El formato de las imágenes debe ser .PNG o .JPG                                                                          | Fundamental | R1, R1.1, R3, R6   | No Funcional |
+| R7.1.3 | Capacidad de imágenes         | Las imágenes ocuparán, como máximo, 15mb cada una                                                                        | Fundamental | R1, R1.1 , R3,  R6 | No Funcional |
+| R7.2   | Longitud del texto            | Los textos estarán limitados a un número máximo de 250 caracteres                                                        | Deseable    |                    | No Funcional |
+| R7.3   | Dirección incidencia          | Se pedirá al ciudadano por la dirección de la incidencia                                                                 | Fundamental | R1, R1.1 ,R3       | No Funcional |
+| R7.3.1 | Formato dirección             | La dirección deberá contener la calle, número de puerta y código postal                                                  | Fundamental | R1, R1.1 ,R3       | No Funcional |
+| R7.4   | Duplicado de incidencias      | El sistema reconocerá si la incidencia ya existe en la base de datos, por lo que preguntará al creador si es la misma    | Deseable    | R7                 | Funcional    |
+| R7.4.1 | Reconocimiento duplicados     | El sistema reconocerá las posibles incidencias duplicadas mediante la comparación del código postal y calle              | Deseable    | R7.3               | No Funcional |
+| R8     | Información al usuario        | Se presentará al usuario toda información legal necesaria                                                                | Fundamental |                    | Funcional    |
+| R9     | Editar incidencia             | Los usuarios podrán editar el título y la descripción de las incidencias creadas                                         | Fundamental | R1, R6 ,R7         | Funcional    |
+| R10    | Cerrar incidencia             | Los agentes podrán cerrar las incidencias que se les hayan asignado                                                      | Fundamental | R1, R6 ,R7         | Funcional    |
+| R11    | Anidar incidencias            | Los agentes tendrán la posibilidad de anidar una o varias incidencias                                                    | Opcional    | R1, R6 , R7        | Funcional    |
+| R12    | Seleccionar incidencias       | Los agentes deberán poder seleccionar varias incidencias a la vez                                                        | Deseable    | R1, R6  ,R7        | Funcional    |
+| R13    | Comentarios                   | Los agentes podrán comentar las incidencias                                                                              | Fundamental | R1, R6             | Funcional    |
+| R13.1  | Recibir notificaciones        | Las notificaciones serán a través de correo electrónico                                                                  | Deseable    | R1,R3, R6  ,R7     | No Funcional |
+| R13.2  | Formato comentarios           | Los comentarios tendrán un límite de 200 caracteres                                                                      | Fundamental | R1,R3, R5, R6, R7  | No Funcional |
+| R14    | Asignación de incidencias     | Se podrán asignar las incidencias a un agente                                                                            | Deseable    | R1, R3, R7         | Funcional    |
+| R15    | Ajustes de perfil             | Los agentes y ciudadanos podrán cambiar el nombre del perfil en la sección de ajustes                                    | Fundamental | R1,R3, R6          | Funcional    |
+| R15.1  | Eliminar cuenta en ajustes    | Los agentes y ciudadanos podrán eliminar su cuenta en la sección de ajustes                                              | Fundamental | R1,R3, R6          | Funcional    |
+| R15.2  | Preferencia de notificaciones | Los agentes y ciudadanos podrán cambiar la preferencia de las notificaciones en la sección de ajustes                    | Opcional    | R1, R3,R6          | Funcional    |
+| R16    | Restablecer contraseña        | Los ciudadanos y agentes podrán restablecer su contraseñas en la pantalla de inicio de sesión y en los ajustes de perfil | Deseable    | R1,R3, R6          | Funcional    |
+| R17    | Estado de incidencias         | Los agentes podrán cambiar el estado de las incidencias                                                                  | Fundamental | R1,R3, R6, R9      | Funcional    |
+| R18    | Lista de incidencias          | Los ciudadanos y agentes tendrán una pestaña donde podrán ver todas las incidencias que hayan creado o sido asignados    | Deseable    | R1, R3,R6          | Funcional    |
+| R18.1  | Máximo numero incidencias     | Las listas enseñarán un maximo de 10 incidencias por página                                                              | Opcional    | R1,R3,R6           | No Funcional |
+| R19    | Página de inicio              | Muestra una lista de las incidencias creadas por el ciudadano y asignadas al agente.                                     | Fundamental | R1, R6             | Funcional    |
+| R20    | Mapa de incidencias           | Los agentes tendrán acceso a un mapa con todas las incidencias señalizadas por ubicación                                 | Deseable    | R1,R3, R6          | Funcional    |
+| R21    | Estadísticas                  | Los agentes podrán ver una pestaña de estadísticas sobre las incidencias                                                 | Opcional    | R1,R3, R6          | Funcional    |
+| R22    | Archivar incidencias          | Las incidencias deberán ser archivadas después de estar más de dos años en estado cerrado                                | Opcional    | R3, R9             | Funcional    |
+| R23    | Certificación SSL             | Se usarán certificaciones SSL                                                                                            | Fundamental |                    | No Funcional |
+| R24    | Protocolo del servidor        | La web se servira mediante HTTPS                                                                                         | Deseable    |                    | No Funcional |
+
 
 ## Pruebas en requisitos
-| ID    | Título                         | Descripción                                                                                                                                                                        |
-|-------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
-| R1    | Conexión a Internet            | Se probará el acceso a la plataforma desde distintos dispositivos limitando la velocidad de internet que tienen                                                                    |
-| R1.1  | Navegador Web                  | Uso de múltiples navegadores: Chrome, Opera, Firefox y Brave tanto en móvil cómo en escritorio para comprobar su funcionamiento                                                    |
-| R2    | Caché                          | Comprobar que una vez cargada la página, estando sin conexión la caché funciona                                                                                                    |
-| R2.1  | Tamaño Caché                   | Comprobar que realmente el tamaño que almacena la plataforma es el indicado                                                                                                        |
-| R2.2  | Encriptación Cache             | Si se implementa.                                                                                                                                                                  |
-| R3    | Crear cuenta                   | Pruebas unitarias: creación de cuentas usando cadenas de emojis, usando opciones de codificiación de caracteres distintas, email sin usar @                                        |
-| R3    |                                | Pruebas caja blanca: Creación de multiples cuentas con mismo correo, cuentas de usuario cuyo nombre es código SQL                                                                  |
-| R3.1  | Cuenta agente                  | Comprobar las funciones de la cuenta agente y si un usuario pudiese acceder a ello                                                                                                 |
-| R4    | GDPR                           | Tener una página explicando que se cumple la GPDR                                                                                                                                  |
-| R5    | Verificación                   | vamos a comprobar el email                                                                                                                                                         |
-| R5.1  | Verificación de teléfono       | No vamos a comprobarla                                                                                                                                                             |
-| R5.2  | Verificación de cuenta         | Comprobar que llegue la verificación al correo electrónico y que no vuelva a pedir verificación                                                                                    |
-| R6    | Iniciar sesión                 | Pruebas unitarias: Comprobar que el sistema se pare con cada intento fallido                                                                                                       |
-Pruebas caja blanca: Multiples intentos de acceso desde distintos dispositivos, fallar en la contraseña de forma intencionada repetidamente                                                                                   |
-| R6.1  | Tiempo de inactividad          | Iniciar sesión con 4 cuentas y dejar en inactividad total una hasta que se le expulse, inactividad parcial otra donde no salte a una nueva página pero siga usando en la que está, por otra parte las dos en las que no nos deberían expulsar, usar la página pero con periodos largos de inactividad de 50 minutos, usar la página de forma intensiva                                                                    |
-| R7    | Crear incidencias              | Comprobaremos que sólo desde la cuenta de usuario se puedan crear incidencias                                                                                                      |
-| R7.1  | Imágenes en una incidencia     | Creación de múltiples incidencias con la intención de saturar el servidor y ver cómo reacciona, y sando cadenas de emojis, usando opciones de codificiación de caracteres distintas|
-| R7.1.1| Máximo de imágenes             | Subir más de 3 fotos con la incidencia                                                                                                                                             |
-| R7.1.2| Formato de imágenes            | Cómo reacciona la plataforma si le pasamos otros formatos de archivos, probando con cada uno de los formatos más conocidos                                                         |
-| R7.1.3| Capacidad de imágenes          | Subir más de 50mb con una sóla foto, con dos fotos y con tres fotos, cambiando el tamaño de cada una                                                                               |
-| R7.2  | Longitud del texto             | Comprobar si realiza la cuenta correctamente con otras codificaciones de carácteres y no permite realizar mensajes de más de 250 carácteres                                        |
-| R7.3  | Dirección calle                | Partimos de que el usuario siempre va a introducir una calle correcta, no sabríamos resolver el problema de comprobar que la calle exista y sea correcta sin fuerza bruta          |
-| R7.3.1| Formato de dirección calle     | Rellenamos la dirección con formato incorrecto y comprobamos que errores nos saltan                                                                                                |
-| R7.4  | Duplicado de incidencias       | Creación de múltiples incidencias iguales con el mismo usuario, y con usuarios distintos                                                                                           |
-| R7.4.1| Reconocimiento duplicados      | Comprobar que introduciendo el mismo CP y la misma calle con combinaciones de tildes, mayúscula y minúscula distintos al nombre el sistema detecte que se refiere a la misma       |
-| R8    | Información al usuario         | Comprobar que tanto el usuario cómo el agente puede acceder a la información legal                                                                                                 |
-| R9    | Editar incidencia              | Comprobar que los usuarios tienen capacidad de modificar la información de sus incidencias y no pueden modificar la de otros usuarios                                              |
-| R10   | Cerrar incidencia              | Comprobar que el usario puede cerrar sus propios tickets mientras que los agentes pueden cerrar cualquiera                                                                         |
-| R11   | Fusionar incidencias           | Testeo si se implementa                                                                                                                                                            |
-| R12   | Seleccionar incidencias        | Comprobar que el agente puede seleccionar varias incidencias y realizar operaciones en ellas                                                                                       |
-| R13   | Comentarios                    | Comprobar que únicamente los agentes pueden comentar y que sólo admita texto                                                                                                       |
-| R13.1 | Notificaciones comentarios     | Comprobar que sólo la cuenta usuario relacionada con la incidencia recibe el correo de la notificación                                                                             |
-| R13.2 | Longitud del texto             | Comprobar si cuenta correctamente con otras codificaciones de carácteres y no permite realizar mensajes de más de 250 carácteres                                                   |
-| R14   | Asignación de incidencias      | Testeo si se implementa                                                                                                                                                            |
-| R15   | Ajustes de perfil              | Comprobar que tanto el agente cómo el usuario pueden acceder únicamente a sus ajustes de perfil y no intervenir en otros perfiles                                                  |
-| R15.1 | Cambiar datos en ajustes       | Comprobar que tanto el agente cómo el usuario pueden cambiar los datos únicamente a sus ajustes de perfil y no intervenir en otros perfiles                                        |
-| R15.2 | Eliminar cuenta en ajustes     | Comprobar que tanto el agente cómo el usuario pueden eliminar su cuenta en sus ajustes de perfil y no poder eliminar la de otros perfiles                                          |
-| R15.3 | Preferencia de notificaciones  | Comprobar que tanto el agente cómo el usuario pueden cambiar la preferencia de notificaciones únicamente a sus ajustes de perfil y no intervenir en otros perfiles                 |
-| R16   | Restablecer contraseña         | Comprobar que tanto el agente cómo el usuario pueden restablecer únicamente su contraseña y no intervenir en otros perfiles                                                        |
-| R17   | Estado de incidencias          | Testeo si se implementa                                                                                                                                                            |
-| R18   | Lista de incidencias           | Testeo si se implementa                                                                                                                                                            |
-| R18.1 | Máximo numero incidencias      | Testeo si se implementa                                                                                                                                                            |
-| R19   | Página de inicio               | Comprobar que para el usuario muestra una lista de sus incidencias, mientras que para el agente muestra la lista de las incidencias asignadas a él                                 |
-| R20   | Mapa de incidencias            | Testeo si se implementa                                                                                                                                                            |
-| R21   | Estadísticas                   | Testeo si se implementa                                                                                                                                                            |
-| R22   | Archivar incidencias           | Testeo si se implementa                                                                                                                                                            |
-| R23   | Certificación SSL              | Comrpobar que la página web cumple con los requisitos para la certificación SSL y que los mantiene con el tiempo                                                                   |
-| R24   | Protocolo del servidor         | Testeo si se implementa                                                                                                                                                            |
+
+Las pruebas se van a realizar en Widnows 10 Pro para comprobar el funcionamiento en ordenadores donde se va a probar su rendimiento en Chrome, Opera y Firefox. En plataformas móviles se comprobará de forma directa el funcionamiento en Android v8.0.0 y mediante las opciones de desarrollo proporcionadas por google chrome, se probará que la web se ajusta bien a las pantallas de iphone X e ipad.
+
+| ID        | Pruebas                                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------------------ |
+| R1 y R1.1 | Estos requisitos se comprobarán de forma simultánea conforme se realicen las pruebas de los demás requisitos. |
+| R2 y R6   | Se inciará sesión con cada cuenta y se cerrará sesión después, probándose así las dos funcionalidades. |
+| R3 y R4   | Se van a crear 4 cuentas de usuario, dos de ellas serán con correos exclusivamente creados para pruebas, pruebascleanup@outlook.es (Cuenta 1) y pruebasclean@gmail.com (Cuenta 2)  y 2 con correo personal de cara a tener una cuenta para cada navegador y el móvil. Cómo crear cuenta implica aceptar las normas establecidas por Clean-Up sobre la ley de protección de datos también se comprueba R4. |
+| R3.1 | La cuenta agente nos la proporciona directamente el administrador, se le solicitará que se realice con agentecleanup@gmail.com. |
+| R5 y 5.1  | Una vez creadas las cuentas se comprobarán que se ha enviado el correo de confirmación de cada cuenta. |
+| R6.1 | Se iniciará sesión y se dejarán cronometará el tiempo de inactividad de las cuentas inactivas tomando cómo tiempos principales a 50 minutos, 60 minutos y 70 minutos, donde ya debería de haberse cerrado la cuenta. |
+| R7 7.1 7.1.1 7.1.2 7.1.3 7.2 7.3 7.3.1 7.4 7.4.1 | Debido a que crear una incidencia implica título, descripción imágenes y dirección, podemos probar todos los requisitos relacionados a la vez creando incidencias con cada usuario. Se crearán un total de 6 incidencias, 3 para requisitos de texto e imágenes, una cuarta que tendrá mismos código postal (CP) y calle que la incidencia 1 para probar si detecta duplicados y 2 para pruebas de otros requisitos. Siguiendo el apartado formato de los tickets pruebas de R7.|
+| R8 | Se intentará acceder a un apartado donde esté la información legal necesaria para el ciudadano. |
+| R9 | Se editarán la descripción de las incidencia 1 y 2 para tener 250 letras y 20 respectivamente, y el título pasará a ser incidencia 1 editado e incidencia 2 editado. |
+| R10 | Desde la cuenta agente se probará a cerrar la incidencia 3. |
+| R11 | Desde la cuenta agente se anidarán las incidencias 5 y 6. |
+| R12 | Desde la cuenta agente se probará si puede seleccionar varias incidencias.|
+| R13 R13.2 | Desde la cuenta agente se probará a comentar la incidencia 5 y 6, en la primera será un comentario de 199 caracteres y en la segunda de 200.|
+| R13.1     | Se comprobará si han llegado alguna notificación al correo de la cuenta a la que se han hecho comentarios. |
+| R14       | Se le asignarán todas las incidencias al agente que hemos creado. |
+| R15 | Se cambiará el nombre de usuario en Cuenta 1 y Cuenta 2  a Cuenta 1 editado y Cuenta 2 editado. |
+| R15.1     | Se borrarán las cuentas creadas con correos personales. |
+| R15.2     | Se cambiarán las preferencia de notificaciones de Cuenta 1 y Cuenta 2. 
+| R16       | Se cambiarán las contraseñas de Cuenta 1  y del agente. Ambas en inicio de sesión y en ajustes de usuario. |
+| R17 R18 R18.1 | Se crearán 8 incidencias en Cuenta 2 para probar que sólo se llegan a mostrar 10 en la vista de usuario y que el agente también se le muestra una lista de máximo 10 incidencias. Además se comprobará que aparezca en cada incidencia su estado.|
+| R19       | Una vez creadas las incidencias se comprobará en Cuenta 1, Cuenta 2 y agente que en su página de inicio se muestran sus incidencias cumpliendo las condiciones de la lista. |
+| R20       | Se comprobará que al agente se le muestre un mapa con las incidencias.  No implementado. |
+| R21       | Se comprobará que al agente se le muestre estadísticas de las incidencias. No implementado. |
+| R22       | Se comprobará que las incidencias se archiven pasados 2 años. No implementado. |
+| R23 R24   | Se comprobará si la conexión con el servidor es segura y cumple SSL y HTTPS.  El servidor usa el protocolo https y SSL para conectarse y el intercambio de paquetes. |
+
+## Formato de los tickets pruebas de R7:
+- Título: incidencia 1,  descripción de 20 letras, 1 imagen .png 399KB  y dirección: CP 29000 Calle Larios Nº 1. Cuenta 1. 
+- Título: incidencia 2,  descripción de 250 letras, 2 imagenes (15 MB .png y 15 MB.jpg)y dirección: CP 29000 Calle Alameda Nº 1. Cuenta 1.
+- Título: incidencia 3,  descripción de 249 letras, 3 imagenes .png 15 MB .jpg 15MB .png 399KB  y dirección: CP 29000 Calle Andalucía Nº 1. Cuenta 1. 
+- Título: incidencia 4,  descripción de 20 letras, 1 imagen .png 399KB  y dirección: CP 29000 Calle Larios Nº 1. Cuenta 2.
+- Título: incidencia 5,  descripción de 20 letras, 1 imagen .png 399KB y dirección: CP 29000 Calle Guindos Nº 1. Cuenta 2.
+- Título: incidencia 6,  descripción de 20 letras, 1 imagen .png 399KB y dirección: CP 29000 Calle Rodahuevos Nº 1. Cuenta 2.
