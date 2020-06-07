@@ -27,9 +27,9 @@ describe('Componente Comment', () => {
 			}
 		});
 		const componentText = component.text();
-		expect(componentText.includes(comment.agent)).toBe(true);
-		expect(componentText.includes(comment.date)).toBe(true);
-		expect(componentText.includes(comment.message)).toBe(true);
+		expect(componentText).toContain(comment.agent);
+		expect(componentText).toContain(comment.date);
+		expect(componentText).toContain(comment.message);
 	});
 });
 
