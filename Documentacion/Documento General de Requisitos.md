@@ -61,9 +61,9 @@ Para comunicarse, el ciudadano solo tendrá que subir a través de la página we
 - __Agente:__ serán funcionarios del ayuntamiento que resolverán incidencias generadas por usuarios en una provincia de España.
 - __Interfaces:__ es posible entenderlo como una superficie con el objeto de aportar información a través de su textura, forma o color.
 - __Cliente:__ es el ayuntamiento en este caso, pero podría extenderse a cualquiera persona o empresa que quisiese adquirir nuestro sistema.
-- __Subscripción:__ pago por mensualidad, a través de adeudos por domiciliación.
 - __RF:__ Requisitos Funcionales.
 - __RNF:__ Requisitos No Funcionales.
+- __GDPR:__ General Data Protection Regulation,reglamento relativo a la protección de datos de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos .
 
 ### __1.4 Resumen del documento__
 En este documento se especifican los requisitos que en un principio se han educido para nuestro proyecto. En él podrás visualizar los requisitos, su prioridad, su justificación y las dependencias con otros requisitos. Además se especifican las principales funciones que tendrá el sistema.
