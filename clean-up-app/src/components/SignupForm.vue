@@ -86,7 +86,7 @@
 			reset() {
 				this.name = '';
 				this.email = '';
-				this.password = '';
+				this.pass = '';
 				this.gdpr = false;
 			}
 		}

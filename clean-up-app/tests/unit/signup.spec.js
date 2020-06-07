@@ -167,7 +167,11 @@ describe('Función de registro', () => {
 		});
 	});
 
-	it('Reset limpia los datos', () => {
+	it('Reset limpia los datos', async () => {
+		component.vm.$data.name = 'not empty';
+		component.vm.$data.email = 'not empty';
+		component.vm.$data.pass = 'not empty';
+		component.vm.$data.gdpr = false;
 		component.vm.reset();
 		expect(component.vm.$data.name).toBe('');
 		expect(component.vm.$data.email).toBe('');
