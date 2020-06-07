@@ -56,7 +56,7 @@
 		methods: {
 			signup() {
 				auth.createUserWithEmailAndPassword(this.email, this.pass)
-				.then(userRef => {
+					.then(userRef => {
 						userRef.user
 							.updateProfile({
 								displayName: this.name
@@ -71,22 +71,23 @@
 							.then(() => {
 								userRef.user
 									.sendEmailVerification()
-									.then(function() {
+									.then(() => {
 										success(
 											'Email de verificación enviado, comprueba tu correo'
 										);
 									});
-							})
-							.then(() => {
-								this.name = '';
-								this.email = '';
-								this.password = '';
-								this.gdpr = false;
+								this.reset();
 							});
 					})
-					.catch(function(error) {
+					.catch(error => {
 						warning(authErrors(error));
-					})
+					});
+			},
+			reset() {
+				this.name = '';
+				this.email = '';
+				this.password = '';
+				this.gdpr = false;
 			}
 		}
 	};

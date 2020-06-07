@@ -227,6 +227,7 @@
 										cp: this.cp,
 										date: Date.now(),
 										images: imagesUrl,
+										userUid: uid,
 										allowedUsers: [uid],
 										hasChildren: false,
 										agentUid: '',
@@ -243,7 +244,8 @@
 							});
 					})
 					.catch(err => {
-						warning(err);
+						console.error(err);
+						warning('Se ha producido un error');
 					});
 			}
 		}

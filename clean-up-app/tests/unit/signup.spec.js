@@ -2,6 +2,13 @@ import { shallowMount } from '@vue/test-utils';
 import SignupForm from '@/components/SignupForm.vue';
 import firebase from '@/firebase';
 import notificaciones from '@/helpers/notificaciones';
+import authErrors from '@/helpers/authErrors';
+
+jest.mock('../../src/helpers/authErrors.js', () =>
+	jest.fn(() => {
+		return 'authError';
+	})
+);
 
 jest.mock('../../src/helpers/notificaciones.js', () => ({
 	warning: jest.fn(),
@@ -10,7 +17,18 @@ jest.mock('../../src/helpers/notificaciones.js', () => ({
 
 jest.mock('../../src/firebase.js', () => ({
 	auth: {
-		createUserWithEmailAndPassword: jest.fn(),
+		createUserWithEmailAndPassword: jest.fn()
+	},
+	db: {
+		collection: jest.fn(() => {
+			return {
+				doc: jest.fn(() => {
+					return {
+						set: jest.fn()
+					};
+				})
+			};
+		})
 	}
 }));
 
@@ -137,31 +155,55 @@ describe('Estado del botón de crear cuenta', () => {
 });
 
 describe('Función de registro', () => {
-	
 	let component;
-	
+
 	beforeEach(() => {
 		notificaciones.warning.mockClear();
 		notificaciones.success.mockClear();
+		firebase.db.collection.mockClear();
 		firebase.auth.createUserWithEmailAndPassword.mockClear();
-		component = shallowMount(SignupForm,{
-			stubs: ['router-link'],
+		component = shallowMount(SignupForm, {
+			stubs: ['router-link']
 		});
 	});
 
-	it('Se actualiza el nombre del usuario', async () => {
-		firebase.auth.createUserWithEmailAndPassword.mockResolvedValue();
+	it('Reset limpia los datos', () => {
+		component.vm.reset();
+		expect(component.vm.$data.name).toBe('');
+		expect(component.vm.$data.email).toBe('');
+		expect(component.vm.$data.pass).toBe('');
+		expect(component.vm.$data.gdpr).toBe(false);
+	});
+
+	it('Se crea el usuario', async () => {
+		const emailVerification = jest.fn().mockResolvedValueOnce();
+		firebase.auth.createUserWithEmailAndPassword.mockResolvedValueOnce({
+			user: {
+				updateProfile: jest.fn().mockResolvedValueOnce(),
+				sendEmailVerification: emailVerification
+			}
+		});
 		const signup = jest.spyOn(component.vm, 'signup');
+		const reset = jest.spyOn(component.vm, 'reset');
 		signup();
-		await notificaciones.success();
+		await component.vm.$nextTick();
+		await component.vm.$nextTick();
+		expect(firebase.auth.createUserWithEmailAndPassword).toHaveBeenCalled();
+		expect(firebase.db.collection).toHaveBeenCalledWith('users');
+		expect(emailVerification).toHaveBeenCalled();
 		expect(notificaciones.success).toHaveBeenCalled();
-	})
+		expect(reset).toHaveBeenCalled();
+	});
 
 	it('No procede si el correo es inválido', async () => {
-		firebase.auth.createUserWithEmailAndPassword.mockRejectedValue(new Error('auth/invalid-email'));
+		const error = new Error();
+		firebase.auth.createUserWithEmailAndPassword.mockRejectedValueOnce(
+			error
+		);
 		const signup = jest.spyOn(component.vm, 'signup');
 		signup();
 		await component.vm.$nextTick();
-		expect(notificaciones.warning).toHaveBeenCalled();
+		expect(authErrors).toHaveBeenCalledWith(error);
+		expect(notificaciones.warning).toHaveBeenCalledWith('authError');
 	});
 });
