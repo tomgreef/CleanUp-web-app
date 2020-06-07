@@ -12,7 +12,7 @@ jest.mock('../../src/firebase.js', () => ({
 	storage: {
 		getUploadPromises: jest.fn(),
 		getDownloadPromises: jest.fn(),
-		ref: jest.fn(() =>{
+		ref: jest.fn(() => {
 			return {
 				child: jest.fn()
 			};
@@ -27,10 +27,10 @@ jest.mock('../../src/firebase.js', () => ({
 					};
 				})
 			};
-		})	
+		})
 	},
 	auth: {
-		currentUser: jest.fn(),
+		currentUser: {}
 	}
 }));
 
@@ -113,11 +113,9 @@ describe('Botón CrearTicket', () => {
 });
 
 describe('Función crear ticket', () => {
-	
 	let component;
-	
+
 	beforeEach(() => {
-		firebase.auth.currentUser.mockClear();
 		firebase.storage.getUploadPromises.mockClear();
 		firebase.storage.getDownloadPromises.mockClear();
 		firebase.storage.ref.mockClear();
@@ -126,16 +124,18 @@ describe('Función crear ticket', () => {
 		notificaciones.success.mockClear();
 		component = shallowMount(CreateTicket, {
 			stubs: ['router-link'],
-		})
-	})
+			mocks: {
+				$router: { replace: jest.fn() }
+			}
+		});
+	});
 
 	it('Lanza notificacion en caso de ticket completado', async () => {
 		firebase.storage.getUploadPromises.mockResolvedValueOnce();
 		const createTicket = jest.spyOn(component.vm, 'createTicket');
-		await createTicket();
+		createTicket();
 		await component.vm.$nextTick();
 		await component.vm.$nextTick();
 		expect(notificaciones.success).toHaveBeenCalled();
 	});
 });
-
