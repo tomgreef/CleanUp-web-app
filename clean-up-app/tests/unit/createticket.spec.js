@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import CreateTicket from '@/components/CreateTicket.vue';
 import notificaciones from '@/helpers/notificaciones';
-import authErrors from '@/helpers/authErrors';
 import firebase from '@/firebase';
 
 jest.mock('../../src/helpers/notificaciones.js', () => ({
@@ -118,6 +117,7 @@ describe('Función crear ticket', () => {
 	let component;
 	
 	beforeEach(() => {
+		firebase.auth.currentUser.mockClear();
 		firebase.storage.getUploadPromises.mockClear();
 		firebase.storage.getDownloadPromises.mockClear();
 		firebase.storage.ref.mockClear();
