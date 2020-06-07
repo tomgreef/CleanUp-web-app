@@ -7,10 +7,13 @@
 			@click="isEditTicketModalActive = true"
 			size="is-small"
 			:disabled="ticket.closed"
-			v-if="ticket.userUid != currentUserUid"
 			>Editar detalles de la incidencia</b-button
 		>
-		<b-modal :active.sync="isEditTicketModalActive" :width="720">
+		<b-modal
+			:active.sync="isEditTicketModalActive"
+			:width="720"
+			v-if="!ticket.closed"
+		>
 			<div class="card box">
 				<b-field
 					label="Titulo"
@@ -72,9 +75,9 @@
 		data: () => ({
 			title: '',
 			description: '',
-			cp: '',
+			cp: null,
 			street: '',
-			streetNumber: '',
+			streetNumber: null,
 			isEditTicketModalActive: false
 		}),
 		props: {

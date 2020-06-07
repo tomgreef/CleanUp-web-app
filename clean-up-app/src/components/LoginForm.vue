@@ -20,9 +20,9 @@
 
 <script>
 	import { auth } from '@/firebase';
-	import { authErrors } from '@/helpers/authErrors';
+	import authErrors from '@/helpers/authErrors';
 	import { warning } from '@/helpers/notificaciones';
-	import { getUserType } from '@/helpers/sessionHelper';
+	import getUserType from '@/helpers/sessionHelper';
 
 	export default {
 		data: () => ({
@@ -46,12 +46,13 @@
 								warning(
 									'Verifica tu correo para iniciar sesión'
 								);
-								auth.singout();
+								auth.signOut();
 							}
 						});
 					})
 					.catch(error => {
 						warning(authErrors(error));
+						auth.signOut();
 					});
 			}
 		}

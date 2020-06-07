@@ -23,7 +23,7 @@
 						class="card-image"
 					>
 						<figure class="image">
-							<img :src="url" />
+							<img :src="url" alt="No se pudo cargar la imagen" />
 						</figure>
 					</b-carousel-item>
 				</b-carousel>
@@ -43,7 +43,12 @@
 							<p>
 								{{ ticket.description }}
 							</p>
-							<PopUpEditTicket :ticket="ticket" v-if="!isAgent" />
+							<PopUpEditTicket
+								:ticket="ticket"
+								v-if="
+									!isAgent && ticket.userUid == currentUserUid
+								"
+							/>
 							<SubTicketPagination
 								v-if="ticket.hasChildren"
 								:isAgent="isAgent"
@@ -66,6 +71,7 @@
 </template>
 
 <script>
+	import { auth } from '@/firebase';
 	import CommentList from '@/components/CommentList';
 	import CreateComment from '@/components/CreateComment';
 	import SubTicketPagination from '@/components/SubTicketPagination';
@@ -88,6 +94,9 @@
 			SubTicketPagination
 		},
 		computed: {
+			currentUserUid() {
+				return auth.currentUser.uid;
+			},
 			showCreateComment() {
 				return this.isAgent && !this.ticket.closed;
 			}

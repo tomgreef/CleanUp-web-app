@@ -1,4 +1,4 @@
-export function authErrors(error) {
+export default function authErrors(error) {
 	let msg = '';
 	switch (error.code) {
 		// Errores de creación de cuenta

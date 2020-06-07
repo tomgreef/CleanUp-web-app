@@ -7,6 +7,6 @@ export function invalidTextSize(title, description, cp, streetNumber, street) {
 		cp > 29999 ||
 		streetNumber < 0 ||
 		streetNumber > 999 ||
-		street < 10
+		street.length < 10
 	);
 }

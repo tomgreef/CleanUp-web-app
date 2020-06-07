@@ -244,7 +244,8 @@
 							});
 					})
 					.catch(err => {
-						warning(err);
+						console.error(err);
+						warning('Se ha producido un error');
 					});
 			}
 		}

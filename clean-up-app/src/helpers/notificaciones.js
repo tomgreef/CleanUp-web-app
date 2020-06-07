@@ -21,3 +21,8 @@ export function success(msg) {
 		indefinite: false
 	});
 }
+
+export default {
+	success,
+	warning
+};
