@@ -1,5 +1,39 @@
 import { shallowMount } from '@vue/test-utils';
 import CreateTicket from '@/components/CreateTicket.vue';
+import notificaciones from '@/helpers/notificaciones';
+import authErrors from '@/helpers/authErrors';
+import firebase from '@/firebase';
+
+jest.mock('../../src/helpers/notificaciones.js', () => ({
+	warning: jest.fn(),
+	success: jest.fn()
+}));
+
+jest.mock('../../src/firebase.js', () => ({
+	storage: {
+		getUploadPromises: jest.fn(),
+		getDownloadPromises: jest.fn(),
+		ref: jest.fn(() =>{
+			return {
+				child: jest.fn()
+			};
+		})
+	},
+	db: {
+		collection: jest.fn(() => {
+			return {
+				doc: jest.fn(() => {
+					return {
+						set: jest.fn().mockResolvedValueOnce()
+					};
+				})
+			};
+		})	
+	},
+	auth: {
+		currentUser: jest.fn(),
+	}
+}));
 
 describe('Botón CrearTicket', () => {
 	const WrongImagesNumber = ['0', '1', '2', '3'],
@@ -78,3 +112,30 @@ describe('Botón CrearTicket', () => {
 		expect(wrapper.get('b-button-stub').attributes('disabled')).toBeFalsy();
 	});
 });
+
+describe('Función crear ticket', () => {
+	
+	let component;
+	
+	beforeEach(() => {
+		firebase.storage.getUploadPromises.mockClear();
+		firebase.storage.getDownloadPromises.mockClear();
+		firebase.storage.ref.mockClear();
+		firebase.db.collection.mockClear();
+		notificaciones.warning.mockClear();
+		notificaciones.success.mockClear();
+		component = shallowMount(CreateTicket, {
+			stubs: ['router-link'],
+		})
+	})
+
+	it('Lanza notificacion en caso de ticket completado', async () => {
+		firebase.storage.getUploadPromises.mockResolvedValueOnce();
+		const createTicket = jest.spyOn(component.vm, 'createTicket');
+		await createTicket();
+		await component.vm.$nextTick();
+		await component.vm.$nextTick();
+		expect(notificaciones.success).toHaveBeenCalled();
+	});
+});
+
