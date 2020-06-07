@@ -3,33 +3,22 @@ import PopUpEditTicket from '@/components/PopUpEditTicket';
 import firebase from '@/firebase';
 import notificaciones from '@/helpers/notificaciones';
 
-jest.mock('../../src/firebase.js', () => ({
-	auth: { currentUser: { uid: 'userUid' } }
-}));
+jest.mock('../../src/firebase.js', () => ({}));
 
 jest.mock('../../src/helpers/notificaciones.js', () => ({
 	success: jest.fn()
 }));
 
 describe('Botón de editar ticket', () => {
-	it('No se muestra si no eres el usuario creador', () => {
-		const component = shallowMount(PopUpEditTicket, {
-			propsData: {
-				ticket: {
-					userUid: 'idDeUsuario',
-					closed: false
-				}
-			}
-		});
-		expect(component.text()).not.toContain(
-			'Editar detalles de la incidencia'
-		);
-	});
 	it('Deshabilitado si el ticket está cerrado ', () => {
 		const component = shallowMount(PopUpEditTicket, {
+			computed: {
+				currentUserUid() {
+					return;
+				}
+			},
 			propsData: {
 				ticket: {
-					userUid: firebase.auth.currentUser.uid,
 					closed: true
 				}
 			}
@@ -40,14 +29,15 @@ describe('Botón de editar ticket', () => {
 	});
 	it('Habilitado si el ticket está abierto ', () => {
 		const component = shallowMount(PopUpEditTicket, {
+			computed: {
+				currentUserUid() {
+					return;
+				}
+			},
 			propsData: {
 				ticket: {
-					userUid: firebase.auth.currentUser.uid,
 					title: 'Titulo del ticket',
 					description: 'Descripción del ticket',
-					cp: 29007,
-					streetNumber: 23,
-					street: 'Calle Unitaria',
 					closed: false
 				}
 			}
@@ -69,35 +59,42 @@ describe('Función de guardar cambios', () => {
 				};
 			})
 		};
-		const data = {
+		const ticket = {
+			id: 'ticketId',
 			title: 'Titulo válido',
 			description: 'Descripción de la incidencia',
 			cp: 29007,
 			streetNumber: 23,
-			street: 'Calle Unitaria',
-			isEditTicketModalActive: true
+			street: 'Calle Unitaria'
 		};
 		const component = shallowMount(PopUpEditTicket, {
+			computed: {
+				currentUserUid() {
+					return;
+				}
+			},
 			propsData: {
-				ticket: { id: 'ticketId' }
+				ticket: ticket
 			},
 			data() {
-				return data;
+				return {
+					isEditTicketModalActive: true
+				};
 			}
 		});
 		const saveChanges = jest.spyOn(component.vm, 'saveChanges');
 		saveChanges();
 		await component.vm.$nextTick();
 		expect(firebase.db.collection).toHaveBeenCalledWith('tickets');
-		expect(doc).toHaveBeenCalledWith('ticketId');
+		expect(doc).toHaveBeenCalledWith(ticket.id);
 		expect(update).toHaveBeenCalledWith({
-			title: data.title,
-			description: data.description,
-			streetNumber: data.streetNumber
+			title: ticket.title,
+			description: ticket.description,
+			streetNumber: ticket.streetNumber
 		});
 		expect(notificaciones.success).toHaveBeenCalledWith(
 			'Incidencia modificada con éxito. Recarga para ver los cambios'
 		);
-		expect(data.isEditTicketModalActive).toBe(false);
+		expect(component.vm.isEditTicketModalActive).toBe(false);
 	});
 });
