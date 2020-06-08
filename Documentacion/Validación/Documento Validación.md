@@ -32,7 +32,7 @@ Generada por **Departamento de Testing**
 | R7.1   | Imágenes en una incidencia    | Las incidencias se deberán subir con imágenes                                                                            | Fundamental | R1, R1.1,R3, R6    | Funcional    |
 | R7.1.1 | Máximo de imágenes            | El número máximo de imágenes que se pueden subir son 3                                                                   | Fundamental | R1, R1.1, R3       | No Funcional |
 | R7.1.2 | Formato de imágenes           | El formato de las imágenes debe ser .PNG o .JPG                                                                          | Fundamental | R1, R1.1, R3, R6   | No Funcional |
-| R7.1.3 | Capacidad de imágenes         | Las imágenes ocuparán, como máximo, 15mb cada una                                                                        | Fundamental | R1, R1.1 , R3,  R6 | No Funcional |
+| R7.1.3 | Capacidad de imágenes         | Las imágenes ocuparán, como máximo, 15MB cada una                                                                        | Fundamental | R1, R1.1 , R3,  R6 | No Funcional |
 | R7.2   | Longitud del texto            | Los textos estarán limitados a un número máximo de 250 caracteres                                                        | Deseable    |                    | No Funcional |
 | R7.3   | Dirección incidencia          | Se pedirá al ciudadano por la dirección de la incidencia                                                                 | Fundamental | R1, R1.1 ,R3       | No Funcional |
 | R7.3.1 | Formato dirección             | La dirección deberá contener la calle, número de puerta y código postal                                                  | Fundamental | R1, R1.1 ,R3       | No Funcional |
