@@ -78,7 +78,7 @@ Las pruebas se van a realizar en Widnows 10 Pro para comprobar el funcionamiento
 |7.4 7.4.1| La cuarta incidencia que tendrá mismo código postal (CP) y calle que la incidencia 1 servirá para probar si el sistema detecta duplicados  y le pregunta al usuario. |
 | R8 | Se intentará acceder a un apartado donde esté la información legal necesaria para el ciudadano. |
 | R9 | Se editarán la descripción de las incidencia 1 y 2 para tener 250 letras y 20 respectivamente, y el título pasará a ser incidencia 1 editado e incidencia 2 editado. |
-| R10 | Desde la cuenta agente se probará a cerrar la incidencia 3. |
+| R10 | Desde la cuenta agente se probará a cerrar la incidencia 2 (que ya ha sido asignada a él). |
 | R11 | Desde la cuenta agente se anidarán las incidencias 5 y 6. |
 | R12 | Desde la cuenta agente se probará si puede seleccionar varias incidencias.|
 | R13 R13.2 | Desde la cuenta agente se probará a comentar la incidencia 5 y 6, en la primera será un comentario de 199 caracteres y en la segunda de 200.|
