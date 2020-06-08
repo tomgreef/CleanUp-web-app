@@ -100,3 +100,16 @@ Las pruebas se van a realizar en Widnows 10 Pro para comprobar el funcionamiento
 - Título: incidencia 4,  descripción de 20 letras, 1 imagen .png 399KB  y dirección: CP 29000 Calle Larios Nº 1. Cuenta 2.
 - Título: incidencia 5,  descripción de 20 letras, 1 imagen .png 399KB y dirección: CP 29000 Calle Guindos Nº 1. Cuenta 2.
 - Título: incidencia 6,  descripción de 20 letras, 1 imagen .png 399KB y dirección: CP 29000 Calle Rodahuevos Nº 1. Cuenta 2.
+
+
+
+## Resultados de las pruebas en requisitos:
+
+En caso se de que algún requisito no funcione correctamente para alguno de los navegadores especificados para las pruebas, se indicará al final del resultado de la prueba.
+
+| ID        | Resultados                                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------ |
+| R1 y R1.1 | La plataforma funciona perfectamente teniendo conexión a internet y un navegador web que soporte HTML5 y subida de imágenes. |
+| R2 y R6   | Una vez creada la cuenta y verificada, la plataforma permite el inicio y cierre de sesión de forma rápida y pulsando un único botón para iniciar sesión, y otro botón en rojo para cerrar sesión, en el caso de dispositivos móviles, para cerrar sesión primero deben desplegar el menú y luego pulsar el botón. |
+| R3 y R4   | Las cuentas se han satisfactoriamente, siendo obligatorio aceptar las condiciones de uso y la política de protección de datos personales cómo está definido en los requisitos. |
+| R3.1 | La cuenta de agente se ha creado satisfactoriamente después de pedirle al agente del sistema que la crease. | 
