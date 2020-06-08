@@ -59,11 +59,11 @@ Para comunicarse, el ciudadano solo tendrá que subir a través de la página we
 ### __1.3 Definiciones, acrónimos y abreviaturas__
 - __Ciudadano:__ serán las personas que usarán el software para comunicar desperfectos.
 - __Agente:__ serán funcionarios del ayuntamiento que resolverán incidencias generadas por usuarios en una provincia de España.
-- __Subscripción:__ pago por mensualidad, a través de adeudos por domiciliación.
 - __Interfaces:__ es posible entenderlo como una superficie con el objeto de aportar información a través de su textura, forma o color.
 - __Cliente:__ es el ayuntamiento en este caso, pero podría extenderse a cualquiera persona o empresa que quisiese adquirir nuestro sistema.
 - __RF:__ Requisitos Funcionales.
 - __RNF:__ Requisitos No Funcionales.
+- __GDPR:__ General Data Protection Regulation,reglamento relativo a la protección de datos de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos .
 
 ### __1.4 Resumen del documento__
 En este documento se especifican los requisitos que en un principio se han educido para nuestro proyecto. En él podrás visualizar los requisitos, su prioridad, su justificación y las dependencias con otros requisitos. Además se especifican las principales funciones que tendrá el sistema.
@@ -79,11 +79,11 @@ Se trata de una plataforma web nueva compuesta por un servidor que atenderá las
 ### __2.3 Restricciones del producto__
 - Se utilizará una base de datos NoSQL (Firebase)
 - Se podrán subir un máximo de tres fotografías por incidencia.
-- Los archivos pueden ocupar hasta 15MB cada uno, en formato .JPG y .PNG.
+- Los archivos pueden ocupar hasta 15mb cada uno, en formato .JPG y .PNG.
 - El sistema deberá cumplir la Ley de Protección de Datos de Carácter Personal (LOPD).  
 
 ### __2.4 Perfiles de usuario__
-Los perfiles de usuarios serán aquellos ciudadanos que se preocupan por sus entornos, ya que la única forma en la que se puede arreglar algo en la vía pública es a través del ayuntamiento.
+Los perfiles de usuarios serán aquellos ciudadanos que se preocupan por sus entornos, ya que la única forma en la que se puede arreglar una incidencia ocurrida en la vía pública es a través del ayuntamiento.
 El uso del software también se podrá ver afectado por la experiencia técnica de cada usuario y su manejo de la nueva tecnología.
 Los agentes serán otro perfil de usuario, y son los trabajadores del ayuntamiento a los que se les asignarán las incidencias.
 Los administradores también son otro perfil de usuario, que son el equipo encargado de administrar todo el sistema.
@@ -103,13 +103,13 @@ Todos los ciudadanos serán presentados con la página de incidencias, que serí
 
 ![Inicio de sesión](https://github.com/tomgreef/clean-up/blob/master/Recursos/Iniciar_Session.jpg)
 
-Una vez haya iniciado sesión tendrá la opción de crear nuevas incidencias o editar/ver las que ya tenga creadas, y además podrá ver lo que sucede por lo demás en su
+Una vez iniciada la sesión tendrá la opción de crear nuevas incidencias, editar/ver las incidencias creadas, y además podrá ver lo que sucede por lo demás a su
 alrededor. A continuación, un ejemplo de una incidencia creada por un usuario:
 
 ![Incidencia](https://github.com/tomgreef/clean-up/blob/master/Recursos/Pagina_Inicial.jpg)
 
 Finalmente, los agentes accederán de la misma forma a la plataforma, pero tendrán un interfaz más ampliado respecto a los usuarios, ya que van tener la posibilidad de
-administrar todas las incidencias, y verlas en un mapa con detalles.
+administrar todas las incidencias, y verlas con sus detalles.
 
 ![Mapa](https://github.com/tomgreef/clean-up/blob/master/Recursos/Agente_Incidencias.jpg)
 
@@ -390,7 +390,7 @@ Para la implementación del sistema, se hará uso del servicio que ofrece Google
 
 #### 4.3.5 Fecha de entrega
 
-La fecha máxima de entrega del producto será el 05/06/2020
+La fecha máxima de entrega del producto será el 08/06/2020
 
 ## __5. Verificación__
 - Para verificar la consistencia de este mismo documento pondremos a disposición del mismo un equipo destinado a revisarlo exhaustivamente.
