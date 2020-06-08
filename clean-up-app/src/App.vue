@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+	<div id="app">
+		<Hero />
+		<transition name="fade" mode="out-in">
+			<router-view id="view" />
+		</transition>
+		<Footer id="footer" />
+	</div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style scoped>
+	#app {
+		display: flex;
+		min-height: 100vh;
+		flex-direction: column;
+	}
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+	#view {
+		flex: 1;
+	}
 </style>
+
+<script>
+	import Hero from '@/components/Hero';
+	import Footer from '@/components/Footer';
+
+	export default {
+		components: {
+			Hero,
+			Footer
+		}
+	};
+</script>
